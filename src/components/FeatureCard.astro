@@ -1,0 +1,11 @@
+---
+const { icon: Icon, title, description, color, bgColor } = Astro.props;
+---
+
+<div class="feature-card bg-white rounded-2xl p-5 border border-brand-border/30 shadow-card">
+  <div class={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${bgColor}`}>
+    <Icon size={22} class={color} />
+  </div>
+  <h3 class="text-base font-bold text-brand-text mb-2">{title}</h3>
+  <p class="text-sm text-brand-sub leading-relaxed">{description}</p>
+</div>

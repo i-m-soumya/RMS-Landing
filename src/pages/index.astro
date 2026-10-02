@@ -1,0 +1,660 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ReactNav from '../components/ReactNav.jsx';
+import FAQAccordion from '../components/FAQAccordion.jsx';
+import ContactForm from '../components/ContactForm.jsx';
+import FeatureCard from '../components/FeatureCard.astro';
+import logoUrl from '../assets/restro360_logo.svg';
+import { QrCode, Smartphone, Users, RefreshCw, Palette, Share2, Zap, ClipboardList, ArrowRight, Check, ChevronRight, CircleDot, ScanLine, Sparkles, UserPlus, UtensilsCrossed, ClipboardCheck, BookOpen, ShoppingCart } from 'lucide-react';
+
+const siteContent = {
+  seo: {
+    title: 'All-in-One Restaurant Management Software for India | Restro360',
+    description:
+      'Restro360 is an all-in-one restaurant management platform for India — POS billing, live inventory, staff operations, and contactless QR ordering, all from one dashboard.',
+    keywords:
+      'restaurant management software India, restaurant POS software, QR code menu for restaurants, digital menu ordering system, restaurant inventory management software, restaurant staff management software, WhatsApp ordering for restaurants, restaurant billing software India',
+    canonicalUrl: 'https://www.restro360.com/',
+    ogImage: 'https://www.restro360.com/og-image.svg',
+    siteName: 'Restro360',
+  },
+  navigation: [
+    { label: 'Features', href: '#features' },
+    { label: 'How It Works', href: '#how-it-works' },
+    { label: 'Setup', href: '#setup' },
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Contact', href: '#contact' },
+  ],
+  hero: {
+    kicker: 'The all-in-one platform for modern restaurants',
+    heading: 'Restaurant Management Software Built for India',
+    description:
+      'Restro360 brings POS billing, live inventory, staff operations, and contactless QR ordering into one connected dashboard — built for how Indian restaurants actually run, from the counter to the kitchen.',
+    primaryCta: 'Book a Free Demo',
+    secondaryCta: 'See How It Works',
+    benefits: ['One dashboard for everything', 'No app download for guests', 'Live in 30 minutes'],
+    dashboardLabel: 'LIVE / FLOOR 01',
+    dashboardTitle: 'The Golden Fork',
+    tableStatus: '12 tables live',
+    ordersToday: 'Orders today',
+    avgTableTime: 'Avg. table time',
+    newOrder: 'New table order',
+    justNow: 'Just now · 3 items',
+    kitchenNotified: 'Kitchen notified',
+    onTrack: 'On track',
+    scanToOrder: 'Scan to order',
+    noDownload: 'No download needed',
+    table12: 'Table 12',
+    guestOrdering: 'Guest is ordering',
+  },
+  features: [
+    {
+      title: 'Smart POS & Billing',
+      description:
+        'Fast, GST-ready billing for dine-in, takeaway, and delivery, with offline mode so sales never stop.',
+    },
+    {
+      title: 'Live Inventory & Recipe Costing',
+      description:
+        'Deduct stock as orders are billed and map recipes to understand ingredient usage and true food cost.',
+    },
+    {
+      title: 'Live Table & Kitchen Sync',
+      description:
+        'See every table\'s status and the kitchen queue update in real time, so waiters and chefs are always working off the same information.',
+    },
+    {
+      title: 'Automated Reporting',
+      description:
+        'Replace manual reconciliation with daily and weekly reports that show how your business is performing.',
+    },
+    {
+      title: 'Staff Operations',
+      description:
+        'Keep teams aligned with connected staff workflows, attendance visibility, and clear outlet performance.',
+    },
+    {
+      title: 'Connected Orders',
+      description:
+        'Bring dine-in, takeaway, delivery, and table orders into one connected operational view.',
+    },
+    {
+      title: 'Built for Indian Food Service',
+      description:
+        'Designed for the pace and margins of Indian restaurants, cafes, QSRs, and cloud kitchens.',
+    },
+    {
+      title: 'Remote Visibility',
+      description:
+        'Check on sales, stock, and staff status from anywhere, so small issues get caught early instead of turning into surprises at closing time.',
+    },
+  ],
+  sections: {
+    features: {
+      heading: 'Everything Your Restaurant Needs, Finally Connected',
+      subheading:
+        'No more switching between five different apps. Restro360 brings POS, inventory, staff, and analytics together in one restaurant management platform built for how restaurants actually run.',
+    },
+    ownerSteps: {
+      eyebrow: 'For Restaurant Owners',
+      heading: 'Up and Running in Four Simple Steps',
+      subheading:
+        'Most restaurants are fully live within 30 minutes, with dedicated setup support included.',
+    },
+    teamFlow: {
+      eyebrow: 'For Your Team',
+      heading: 'One Connected View, Front of House to Kitchen',
+      subheading: 'From the counter to the kitchen, Restro360 keeps daily operations moving in one place.',
+    },
+    setup: {
+      heading: 'No IT Team Required',
+      subheading:
+        'Restro360 is designed for fast onboarding. Most restaurants are fully live within 30 minutes, with dedicated setup support included.',
+      includedTitle: "What's Included",
+      ctaTitle: 'Ready to simplify operations?',
+      ctaText:
+        'Book a free demo and see how Restro360 can bring billing, inventory, staff, and reporting into one connected view.',
+      ctaBulletOne: 'Most restaurants go live within 30 minutes',
+      ctaBulletTwo: 'Works on any device, no special hardware',
+      buttonPrimary: 'Book a Free Demo',
+      buttonSecondary: 'Contact Us',
+    },
+    faq: {
+      heading: 'Frequently Asked Questions',
+      subheading: 'Straight answers for restaurant owners evaluating a connected restaurant management platform.',
+    },
+    contact: {
+      heading: 'Get in Touch',
+      subheading: 'Ready to simplify your restaurant operations? Book a free demo or tell us about your outlets.',
+    },
+  },
+  ownerSteps: [
+    {
+      title: 'Set Up Your Outlet',
+      description: 'Sign up and configure your outlet profile, menu, and pricing.',
+    },
+    {
+      title: 'Map Inventory & Recipes',
+      description: 'Import or add inventory and connect ingredients to recipe costing.',
+    },
+    {
+      title: 'Train Your Team',
+      description: 'Get staff comfortable with billing in under a day, with no technical skills needed.',
+    },
+    {
+      title: 'Go Live & See Everything',
+      description: 'Track sales, stock, staff, and outlet performance from your dashboard.',
+    },
+  ],
+  customerSteps: [
+    {
+      title: 'Scan the QR Code',
+      description: 'Point your phone camera at the QR code on your table. No app needed.',
+    },
+    {
+      title: 'Browse the Menu',
+      description: 'Explore the full menu with photos, descriptions, and prices.',
+    },
+    {
+      title: 'Join Your Table',
+      description: 'Friends can join your session using a shared 4-digit PIN to order together.',
+    },
+    {
+      title: 'Add & Order',
+      description: 'Add items to your order and submit. The kitchen gets notified instantly.',
+    },
+    {
+      title: 'Track Your Order',
+      description: "See your order status in real-time. Request the bill when you're done.",
+    },
+  ],
+  setupIncluded: [
+    'Smart POS and GST-ready billing',
+    'Offline billing for uninterrupted sales',
+    'Live inventory and recipe costing',
+    'Real-time sales and order reporting',
+    'Staff attendance and operations visibility',
+    'Connected dine-in, takeaway, and delivery orders',
+    'Works across web, tablet, and mobile',
+    'Fast onboarding within 30 minutes',
+    'Dedicated setup assistance included',
+    'Ongoing customer support',
+  ],
+  faq: [
+    {
+      question: 'Is Restro360 just a QR menu app, or a full restaurant management system?',
+      answer:
+        'Restro360 is a complete restaurant management platform, not just a QR menu tool. Contactless QR ordering is one part of a system that also covers POS billing, live inventory, staff operations, and multi-outlet reporting, all from a single dashboard.',
+    },
+    {
+      question: 'How do I add a QR code menu to my restaurant?',
+      answer:
+        'Restro360 makes it easy to launch a digital menu card for restaurants with a QR code menu, live menu pricing, and contactless ordering that customers can access instantly from their phones, connected directly to your billing and kitchen workflow.',
+    },
+    {
+      question: 'Does Restro360 handle billing, GST invoicing, and inventory, not just ordering?',
+      answer:
+        'Yes. Restro360 includes GST-ready POS billing, offline billing so sales continue during downtime, and live inventory with recipe costing, so every order automatically reflects in your stock and reporting.',
+    },
+    {
+      question: 'Can I use WhatsApp ordering for restaurants alongside the QR menu?',
+      answer:
+        'Yes. Customers can scan a contactless QR menu, browse dishes, place an order, and receive the final bill or confirmation in WhatsApp, making the ordering flow faster and more convenient.',
+    },
+    {
+      question: 'Is this restaurant management software suitable for a small outlet or cafe?',
+      answer:
+        'Yes. Restro360 works for small cafes, casual dining restaurants, and multi-outlet brands that need a simple restaurant SaaS setup in India with fast onboarding and low operational friction.',
+    },
+  ],
+  contact: {
+    email: 'hello@restro360.com',
+    phone: 'Add your sales number',
+    quickResponse: 'We typically respond within 24 hours on working days. For urgent support, please call directly.',
+    successTitle: 'Message Sent!',
+    successText: "We'll get back to you within 24 hours to schedule your free demo.",
+    successButton: 'Send Another Message',
+    submitButton: 'Send Message',
+    sending: 'Sending…',
+    toastError: 'Please fix the errors before submitting.',
+    toastSuccess: "Message sent! We'll be in touch within 24 hours.",
+  },
+  footer: {
+    description:
+      'Restro360 is an all-in-one restaurant management platform helping restaurants across India simplify billing, inventory, and operations from a single dashboard.',
+    productLinks: ['Features', 'How It Works', 'Setup & Support', 'Book a Demo'],
+    companyLinks: ['About Us', 'Blog', 'Careers', 'Contact'],
+    legalLinks: ['Privacy Policy', 'Terms & Conditions', 'Contact Us'],
+    legalUrls: ['https://www.restro360.com/privacy-policy', 'https://www.restro360.com/terms', '#contact'],
+    copyright: '© 2026 Restro360. All rights reserved.',
+    subcopy: 'Ready to simplify your restaurant operations? Book a free demo today.',
+  },
+  reviews: {
+    owner: [
+      {
+        name: 'Rajesh Sharma',
+        role: 'Owner, The Spice Garden',
+        rating: 5,
+        text: 'Setup took less than 10 minutes. Orders went up 30% in the first week. Our staff can now focus on serving instead of taking orders.',
+      },
+      {
+        name: 'Priya Nair',
+        role: 'Manager, Cafe Bloom',
+        rating: 5,
+        text: 'Finally a solution that works without forcing customers to download an app. Very clean interface, even our older customers love it.',
+      },
+      {
+        name: 'Amir Khan',
+        role: 'Owner, Burger House',
+        rating: 5,
+        text: 'The group ordering feature is brilliant. Tables with large groups can all add their own items. No more confusion or missed items.',
+      },
+      {
+        name: 'Sunita Patel',
+        role: 'Director, Cafe Delight',
+        rating: 4,
+        text: 'Real-time menu updates are fantastic. We can mark items as unavailable instantly without reprinting any menus.',
+      },
+      {
+        name: 'Vikram Singh',
+        role: 'Owner, The Crown Kitchen',
+        rating: 5,
+        text: 'QR ordering cut our order errors by almost 80%. Customers get exactly what they want and the kitchen gets clear instructions.',
+      },
+      {
+        name: 'Meena Reddy',
+        role: 'Owner, South Spice',
+        rating: 5,
+        text: 'Best investment we made this year. The demo was clear, setup was fast, and support team is always responsive.',
+      },
+    ],
+    customer: [
+      {
+        name: 'Ananya K.',
+        role: 'Regular Diner',
+        rating: 5,
+        text: 'So convenient! Just scanned the QR at the table and ordered directly from my phone. No waiting for the waiter to take my order.',
+      },
+      {
+        name: 'Rohan Mehta',
+        role: 'Tech Professional',
+        rating: 5,
+        text: 'Went with 6 friends and we all ordered individually on our phones. Everything came out together perfectly. Loved the experience.',
+      },
+      {
+        name: 'Divya S.',
+        role: 'Food Blogger',
+        rating: 4,
+        text: 'The menu photos are great and it shows preparation time for each dish. Helps you plan your meal. Would love to see more customization options.',
+      },
+      {
+        name: 'Kartik Joshi',
+        role: 'Student',
+        rating: 5,
+        text: "Ordered without logging in, which was super convenient. The 4-digit code to join my friend's table was genius — we could all add items together!",
+      },
+      {
+        name: 'Nisha Gupta',
+        role: 'Working Professional',
+        rating: 5,
+        text: 'Loved being able to track my order in real-time. I knew exactly when it was being prepared and when it was ready. Modern and fast!',
+      },
+      {
+        name: 'Arjun Dev',
+        role: 'Frequent Diner',
+        rating: 5,
+        text: 'Clean UI, fast loading, works perfectly on my older Android phone. The bill request feature saved so much time at the end.',
+      },
+    ],
+  },
+};
+
+const features = siteContent.features.map((feature, index) => ({
+  icon: [QrCode, Smartphone, Users, RefreshCw, Palette, Share2, Zap, ClipboardList][index],
+  title: feature.title,
+  description: feature.description,
+  color: 'text-brand-accent',
+  bgColor: 'bg-brand-accent/10',
+}));
+
+const ownerSteps = siteContent.ownerSteps.map((step, index) => ({
+  icon: [UserPlus, QrCode, UtensilsCrossed, ClipboardCheck][index],
+  title: step.title,
+  description: step.description,
+}));
+
+const customerSteps = siteContent.customerSteps.map((step, index) => ({
+  icon: [QrCode, BookOpen, Users, ShoppingCart, ClipboardList][index],
+  title: step.title,
+  description: step.description,
+}));
+
+const title = siteContent.seo.title;
+const description = siteContent.seo.description;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Restro360',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      applicationSuite: 'Restaurant SaaS',
+      description,
+      keywords: siteContent.seo.keywords,
+      offers: {
+        '@type': 'Offer',
+        price: '499',
+        priceCurrency: 'INR',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: '499',
+          priceCurrency: 'INR',
+          billingDuration: 'P1M',
+        },
+        availability: 'https://schema.org/InStock',
+      },
+      audience: { '@type': 'Audience', audienceType: 'Restaurant owners and operators in India' },
+      areaServed: 'IN',
+      url: siteContent.seo.canonicalUrl,
+      logo: siteContent.seo.ogImage,
+      category: 'Restaurant software',
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: siteContent.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout title={title} description={description} canonical="https://www.restro360.com/">
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  <div class="landing-body">
+    <ReactNav links={siteContent.navigation} logoUrl={logoUrl.src} client:idle />
+
+    <main aria-label="Restro360 product overview">
+      <section class="landing-hero min-h-screen flex items-center pt-16 overflow-hidden" aria-labelledby="restro360-hero-heading">
+        <div class="landing-grid-glow"></div>
+        <div class="max-w-6xl mx-auto px-5 sm:px-6 py-20 w-full relative z-10">
+          <div class="grid lg:grid-cols-[0.92fr_1.08fr] gap-12 lg:gap-10 items-center">
+            <div class="landing-fade-in max-w-xl">
+              <div class="landing-kicker"><CircleDot size={13} /> {siteContent.hero.kicker}</div>
+              <h1 id="restro360-hero-heading" class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-white leading-[0.95] tracking-[-0.04em] mb-5">
+                {siteContent.hero.heading}
+              </h1>
+              <p class="text-[#b8c5c4] text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+                {siteContent.hero.description}
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a href="#contact" class="landing-primary-cta" aria-label="Book a free demo">
+                  {siteContent.hero.primaryCta} <ArrowRight size={17} />
+                </a>
+                <a href="#how-it-works" class="landing-secondary-cta" aria-label="See how it works">
+                  {siteContent.hero.secondaryCta} <ChevronRight size={17} />
+                </a>
+              </div>
+              <div class="flex flex-wrap gap-x-6 gap-y-3 mt-9 text-xs text-[#b8c5c4]">
+                {siteContent.hero.benefits.map((item) => (
+                  <span class="flex items-center gap-1.5"><Check size={14} class="text-[#f4b19e]" />{item}</span>
+                ))}
+              </div>
+            </div>
+
+            <div class="landing-stage" aria-label="The Golden Fork live restaurant operations dashboard preview">
+              <div class="landing-orbit orbit-one"></div>
+              <div class="landing-orbit orbit-two"></div>
+              <div class="landing-console float-animate">
+                <div class="console-topbar">
+                  <div class="flex items-center gap-2"><span class="console-dot bg-[#d95d52]"></span><span class="console-dot bg-[#f4b19e]"></span><span class="console-dot bg-[#f7f1e8]"></span></div>
+                  <span class="font-mono text-[10px] text-[#93a6a4]">{siteContent.hero.dashboardLabel}</span>
+                </div>
+                <div class="console-content">
+                  <div class="flex items-start justify-between mb-6">
+                    <div><p class="text-[10px] uppercase tracking-[0.2em] text-[#93a6a4]">Tonight at</p><h2 class="font-display text-2xl text-white">{siteContent.hero.dashboardTitle}</h2></div>
+                    <div class="live-pill"><span></span> {siteContent.hero.tableStatus}</div>
+                  </div>
+                  <div class="console-stat-grid">
+                    <div><p class="console-label">{siteContent.hero.ordersToday}</p><p class="console-number">248</p><span class="console-up">+18.4%</span></div>
+                    <div><p class="console-label">{siteContent.hero.avgTableTime}</p><p class="console-number">42m</p><span class="console-muted">-6m this week</span></div>
+                  </div>
+                  <div class="console-order-card">
+                    <div class="flex items-center justify-between mb-4"><div class="flex items-center gap-2"><span class="table-badge">T12</span><div><p class="text-sm text-white font-semibold">{siteContent.hero.newOrder}</p><p class="text-[10px] text-[#93a6a4]">{siteContent.hero.justNow}</p></div></div><Sparkles size={16} class="text-[#f6c16b]" /></div>
+                    <div class="flex items-center gap-2 text-xs text-[#cbbab1]"><span class="order-line"></span><span>{siteContent.hero.kitchenNotified}</span><span class="ml-auto text-[#f4b19e]">{siteContent.hero.onTrack}</span></div>
+                  </div>
+                  <div class="console-menu-row"><div class="menu-thumb thumb-green"></div><div><p class="text-xs text-white font-semibold">Paneer Tikka</p><p class="text-[10px] text-[#a6948b]">Bestseller · ₹320</p></div><span class="ml-auto text-xs text-[#f4b19e]">+ 84%</span></div>
+                </div>
+              </div>
+              <div class="landing-float-card landing-qr-card"><ScanLine size={22} class="text-[#f4b19e]" /><div><p class="text-xs text-white font-semibold">{siteContent.hero.scanToOrder}</p><p class="text-[10px] text-[#a6948b]">{siteContent.hero.noDownload}</p></div></div>
+              <div class="landing-float-card landing-seat-card"><div class="seat-ring">12</div><div><p class="text-xs text-white font-semibold">{siteContent.hero.table12}</p><p class="text-[10px] text-[#93a6a4]">{siteContent.hero.guestOrdering}</p></div></div>
+              <div class="landing-qr-pattern"><QrCode size={70} /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="py-16 bg-white" aria-labelledby="features-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-12">
+            <h2 id="features-heading" class="font-display text-3xl font-bold text-brand-text mb-3">
+              {siteContent.sections.features.heading}
+            </h2>
+            <p class="text-brand-sub max-w-xl mx-auto">
+              {siteContent.sections.features.subheading}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.map((f) => (
+              <FeatureCard icon={f.icon} title={f.title} description={f.description} color={f.color} bgColor={f.bgColor} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="py-16 bg-brand-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-12">
+            <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">{siteContent.sections.ownerSteps.eyebrow}</span>
+            <h2 class="font-display text-3xl font-bold text-brand-text mt-2 mb-3">
+              {siteContent.sections.ownerSteps.heading}
+            </h2>
+            <p class="text-brand-sub max-w-md mx-auto">
+              {siteContent.sections.ownerSteps.subheading}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {ownerSteps.map((step, i) => (
+              <div class="relative flex flex-col items-center text-center">
+                <div class="relative mb-4">
+                  <div class="w-14 h-14 bg-brand-accent/10 rounded-2xl flex items-center justify-center">
+                    <step.icon size={26} class="text-brand-accent" />
+                  </div>
+                  <div class="absolute -top-2 -right-2 w-5 h-5 bg-brand-accent rounded-full flex items-center justify-center">
+                    <span class="text-white text-[10px] font-bold">{i + 1}</span>
+                  </div>
+                </div>
+                {!((i === ownerSteps.length - 1)) && (
+                  <div class="hidden md:block absolute top-7 left-[calc(50%+40px)] right-0 h-px border-t-2 border-dashed border-brand-border"></div>
+                )}
+                <h3 class="text-sm font-bold text-brand-text mb-1">{step.title}</h3>
+                <p class="text-xs text-brand-sub leading-relaxed max-w-[140px]">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-12">
+            <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">{siteContent.sections.teamFlow.eyebrow}</span>
+            <h2 class="font-display text-3xl font-bold text-brand-text mt-2 mb-3">
+              {siteContent.sections.teamFlow.heading}
+            </h2>
+            <p class="text-brand-sub max-w-md mx-auto">
+              {siteContent.sections.teamFlow.subheading}
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 sm:gap-2 items-start">
+            {customerSteps.map((step, i) => (
+              <div class="flex sm:flex-col items-start sm:items-center sm:text-center flex-1 gap-4 sm:gap-0">
+                <div class="flex sm:flex-col items-center sm:mb-4">
+                  <div class="w-12 h-12 bg-brand-accent/10 rounded-2xl flex items-center justify-center shrink-0">
+                    <step.icon size={22} class="text-brand-accent" />
+                  </div>
+                  {i < customerSteps.length - 1 && (
+                    <div class="w-8 h-px sm:w-px sm:h-6 bg-brand-border border-dashed sm:mx-auto hidden sm:block"></div>
+                  )}
+                </div>
+                <div class="sm:px-1">
+                  <div class="flex items-center gap-2 sm:justify-center mb-1">
+                    <span class="w-5 h-5 bg-brand-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center shrink-0">
+                      {i + 1}
+                    </span>
+                    <p class="text-sm font-bold text-brand-text">{step.title}</p>
+                  </div>
+                  <p class="text-xs text-brand-sub leading-relaxed">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="setup" class="py-16 bg-brand-bg" aria-labelledby="setup-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-12">
+            <h2 id="setup-heading" class="font-display text-3xl font-bold text-brand-text mb-3">{siteContent.sections.setup.heading}</h2>
+            <p class="text-brand-sub max-w-md mx-auto">
+              {siteContent.sections.setup.subheading}
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-2xl p-6 border border-brand-border/30 shadow-card">
+              <h3 class="text-lg font-bold text-brand-text mb-5">{siteContent.sections.setup.includedTitle}</h3>
+              <div class="grid grid-cols-1 gap-3">
+                {siteContent.setupIncluded.map((item) => (
+                  <div class="flex items-start gap-3">
+                    <div class="w-5 h-5 bg-brand-success/10 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                      <Check size={12} class="text-brand-success" strokeWidth={3} />
+                    </div>
+                    <p class="text-sm text-brand-text">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-brand-accent to-brand-accent-light rounded-2xl p-6 text-white flex flex-col justify-between">
+              <div>
+                <h3 class="text-2xl font-bold mb-3">{siteContent.sections.setup.ctaTitle}</h3>
+                <p class="text-white/80 text-sm leading-relaxed mb-6">
+                  {siteContent.sections.setup.ctaText}
+                </p>
+                <div class="flex items-center gap-3 mb-3"><div class="w-2 h-2 bg-white/50 rounded-full"></div><p class="text-sm text-white/80">{siteContent.sections.setup.ctaBulletOne}</p></div>
+                <div class="flex items-center gap-3 mb-6"><div class="w-2 h-2 bg-white/50 rounded-full"></div><p class="text-sm text-white/80">{siteContent.sections.setup.ctaBulletTwo}</p></div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <a href="#contact" class="w-full h-12 bg-white text-brand-accent font-bold rounded-xl hover:bg-white/90 transition-all inline-flex items-center justify-center">{siteContent.sections.setup.buttonPrimary}</a>
+                <a href="#contact" class="w-full h-12 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all inline-flex items-center justify-center">{siteContent.sections.setup.buttonSecondary}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="py-16 bg-brand-bg" aria-labelledby="faq-heading">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-10">
+            <h2 id="faq-heading" class="font-display text-3xl font-bold text-brand-text mb-3">{siteContent.sections.faq.heading}</h2>
+            <p class="text-brand-sub">{siteContent.sections.faq.subheading}</p>
+          </div>
+          <FAQAccordion faqs={siteContent.faq} client:visible />
+        </div>
+      </section>
+
+      <section id="contact" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-12">
+            <h2 class="font-display text-3xl font-bold text-brand-text mb-3">{siteContent.sections.contact.heading}</h2>
+            <p class="text-brand-sub max-w-md mx-auto">
+              {siteContent.sections.contact.subheading}
+            </p>
+          </div>
+          <ContactForm contactContent={siteContent.contact} client:idle />
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-brand-text text-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+          <div class="col-span-2 md:col-span-1">
+            <div class="flex items-center gap-2 mb-3">
+              <img src={logoUrl.src} alt="Restro360" class="h-10 w-auto max-w-none" />
+            </div>
+            <p class="text-white/50 text-xs leading-relaxed mb-4">{siteContent.footer.description}</p>
+            <div class="flex gap-2">
+              {['X', 'in', 'f', 'ig'].map((s) => (
+                <a key={s} href="#" class="w-7 h-7 bg-white/10 rounded-lg flex items-center justify-center text-xs text-white/50 hover:bg-white/20 transition-colors">{s}</a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Product</p>
+            <div class="space-y-2">
+              {siteContent.footer.productLinks.map((link) => (
+                <a href="#features" class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Company</p>
+            <div class="space-y-2">
+              {siteContent.footer.companyLinks.map((link) => (
+                <a href="#contact" class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Legal</p>
+            <div class="space-y-2">
+              {siteContent.footer.legalLinks.map((link, index) => (
+                <a href={siteContent.footer.legalUrls[index]} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-xs text-white/40">{siteContent.footer.copyright}</p>
+          <p class="text-xs text-white/30">{siteContent.footer.subcopy}</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const apiBase = import.meta.env.PUBLIC_API_URL || 'http://localhost:5000';
+    fetch(`${apiBase}/api/public/website-views`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page_slug: window.location.pathname, referrer: document.referrer || undefined }),
+      keepalive: true,
+    }).catch(() => {});
+  </script>
+</BaseLayout>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Restro360 QR Menu Ordering</title>
+  <desc id="desc">Restro360 digital menu ordering system for restaurants in India</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#F97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="930" cy="140" r="170" fill="#1D4ED8" opacity="0.18"/>
+  <circle cx="1025" cy="470" r="200" fill="#F59E0B" opacity="0.12"/>
+  <g transform="translate(70 110)">
+    <rect x="0" y="0" width="440" height="410" rx="30" fill="#F8FAFC" opacity="0.96"/>
+    <rect x="45" y="46" width="290" height="18" rx="9" fill="#E5E7EB"/>
+    <rect x="45" y="80" width="190" height="18" rx="9" fill="#E5E7EB"/>
+    <rect x="45" y="150" width="350" height="170" rx="18" fill="#EEF2FF"/>
+    <rect x="76" y="185" width="110" height="110" rx="18" fill="#fff"/>
+    <rect x="216" y="181" width="130" height="18" rx="9" fill="#0F172A" opacity="0.8"/>
+    <rect x="216" y="214" width="110" height="16" rx="8" fill="#CBD5E1"/>
+    <rect x="216" y="247" width="140" height="16" rx="8" fill="#CBD5E1"/>
+    <rect x="216" y="280" width="90" height="16" rx="8" fill="#CBD5E1"/>
+    <rect x="45" y="342" width="145" height="40" rx="20" fill="url(#accent)"/>
+    <rect x="205" y="342" width="190" height="40" rx="20" fill="#0F172A" opacity="0.12"/>
+  </g>
+  <g transform="translate(620 122)">
+    <text x="0" y="0" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700">Restro360</text>
+    <text x="0" y="86" fill="#FBBF24" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">QR menu ordering</text>
+    <text x="0" y="170" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="28">Digital menu ordering system</text>
+    <text x="0" y="212" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="28">for restaurants in India</text>
+    <rect x="0" y="258" width="318" height="68" rx="34" fill="url(#accent)"/>
+    <text x="42" y="303" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">₹499/month</text>
+  </g>
+</svg>

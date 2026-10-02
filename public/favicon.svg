@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="512"
+     height="512"
+     viewBox="0 0 200 180">
+
+  <!-- Navy rounded-square background -->
+  <rect x="12" y="8"
+        width="168"
+        height="166"
+        rx="31"
+        fill="#0F4C81"/>
+
+  <!-- White R / Fork mark -->
+  <g fill="#F8FAFC">
+
+    <!-- Main R bowl + diagonal leg -->
+    <path d="
+      M89 42
+      H101
+      C126 42 143 55 143 72
+      C143 87 133 98 119 102
+      L146 137
+      C149 141 146 144 142 144
+      H120
+      C117 144 115 142 113 139
+      L88 107
+      V91
+      H103
+      C110 91 114 87 114 82
+      C114 78 111 79 106 79
+      H89
+      Z"/>
+
+    <!-- Ascending analytics bars -->
+    <path d="
+      M47 144
+      V120
+      C47 118 48 117 50 117
+      H55
+      V144
+      Z"/>
+
+    <path d="
+      M60 144
+      V111
+      C60 109 61 108 63 108
+      H68
+      V144
+      Z"/>
+
+    <path d="
+      M73 144
+      V101
+      C73 99 74 98 76 98
+      H81
+      V144
+      Z"/>
+
+    <!-- Three fork tines -->
+    <rect x="47" y="42"
+          width="52" height="7"
+          rx="3.5"/>
+
+    <rect x="47" y="57"
+          width="52" height="7"
+          rx="3.5"/>
+
+    <rect x="47" y="72"
+          width="52" height="7"
+          rx="3.5"/>
+
+  </g>
+</svg>
