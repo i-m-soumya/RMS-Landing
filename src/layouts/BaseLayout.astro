@@ -444,5 +444,31 @@ const { title, description, canonical = 'https://www.restro360.com/' } = Astro.p
   </head>
   <body>
     <slot />
+    <script>
+      const modelContext = navigator.modelContext;
+
+      if (modelContext?.registerTool) {
+        const controller = new AbortController();
+
+        modelContext.registerTool({
+          name: 'get_restaurant_management_overview',
+          description: 'Get an overview of Restro360 restaurant management features.',
+          inputSchema: { type: 'object', properties: {} },
+          execute: async (_input, { signal } = {}) => {
+            if (signal?.aborted || controller.signal.aborted) {
+              throw new DOMException('The tool request was aborted.', 'AbortError');
+            }
+
+            return {
+              product: 'Restro360',
+              features: ['POS billing', 'live inventory', 'staff operations', 'reporting', 'QR ordering'],
+              contact: 'https://www.restro360.com/#contact',
+            };
+          },
+        });
+
+        window.addEventListener('pagehide', () => controller.abort(), { once: true });
+      }
+    </script>
   </body>
 </html>

@@ -1,0 +1,30 @@
+{
+  "name": "Restro360",
+  "version": "1.0.0",
+  "description": "Restaurant management software for billing, inventory, staff operations, reporting, and QR ordering.",
+  "supportedInterfaces": [
+    {
+      "url": "https://www.restro360.com/",
+      "protocolBinding": "HTTP+JSON"
+    }
+  ],
+  "capabilities": {
+    "tools": false,
+    "resources": true,
+    "prompts": false
+  },
+  "extensions": [
+    {
+      "uri": "https://github.com/google-agentic-commerce/AP2/tree/v0.1.0",
+      "required": false,
+      "params": { "roles": ["merchant"] }
+    }
+  ],
+  "skills": [
+    {
+      "id": "restaurant-management-overview",
+      "name": "Restaurant management overview",
+      "description": "Provides product information about Restro360 restaurant operations software."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "serverInfo": {
+    "name": "Restro360 public discovery",
+    "version": "1.0.0"
+  },
+  "description": "Restro360 does not currently expose an MCP server endpoint.",
+  "transport": {
+    "endpoint": "https://www.restro360.com/mcp",
+    "protocol": "streamable-http"
+  },
+  "capabilities": {
+    "tools": false,
+    "resources": false,
+    "prompts": false
+  }
+}

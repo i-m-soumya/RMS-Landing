@@ -1,0 +1,9 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Restro360 API",
+    "version": "1.0.0"
+  },
+  "servers": [{ "url": "https://www.restro360.com" }],
+  "paths": {}
+}

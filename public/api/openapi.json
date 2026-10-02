@@ -1,0 +1,10 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Restro360 Public API",
+    "version": "1.0.0",
+    "description": "Public marketing integrations for Restro360. Contact Restro360 before relying on an endpoint."
+  },
+  "servers": [{ "url": "https://www.restro360.com" }],
+  "paths": {}
+}
