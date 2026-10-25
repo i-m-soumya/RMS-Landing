@@ -1,11 +1,6 @@
 import { useMemo, useState } from 'react';
 import { postMarketing } from '../lib/marketingApi';
 
-const toast = {
-  success: (message) => window.alert(message),
-  error: (message) => window.alert(message),
-};
-
 function validate(values) {
   const errors = {};
   if (!values.name.trim()) errors.name = 'Name is required.';
@@ -21,6 +16,7 @@ export default function ContactForm({ contactContent }) {
   const [touched, setTouched] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
 
   const inputClass = (field) =>
     `w-full h-11 px-4 bg-brand-muted rounded-xl text-sm outline-none border-2 transition-all placeholder:text-brand-sub/60 ${
@@ -45,10 +41,8 @@ export default function ContactForm({ contactContent }) {
     setTouched(allTouched);
     const nextErrors = validate(form);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) {
-      toast.error(contactContent.toastError);
-      return;
-    }
+    setSubmissionError('');
+    if (Object.keys(nextErrors).length > 0) return;
     setSubmitting(true);
     try {
       const response = await postMarketing('contact-queries', {
@@ -61,9 +55,8 @@ export default function ContactForm({ contactContent }) {
       });
       if (!response.ok) throw new Error('Contact submission failed');
       setSubmitted(true);
-      toast.success(contactContent.toastSuccess);
     } catch {
-      toast.error('Unable to send your message right now. Please try again.');
+      setSubmissionError('Unable to send your message right now. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -116,6 +109,7 @@ export default function ContactForm({ contactContent }) {
               setSubmitted(false);
               setForm({ name: '', restaurantName: '', mobile: '', email: '', message: '', website: '' });
               setTouched({});
+              setSubmissionError('');
             }}
             className="h-10 px-5 bg-brand-accent text-white rounded-xl text-sm font-semibold hover:brightness-110 transition-all"
             type="button"
@@ -125,6 +119,7 @@ export default function ContactForm({ contactContent }) {
         </div>
       ) : (
         <div className="space-y-3">
+          {submissionError ? <p className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800" role="alert">{submissionError}</p> : null}
           <div className="grid sm:grid-cols-2 gap-3">
             {fields.slice(0, 2).map((field) => (
               <div key={field.key}>
