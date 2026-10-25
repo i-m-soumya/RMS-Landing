@@ -1,7 +1,7 @@
 ---
 import '../styles/index.css';
 
-const { title, description, canonical = 'https://www.restro360.com/' } = Astro.props;
+const { title, description, canonical = 'https://restro360.tech/' } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,11 +17,11 @@ const { title, description, canonical = 'https://www.restro360.com/' } = Astro.p
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Restro360" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content="https://www.restro360.com/og-image.svg" />
+    <meta property="og:image" content="https://restro360.tech/og-image.svg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://www.restro360.com/og-image.svg" />
+    <meta name="twitter:image" content="https://restro360.tech/og-image.svg" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>

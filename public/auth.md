@@ -6,4 +6,4 @@ Agents that need access should contact Restro360 through the public contact form
 
 ## Supported authentication
 
-No public agent registration or bearer-token provisioning method is currently advertised.
+No public agent registration or bearer-token provisioning method is currently advertised. OAuth Protected Resource Metadata is available at https://www.restro360.com/.well-known/oauth-protected-resource and currently advertises no authorization server.

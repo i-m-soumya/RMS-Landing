@@ -7,32 +7,34 @@ import FeatureCard from '../components/FeatureCard.astro';
 import logoUrl from '../assets/restro360_logo.svg';
 import { QrCode, Smartphone, Users, RefreshCw, Palette, Share2, Zap, ClipboardList, ArrowRight, Check, ChevronRight, CircleDot, ScanLine, Sparkles, UserPlus, UtensilsCrossed, ClipboardCheck, BookOpen, ShoppingCart } from 'lucide-react';
 
+import { pricingConfig, siteConfig } from '../lib/siteConfig';
+
 const siteContent = {
   seo: {
-    title: 'All-in-One Restaurant Management Software for India | Restro360',
+    title: 'Restaurant management software for QR ordering, kitchen, billing and staff | Restro360',
     description:
-      'Restro360 is an all-in-one restaurant management platform for India — POS billing, live inventory, staff operations, and contactless QR ordering, all from one dashboard.',
+      'Restro360 helps Indian restaurants run from QR ordering to kitchen to bill with live tables, guest ordering, staff roles, reports, and GST-ready billing.',
     keywords:
-      'restaurant management software India, restaurant POS software, QR code menu for restaurants, digital menu ordering system, restaurant inventory management software, restaurant staff management software, WhatsApp ordering for restaurants, restaurant billing software India',
-    canonicalUrl: 'https://www.restro360.com/',
-    ogImage: 'https://www.restro360.com/og-image.svg',
+      'restaurant management software India, restaurant POS software, QR ordering for restaurants, kitchen display, staff management restaurant, GST-ready billing India, dining QR order tracking',
+    canonicalUrl: siteConfig.canonicalUrl,
+    ogImage: 'https://restro360.tech/og-image.svg',
     siteName: 'Restro360',
   },
   navigation: [
     { label: 'Features', href: '#features' },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Setup', href: '#setup' },
+    { label: 'How it works', href: '#how-it-works' },
+    { label: 'Pricing', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
   ],
   hero: {
-    kicker: 'The all-in-one platform for modern restaurants',
-    heading: 'Restaurant Management Software Built for India',
+    kicker: 'Run the restaurant from QR to kitchen to bill',
+    heading: 'Restaurant operations built for Indian restaurants',
     description:
-      'Restro360 brings POS billing, live inventory, staff operations, and contactless QR ordering into one connected dashboard — built for how Indian restaurants actually run, from the counter to the kitchen.',
-    primaryCta: 'Book a Free Demo',
-    secondaryCta: 'See How It Works',
-    benefits: ['One dashboard for everything', 'No app download for guests', 'Live in 30 minutes'],
+      'Restro360 gives you QR table ordering, live kitchen updates, staff controls, guest order tracking, GST-ready billing, and reports in one streamlined workflow.',
+    primaryCta: 'Start for Rs 2',
+    secondaryCta: 'Book a Free Demo',
+    benefits: ['QR ordering without app download', 'Staff roles with instant access revoke', 'Set up in minutes with a guided wizard'],
     dashboardLabel: 'LIVE / FLOOR 01',
     dashboardTitle: 'The Golden Fork',
     tableStatus: '12 tables live',
@@ -49,263 +51,180 @@ const siteContent = {
   },
   features: [
     {
-      title: 'Smart POS & Billing',
-      description:
-        'Fast, GST-ready billing for dine-in, takeaway, and delivery, with offline mode so sales never stop.',
+      title: 'QR table ordering',
+      description: 'Guests scan a table QR, browse the menu, add notes and addons, and submit orders without downloading an app.',
     },
     {
-      title: 'Live Inventory & Recipe Costing',
-      description:
-        'Deduct stock as orders are billed and map recipes to understand ingredient usage and true food cost.',
+      title: 'Session gate & order flow',
+      description: 'The waiter opens the table session first, then the kitchen sees confirmed orders in a queue with live status updates.',
     },
     {
-      title: 'Live Table & Kitchen Sync',
-      description:
-        'See every table\'s status and the kitchen queue update in real time, so waiters and chefs are always working off the same information.',
+      title: 'Kitchen display & partial rejection',
+      description: 'Confirmed, preparing, and ready items appear in the kitchen workflow, with partial item rejection supported.',
     },
     {
-      title: 'Automated Reporting',
-      description:
-        'Replace manual reconciliation with daily and weekly reports that show how your business is performing.',
+      title: 'Live order tracking',
+      description: 'Diners can track order progress, request a bill, and stay informed while the team serves the table.',
     },
     {
-      title: 'Staff Operations',
-      description:
-        'Keep teams aligned with connected staff workflows, attendance visibility, and clear outlet performance.',
+      title: 'GST-ready billing',
+      description: 'Create sequential invoice numbers, record Cash, UPI, or Card payments, and keep billing ready for GST compliance.',
     },
     {
-      title: 'Connected Orders',
-      description:
-        'Bring dine-in, takeaway, delivery, and table orders into one connected operational view.',
+      title: 'Menu management',
+      description: 'Update categories, photos, MRP and discount, veg/non-veg, spice levels, addons, stock availability, and scheduled items.',
     },
     {
-      title: 'Built for Indian Food Service',
-      description:
-        'Designed for the pace and margins of Indian restaurants, cafes, QSRs, and cloud kitchens.',
+      title: 'Staff accounts',
+      description: 'Restaurant Admin, Waiter, and Chef roles are supported with single-device sessions and instant access revoke.',
     },
     {
-      title: 'Remote Visibility',
-      description:
-        'Check on sales, stock, and staff status from anywhere, so small issues get caught early instead of turning into surprises at closing time.',
+      title: 'Reports & feedback',
+      description: 'Track revenue, top items, order history, table turnover, customer visits, staff activity, and ratings and feedback.',
     },
   ],
   sections: {
     features: {
-      heading: 'Everything Your Restaurant Needs, Finally Connected',
+      heading: 'Built for the real pace of a restaurant floor',
       subheading:
-        'No more switching between five different apps. Restro360 brings POS, inventory, staff, and analytics together in one restaurant management platform built for how restaurants actually run.',
+        'From the first scan to the final bill, Restro360 keeps the service flow clear for guests, waiters, and kitchen staff.',
     },
     ownerSteps: {
-      eyebrow: 'For Restaurant Owners',
-      heading: 'Up and Running in Four Simple Steps',
-      subheading:
-        'Most restaurants are fully live within 30 minutes, with dedicated setup support included.',
+      eyebrow: 'How it works for owners',
+      heading: 'Four simple steps to go live',
+      subheading: 'Set up your outlet, train the team, and open service with a guided start.',
     },
     teamFlow: {
-      eyebrow: 'For Your Team',
-      heading: 'One Connected View, Front of House to Kitchen',
-      subheading: 'From the counter to the kitchen, Restro360 keeps daily operations moving in one place.',
+      eyebrow: 'How diners order',
+      heading: 'A guest flow that feels fast and familiar',
+      subheading: 'No app, no friction — just scan, browse, order, track, and pay when ready.',
     },
     setup: {
-      heading: 'No IT Team Required',
-      subheading:
-        'Restro360 is designed for fast onboarding. Most restaurants are fully live within 30 minutes, with dedicated setup support included.',
-      includedTitle: "What's Included",
-      ctaTitle: 'Ready to simplify operations?',
+      heading: 'Simple setup, clear controls',
+      subheading: 'Create the menu, add staff, and launch from the same dashboard without extra complexity.',
+      includedTitle: 'Included in the trial',
+      ctaTitle: 'Ready to set up your restaurant?',
       ctaText:
-        'Book a free demo and see how Restro360 can bring billing, inventory, staff, and reporting into one connected view.',
-      ctaBulletOne: 'Most restaurants go live within 30 minutes',
-      ctaBulletTwo: 'Works on any device, no special hardware',
-      buttonPrimary: 'Book a Free Demo',
-      buttonSecondary: 'Contact Us',
+        'Start with the guided onboarding flow and keep the process simple for the first service.',
+      ctaBulletOne: 'Set up in minutes with a guided wizard',
+      ctaBulletTwo: 'Works on modern phones, tablets, and desktops',
+      buttonPrimary: 'Start for Rs 2',
+      buttonSecondary: 'Book a Demo',
     },
     faq: {
-      heading: 'Frequently Asked Questions',
-      subheading: 'Straight answers for restaurant owners evaluating a connected restaurant management platform.',
+      heading: 'Frequently asked questions',
+      subheading: 'Straight answers for restaurants evaluating a simpler, connected workflow.',
     },
     contact: {
-      heading: 'Get in Touch',
-      subheading: 'Ready to simplify your restaurant operations? Book a free demo or tell us about your outlets.',
+      heading: 'Get in touch',
+      subheading: 'Tell us about your restaurant and we will help you get started with the right setup.',
     },
   },
   ownerSteps: [
     {
-      title: 'Set Up Your Outlet',
-      description: 'Sign up and configure your outlet profile, menu, and pricing.',
+      title: 'Sign up',
+      description: 'Create your trial account and confirm your details to start the onboarding flow.',
     },
     {
-      title: 'Map Inventory & Recipes',
-      description: 'Import or add inventory and connect ingredients to recipe costing.',
+      title: 'Set up tables and menu',
+      description: 'Add tables, menu categories, items, addons, and stock availability for your service hours.',
     },
     {
-      title: 'Train Your Team',
-      description: 'Get staff comfortable with billing in under a day, with no technical skills needed.',
+      title: 'Train staff',
+      description: 'Invite Restaurant Admin, Waiter, and Chef roles and train the team on live service flow.',
     },
     {
-      title: 'Go Live & See Everything',
-      description: 'Track sales, stock, staff, and outlet performance from your dashboard.',
+      title: 'Go live',
+      description: 'Open tables, receive orders, monitor the kitchen, and close the bill when service ends.',
     },
   ],
   customerSteps: [
     {
-      title: 'Scan the QR Code',
-      description: 'Point your phone camera at the QR code on your table. No app needed.',
+      title: 'Scan the QR',
+      description: 'Guests open the table QR on their phone and join the session without any app installation.',
     },
     {
-      title: 'Browse the Menu',
-      description: 'Explore the full menu with photos, descriptions, and prices.',
+      title: 'Browse the menu',
+      description: 'Explore dishes with pricing, photos, addons, and notes to customise each order.',
     },
     {
-      title: 'Join Your Table',
-      description: 'Friends can join your session using a shared 4-digit PIN to order together.',
+      title: 'Add and order',
+      description: 'Select items, add notes and extras, and send the order to the kitchen for confirmation.',
     },
     {
-      title: 'Add & Order',
-      description: 'Add items to your order and submit. The kitchen gets notified instantly.',
+      title: 'Track the order',
+      description: 'View the live status of each item from confirmed to preparing to ready.',
     },
     {
-      title: 'Track Your Order',
-      description: "See your order status in real-time. Request the bill when you're done.",
+      title: 'Request the bill',
+      description: 'When the table is ready, request the bill and the team can complete payment quickly.',
     },
   ],
   setupIncluded: [
-    'Smart POS and GST-ready billing',
-    'Offline billing for uninterrupted sales',
-    'Live inventory and recipe costing',
-    'Real-time sales and order reporting',
-    'Staff attendance and operations visibility',
-    'Connected dine-in, takeaway, and delivery orders',
-    'Works across web, tablet, and mobile',
-    'Fast onboarding within 30 minutes',
-    'Dedicated setup assistance included',
-    'Ongoing customer support',
+    'QR table ordering with no app download',
+    'Live kitchen queue and queue-based order confirmation',
+    'Guest order tracking and bill request flow',
+    'GST-ready billing and invoice numbering',
+    'Menu management with stock availability and scheduled items',
+    'Staff roles with instant access revoke',
+    'Reports for revenue, top items, and customer activity',
+    'Ratings and feedback for tables and service',
+    'Real-time notifications across staff',
+    'Platform onboarding with a guided setup flow',
   ],
   faq: [
     {
-      question: 'Is Restro360 just a QR menu app, or a full restaurant management system?',
+      question: 'Do guests need an app to order?',
       answer:
-        'Restro360 is a complete restaurant management platform, not just a QR menu tool. Contactless QR ordering is one part of a system that also covers POS billing, live inventory, staff operations, and multi-outlet reporting, all from a single dashboard.',
+        'No. Guests use the QR on each table and order directly from their phone browser with no app download required.',
     },
     {
-      question: 'How do I add a QR code menu to my restaurant?',
+      question: 'Does Restro360 support GST-ready billing?',
       answer:
-        'Restro360 makes it easy to launch a digital menu card for restaurants with a QR code menu, live menu pricing, and contactless ordering that customers can access instantly from their phones, connected directly to your billing and kitchen workflow.',
+        'Yes. Billing is built for GST-ready operations with sequential invoice numbers and payment recording for Cash, UPI, and Card.',
     },
     {
-      question: 'Does Restro360 handle billing, GST invoicing, and inventory, not just ordering?',
+      question: 'How does the pricing work?',
       answer:
-        'Yes. Restro360 includes GST-ready POS billing, offline billing so sales continue during downtime, and live inventory with recipe costing, so every order automatically reflects in your stock and reporting.',
+        `The intro offer is ${pricingConfig.INTRO_PRICE_INR} per month for the first ${pricingConfig.INTRO_MONTHS} months, then ${pricingConfig.STANDARD_PRICE_INR} per month. ${pricingConfig.GST_TEXT}. ${pricingConfig.CANCEL_ANYTIME}.`,
     },
     {
-      question: 'Can I use WhatsApp ordering for restaurants alongside the QR menu?',
+      question: 'Can I cancel anytime?',
       answer:
-        'Yes. Customers can scan a contactless QR menu, browse dishes, place an order, and receive the final bill or confirmation in WhatsApp, making the ordering flow faster and more convenient.',
+        'Yes. The plan is flexible and can be cancelled at any time. The pricing and billing terms remain visible in the signup and payment flow.',
     },
     {
-      question: 'Is this restaurant management software suitable for a small outlet or cafe?',
+      question: 'Who owns the data?',
       answer:
-        'Yes. Restro360 works for small cafes, casual dining restaurants, and multi-outlet brands that need a simple restaurant SaaS setup in India with fast onboarding and low operational friction.',
+        'Your restaurant data remains under your account and is managed through the Restro360 platform. We provide the tools to run your operations and you control your business data in the account.',
+    },
+    {
+      question: 'Which devices are supported?',
+      answer:
+        'The system is designed for modern desktop, tablet, and mobile browsers used by restaurant staff and diners.',
     },
   ],
   contact: {
-    email: 'hello@restro360.com',
-    phone: 'Add your sales number',
-    quickResponse: 'We typically respond within 24 hours on working days. For urgent support, please call directly.',
+    email: siteConfig.supportEmail,
+    phone: siteConfig.phone || '',
+    quickResponse: 'We typically respond within 24 hours on working days. For urgent support, please call directly when a number is available.',
     successTitle: 'Message Sent!',
-    successText: "We'll get back to you within 24 hours to schedule your free demo.",
+    successText: "We'll get back to you shortly to help you get started.",
     successButton: 'Send Another Message',
     submitButton: 'Send Message',
     sending: 'Sending…',
     toastError: 'Please fix the errors before submitting.',
-    toastSuccess: "Message sent! We'll be in touch within 24 hours.",
+    toastSuccess: "Message sent! We'll be in touch shortly.",
   },
   footer: {
     description:
-      'Restro360 is an all-in-one restaurant management platform helping restaurants across India simplify billing, inventory, and operations from a single dashboard.',
-    productLinks: ['Features', 'How It Works', 'Setup & Support', 'Book a Demo'],
-    companyLinks: ['About Us', 'Blog', 'Careers', 'Contact'],
-    legalLinks: ['Privacy Policy', 'Terms & Conditions', 'Contact Us'],
-    legalUrls: ['https://www.restro360.com/privacy-policy', 'https://www.restro360.com/terms', '#contact'],
-    copyright: '© 2026 Restro360. All rights reserved.',
+      'Restro360 helps Indian restaurants run QR table ordering, kitchen workflows, guest order tracking, staff controls, and GST-ready billing from one connected system.',
+    productLinks: ['Features', 'How it works', 'Pricing', 'FAQ'],
+    companyLinks: ['Features', 'How it works', 'Pricing', 'Contact'],
+    legalLinks: ['Privacy Policy', 'Terms & Conditions', 'Refund & Cancellation'],
+    legalUrls: ['/privacy-policy', '/terms-and-conditions', '/refund-cancellation'],
+    copyright: `© ${new Date().getFullYear()} Restro360. All rights reserved.`,
     subcopy: 'Ready to simplify your restaurant operations? Book a free demo today.',
-  },
-  reviews: {
-    owner: [
-      {
-        name: 'Rajesh Sharma',
-        role: 'Owner, The Spice Garden',
-        rating: 5,
-        text: 'Setup took less than 10 minutes. Orders went up 30% in the first week. Our staff can now focus on serving instead of taking orders.',
-      },
-      {
-        name: 'Priya Nair',
-        role: 'Manager, Cafe Bloom',
-        rating: 5,
-        text: 'Finally a solution that works without forcing customers to download an app. Very clean interface, even our older customers love it.',
-      },
-      {
-        name: 'Amir Khan',
-        role: 'Owner, Burger House',
-        rating: 5,
-        text: 'The group ordering feature is brilliant. Tables with large groups can all add their own items. No more confusion or missed items.',
-      },
-      {
-        name: 'Sunita Patel',
-        role: 'Director, Cafe Delight',
-        rating: 4,
-        text: 'Real-time menu updates are fantastic. We can mark items as unavailable instantly without reprinting any menus.',
-      },
-      {
-        name: 'Vikram Singh',
-        role: 'Owner, The Crown Kitchen',
-        rating: 5,
-        text: 'QR ordering cut our order errors by almost 80%. Customers get exactly what they want and the kitchen gets clear instructions.',
-      },
-      {
-        name: 'Meena Reddy',
-        role: 'Owner, South Spice',
-        rating: 5,
-        text: 'Best investment we made this year. The demo was clear, setup was fast, and support team is always responsive.',
-      },
-    ],
-    customer: [
-      {
-        name: 'Ananya K.',
-        role: 'Regular Diner',
-        rating: 5,
-        text: 'So convenient! Just scanned the QR at the table and ordered directly from my phone. No waiting for the waiter to take my order.',
-      },
-      {
-        name: 'Rohan Mehta',
-        role: 'Tech Professional',
-        rating: 5,
-        text: 'Went with 6 friends and we all ordered individually on our phones. Everything came out together perfectly. Loved the experience.',
-      },
-      {
-        name: 'Divya S.',
-        role: 'Food Blogger',
-        rating: 4,
-        text: 'The menu photos are great and it shows preparation time for each dish. Helps you plan your meal. Would love to see more customization options.',
-      },
-      {
-        name: 'Kartik Joshi',
-        role: 'Student',
-        rating: 5,
-        text: "Ordered without logging in, which was super convenient. The 4-digit code to join my friend's table was genius — we could all add items together!",
-      },
-      {
-        name: 'Nisha Gupta',
-        role: 'Working Professional',
-        rating: 5,
-        text: 'Loved being able to track my order in real-time. I knew exactly when it was being prepared and when it was ready. Modern and fast!',
-      },
-      {
-        name: 'Arjun Dev',
-        role: 'Frequent Diner',
-        rating: 5,
-        text: 'Clean UI, fast loading, works perfectly on my older Android phone. The bill request feature saved so much time at the end.',
-      },
-    ],
   },
 };
 
@@ -382,7 +301,7 @@ const structuredData = {
     <ReactNav links={siteContent.navigation} logoUrl={logoUrl.src} client:idle />
 
     <main aria-label="Restro360 product overview">
-      <section class="landing-hero min-h-screen flex items-center pt-16 overflow-hidden" aria-labelledby="restro360-hero-heading">
+      <section id="top" class="landing-hero min-h-screen flex items-center pt-16 overflow-hidden" aria-labelledby="restro360-hero-heading">
         <div class="landing-grid-glow"></div>
         <div class="max-w-6xl mx-auto px-5 sm:px-6 py-20 w-full relative z-10">
           <div class="grid lg:grid-cols-[0.92fr_1.08fr] gap-12 lg:gap-10 items-center">
@@ -574,6 +493,28 @@ const structuredData = {
         </div>
       </section>
 
+      <section id="pricing" class="py-16 bg-white" aria-labelledby="pricing-heading">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-10">
+            <h2 id="pricing-heading" class="font-display text-3xl font-bold text-brand-text mb-3">Simple pricing</h2>
+            <p class="text-brand-sub max-w-xl mx-auto">{pricingConfig.MARKETING_COPY}</p>
+          </div>
+          <div class="max-w-xl mx-auto rounded-3xl border border-brand-border/60 bg-brand-bg p-6 shadow-card">
+            <div class="flex items-baseline gap-3 mb-4">
+              <span class="text-4xl font-bold text-brand-text">₹{pricingConfig.INTRO_PRICE_INR}</span>
+              <span class="text-sm text-brand-sub">/ month for the first {pricingConfig.INTRO_MONTHS} months</span>
+            </div>
+            <p class="text-sm text-brand-sub mb-4">Then ₹{pricingConfig.STANDARD_PRICE_INR}/month. {pricingConfig.GST_TEXT}. {pricingConfig.CANCEL_ANYTIME}.</p>
+            <ul class="space-y-3 text-sm text-brand-text">
+              <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>QR order flow with no app download for guests</span></li>
+              <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>Live kitchen queue, guest tracking, and bill request flow</span></li>
+              <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>GST-ready billing and payment recording for Cash, UPI, and Card</span></li>
+              <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>Menu, staff, reports, and item availability controls from one dashboard</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section id="faq" class="py-16 bg-brand-bg" aria-labelledby="faq-heading">
         <div class="max-w-3xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-10">
@@ -606,55 +547,61 @@ const structuredData = {
             </div>
             <p class="text-white/50 text-xs leading-relaxed mb-4">{siteContent.footer.description}</p>
             <div class="flex gap-2">
-              {['X', 'in', 'f', 'ig'].map((s) => (
-                <a key={s} href="#" class="w-7 h-7 bg-white/10 rounded-lg flex items-center justify-center text-xs text-white/50 hover:bg-white/20 transition-colors">{s}</a>
+            {Object.entries(siteConfig.socialLinks)
+              .filter(([, href]) => !!href)
+              .map(([key, href]) => (
+                <a key={key} href={href} target="_blank" rel="noreferrer" class="w-7 h-7 bg-white/10 rounded-lg flex items-center justify-center text-[10px] font-bold text-white/80 hover:bg-white/20 transition-colors" aria-label={`Restro360 on ${key}`}>
+                  {key === 'x' ? 'X' : key.slice(0, 2).toUpperCase()}
+                </a>
               ))}
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Product</p>
-            <div class="space-y-2">
-              {siteContent.footer.productLinks.map((link) => (
-                <a href="#features" class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Company</p>
-            <div class="space-y-2">
-              {siteContent.footer.companyLinks.map((link) => (
-                <a href="#contact" class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Legal</p>
-            <div class="space-y-2">
-              {siteContent.footer.legalLinks.map((link, index) => (
-                <a href={siteContent.footer.legalUrls[index]} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
-              ))}
-            </div>
           </div>
         </div>
 
-        <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p class="text-xs text-white/40">{siteContent.footer.copyright}</p>
-          <p class="text-xs text-white/30">{siteContent.footer.subcopy}</p>
+        <div>
+          <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Explore</p>
+          <div class="space-y-2">
+            {['#features', '#how-it-works', '#pricing', '#faq'].map((href, index) => (
+              <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.productLinks[index]}</a>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Company</p>
+          <div class="space-y-2">
+            {['#features', '#how-it-works', '#pricing', '#contact'].map((href, index) => (
+              <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.companyLinks[index]}</a>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Legal</p>
+          <div class="space-y-2">
+            {siteContent.footer.legalLinks.map((link, index) => (
+              <a href={siteContent.footer.legalUrls[index]} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
+            ))}
+          </div>
         </div>
       </div>
+
+      <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-xs text-white/40">{siteContent.footer.copyright}</p>
+        <p class="text-xs text-white/30">{siteContent.footer.subcopy}</p>
+      </div>
+    </div>
     </footer>
   </div>
 
   <script>
-    const apiBase = import.meta.env.PUBLIC_API_URL || 'http://localhost:5000';
-    fetch(`${apiBase}/api/public/website-views`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ page_slug: window.location.pathname, referrer: document.referrer || undefined }),
-      keepalive: true,
-    }).catch(() => {});
+    const apiBase = import.meta.env.PUBLIC_API_URL || '';
+    if (apiBase) {
+      fetch(`${apiBase}/api/public/website-views`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ page_slug: window.location.pathname, referrer: document.referrer || undefined }),
+        keepalive: true,
+      }).catch(() => {});
+    }
   </script>
 </BaseLayout>

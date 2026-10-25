@@ -3,4 +3,4 @@ Allow: /
 
 Content-Signal: ai-train=no, search=yes, ai-input=no
 
-Sitemap: https://www.restro360.com/sitemap.xml
+Sitemap: https://restro360.tech/sitemap.xml

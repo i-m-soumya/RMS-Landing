@@ -8,5 +8,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   output: 'static',
-  site: 'https://www.restro360.com/',
+  site: 'https://restro360.tech/',
 });
