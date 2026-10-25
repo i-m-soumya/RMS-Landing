@@ -32,7 +32,7 @@ const siteContent = {
     heading: 'Restaurant operations built for Indian restaurants',
     description:
       'Restro360 gives you QR table ordering, live kitchen updates, staff controls, guest order tracking, GST-ready billing, and reports in one streamlined workflow.',
-    primaryCta: 'Start for Rs 2',
+    primaryCta: pricingConfig.primaryCta,
     secondaryCta: 'Book a Free Demo',
     benefits: ['QR ordering without app download', 'Staff roles with instant access revoke', 'Set up in minutes with a guided wizard'],
     dashboardLabel: 'LIVE / FLOOR 01',
@@ -72,7 +72,7 @@ const siteContent = {
     },
     {
       title: 'Menu management',
-      description: 'Update categories, photos, MRP and discount, veg/non-veg, spice levels, addons, stock availability, and scheduled items.',
+      description: 'Update categories, photos, MRP and discount, veg/non-veg, spice levels, addons, item availability, and scheduled items.',
     },
     {
       title: 'Staff accounts',
@@ -108,8 +108,8 @@ const siteContent = {
         'Start with the guided onboarding flow and keep the process simple for the first service.',
       ctaBulletOne: 'Set up in minutes with a guided wizard',
       ctaBulletTwo: 'Works on modern phones, tablets, and desktops',
-      buttonPrimary: 'Start for Rs 2',
-      buttonSecondary: 'Book a Demo',
+      buttonPrimary: pricingConfig.primaryCta,
+      buttonSecondary: 'Book a Free Demo',
     },
     faq: {
       heading: 'Frequently asked questions',
@@ -165,7 +165,7 @@ const siteContent = {
     'Live kitchen queue and queue-based order confirmation',
     'Guest order tracking and bill request flow',
     'GST-ready billing and invoice numbering',
-    'Menu management with stock availability and scheduled items',
+    'Menu management with item availability and scheduled items',
     'Staff roles with instant access revoke',
     'Reports for revenue, top items, and customer activity',
     'Ratings and feedback for tables and service',
@@ -186,7 +186,7 @@ const siteContent = {
     {
       question: 'How does the pricing work?',
       answer:
-        `The intro offer is ${pricingConfig.INTRO_PRICE_INR} per month for the first ${pricingConfig.INTRO_MONTHS} months, then ${pricingConfig.STANDARD_PRICE_INR} per month. ${pricingConfig.GST_TEXT}. ${pricingConfig.CANCEL_ANYTIME}.`,
+        `The intro offer is free for the first ${pricingConfig.trialMonths} months, then ${pricingConfig.standardPriceInr} per month. ${pricingConfig.gstText}. ${pricingConfig.cancelAnyTime}.`,
     },
     {
       question: 'Can I cancel anytime?',
@@ -224,7 +224,7 @@ const siteContent = {
     legalLinks: ['Privacy Policy', 'Terms & Conditions', 'Refund & Cancellation'],
     legalUrls: ['/privacy-policy', '/terms-and-conditions', '/refund-cancellation'],
     copyright: `© ${new Date().getFullYear()} Restro360. All rights reserved.`,
-    subcopy: 'Ready to simplify your restaurant operations? Book a free demo today.',
+    subcopy: 'Ready to simplify your restaurant operations?',
   },
 };
 
@@ -264,13 +264,13 @@ const structuredData = {
       keywords: siteContent.seo.keywords,
       offers: {
         '@type': 'Offer',
-        price: '499',
+        price: '0',
         priceCurrency: 'INR',
         priceSpecification: {
           '@type': 'UnitPriceSpecification',
-          price: '499',
+          price: '0',
           priceCurrency: 'INR',
-          billingDuration: 'P1M',
+          billingDuration: 'P3M',
         },
         availability: 'https://schema.org/InStock',
       },
@@ -295,10 +295,10 @@ const structuredData = {
 };
 ---
 
-<BaseLayout title={title} description={description} canonical="https://www.restro360.com/">
+<BaseLayout title={title} description={description} canonical="https://restro360.tech/">
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <div class="landing-body">
-    <ReactNav links={siteContent.navigation} logoUrl={logoUrl.src} client:idle />
+    <ReactNav links={siteContent.navigation} logoUrl={logoUrl.src} signupLabel={pricingConfig.primaryCta} client:idle />
 
     <main aria-label="Restro360 product overview">
       <section id="top" class="landing-hero min-h-screen flex items-center pt-16 overflow-hidden" aria-labelledby="restro360-hero-heading">
@@ -314,10 +314,10 @@ const structuredData = {
                 {siteContent.hero.description}
               </p>
               <div class="flex flex-col sm:flex-row gap-3">
-                <a href="#contact" class="landing-primary-cta" aria-label="Book a free demo">
+                <a href="/signup" class="landing-primary-cta" aria-label={pricingConfig.primaryCta}>
                   {siteContent.hero.primaryCta} <ArrowRight size={17} />
                 </a>
-                <a href="#how-it-works" class="landing-secondary-cta" aria-label="See how it works">
+                <a href="#contact" class="landing-secondary-cta" aria-label="Book a Free Demo">
                   {siteContent.hero.secondaryCta} <ChevronRight size={17} />
                 </a>
               </div>
@@ -485,7 +485,7 @@ const structuredData = {
                 <div class="flex items-center gap-3 mb-6"><div class="w-2 h-2 bg-white/50 rounded-full"></div><p class="text-sm text-white/80">{siteContent.sections.setup.ctaBulletTwo}</p></div>
               </div>
               <div class="flex flex-col gap-3">
-                <a href="#contact" class="w-full h-12 bg-white text-brand-accent font-bold rounded-xl hover:bg-white/90 transition-all inline-flex items-center justify-center">{siteContent.sections.setup.buttonPrimary}</a>
+                <a href="/signup" class="w-full h-12 bg-white text-brand-accent font-bold rounded-xl hover:bg-white/90 transition-all inline-flex items-center justify-center">{siteContent.sections.setup.buttonPrimary}</a>
                 <a href="#contact" class="w-full h-12 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all inline-flex items-center justify-center">{siteContent.sections.setup.buttonSecondary}</a>
               </div>
             </div>
@@ -497,20 +497,18 @@ const structuredData = {
         <div class="max-w-5xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-10">
             <h2 id="pricing-heading" class="font-display text-3xl font-bold text-brand-text mb-3">Simple pricing</h2>
-            <p class="text-brand-sub max-w-xl mx-auto">{pricingConfig.MARKETING_COPY}</p>
+            <p class="text-brand-sub max-w-xl mx-auto">{pricingConfig.marketingCopy}</p>
           </div>
           <div class="max-w-xl mx-auto rounded-3xl border border-brand-border/60 bg-brand-bg p-6 shadow-card">
-            <div class="flex items-baseline gap-3 mb-4">
-              <span class="text-4xl font-bold text-brand-text">₹{pricingConfig.INTRO_PRICE_INR}</span>
-              <span class="text-sm text-brand-sub">/ month for the first {pricingConfig.INTRO_MONTHS} months</span>
-            </div>
-            <p class="text-sm text-brand-sub mb-4">Then ₹{pricingConfig.STANDARD_PRICE_INR}/month. {pricingConfig.GST_TEXT}. {pricingConfig.CANCEL_ANYTIME}.</p>
+            <h3 class="font-display text-2xl font-bold text-brand-text mb-2">Free for the first {pricingConfig.trialMonths} months</h3>
+            <p class="text-sm text-brand-sub mb-4">Then ₹{pricingConfig.standardPriceInr}/month. {pricingConfig.gstText}. {pricingConfig.cancelAnyTime}.</p>
             <ul class="space-y-3 text-sm text-brand-text">
               <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>QR order flow with no app download for guests</span></li>
               <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>Live kitchen queue, guest tracking, and bill request flow</span></li>
               <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>GST-ready billing and payment recording for Cash, UPI, and Card</span></li>
               <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>Menu, staff, reports, and item availability controls from one dashboard</span></li>
             </ul>
+            <a href="/signup" class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-brand-accent px-5 py-3 font-semibold text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">{pricingConfig.primaryCta}</a>
           </div>
         </div>
       </section>
@@ -547,54 +545,68 @@ const structuredData = {
             </div>
             <p class="text-white/50 text-xs leading-relaxed mb-4">{siteContent.footer.description}</p>
             <div class="flex gap-2">
-            {Object.entries(siteConfig.socialLinks)
-              .filter(([, href]) => !!href)
-              .map(([key, href]) => (
-                <a key={key} href={href} target="_blank" rel="noreferrer" class="w-7 h-7 bg-white/10 rounded-lg flex items-center justify-center text-[10px] font-bold text-white/80 hover:bg-white/20 transition-colors" aria-label={`Restro360 on ${key}`}>
-                  {key === 'x' ? 'X' : key.slice(0, 2).toUpperCase()}
-                </a>
+              {Object.entries(siteConfig.socialLinks)
+                .filter(([, href]) => !!href)
+                .map(([key, href]) => (
+                  <a key={key} href={href} target="_blank" rel="noreferrer" class="w-7 h-7 bg-white/10 rounded-lg flex items-center justify-center text-[10px] font-bold text-white/80 hover:bg-white/20 transition-colors" aria-label={`Restro360 on ${key}`}>
+                    {key === 'x' ? 'X' : key.slice(0, 2).toUpperCase()}
+                  </a>
+                ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Explore</p>
+            <div class="space-y-2">
+              {['#features', '#how-it-works', '#pricing', '#faq'].map((href, index) => (
+                <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.productLinks[index]}</a>
               ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Company</p>
+            <div class="space-y-2">
+              {['#features', '#how-it-works', '#pricing', '#contact'].map((href, index) => (
+                <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.companyLinks[index]}</a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Legal</p>
+            <div class="space-y-2">
+              {siteContent.footer.legalLinks.map((link, index) => (
+                <a href={siteContent.footer.legalUrls[index]} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div>
-          <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Explore</p>
-          <div class="space-y-2">
-            {['#features', '#how-it-works', '#pricing', '#faq'].map((href, index) => (
-              <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.productLinks[index]}</a>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Company</p>
-          <div class="space-y-2">
-            {['#features', '#how-it-works', '#pricing', '#contact'].map((href, index) => (
-              <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.companyLinks[index]}</a>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Legal</p>
-          <div class="space-y-2">
-            {siteContent.footer.legalLinks.map((link, index) => (
-              <a href={siteContent.footer.legalUrls[index]} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
-            ))}
+        <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-xs text-white/40">{siteContent.footer.copyright}</p>
+          <div class="flex items-center gap-4">
+            <p class="text-xs text-white/50">{siteContent.footer.subcopy}</p>
+            <a href="/signup" class="text-xs font-semibold text-white underline underline-offset-4">{pricingConfig.primaryCta}</a>
           </div>
         </div>
       </div>
-
-      <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p class="text-xs text-white/40">{siteContent.footer.copyright}</p>
-        <p class="text-xs text-white/30">{siteContent.footer.subcopy}</p>
-      </div>
-    </div>
     </footer>
   </div>
 
   <script>
-    const apiBase = import.meta.env.PUBLIC_API_URL || '';
+    import { siteConfig } from '../lib/siteConfig';
+    const apiBase = siteConfig.apiBaseUrl;
+    const attributionKey = 'restro360-signup-attribution';
+    if (!sessionStorage.getItem(attributionKey)) {
+      const params = new URLSearchParams(window.location.search);
+      const utm = {};
+      for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']) {
+        const value = params.get(key);
+        if (value) utm[key] = value;
+      }
+      sessionStorage.setItem(attributionKey, JSON.stringify({ utm, referrer: document.referrer || '' }));
+    }
     if (apiBase) {
       fetch(`${apiBase}/api/public/website-views`, {
         method: 'POST',

@@ -86,9 +86,10 @@ export default function ContactForm({ contactContent }) {
               <div className="w-9 h-9 bg-brand-accent/10 rounded-xl flex items-center justify-center">✉️</div>
               <div>
                 <p className="text-xs text-brand-sub">Email</p>
-                <p className="text-sm font-semibold text-brand-text">{contactContent.email}</p>
+                <a className="text-sm font-semibold text-brand-text underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent" href={`mailto:${contactContent.email}`}>{contactContent.email}</a>
               </div>
             </div>
+            {contactContent.phone && (
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 bg-brand-accent/10 rounded-xl flex items-center justify-center">☎️</div>
               <div>
@@ -96,6 +97,7 @@ export default function ContactForm({ contactContent }) {
                 <p className="text-sm font-semibold text-brand-text">{contactContent.phone}</p>
               </div>
             </div>
+            )}
           </div>
         </div>
         <div className="bg-brand-accent/5 border border-brand-accent/20 rounded-2xl p-4">

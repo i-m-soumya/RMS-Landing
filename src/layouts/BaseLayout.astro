@@ -1,7 +1,7 @@
 ---
 import '../styles/index.css';
 
-const { title, description, canonical = 'https://restro360.tech/' } = Astro.props;
+const { title, description, canonical = 'https://restro360.tech/', noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -10,7 +10,7 @@ const { title, description, canonical = 'https://restro360.tech/' } = Astro.prop
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
     <meta name="theme-color" content="#f7f1e8" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -461,8 +461,8 @@ const { title, description, canonical = 'https://restro360.tech/' } = Astro.prop
 
             return {
               product: 'Restro360',
-              features: ['POS billing', 'live inventory', 'staff operations', 'reporting', 'QR ordering'],
-              contact: 'https://www.restro360.com/#contact',
+              features: ['QR table ordering', 'live kitchen updates', 'GST-ready billing', 'staff accounts', 'restaurant reports'],
+              contact: 'https://restro360.tech/#contact',
             };
           },
         });

@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SignupWizard from '../components/SignupWizard.jsx';
+
+const title = 'Start your Restro360 free trial';
+const description = 'Create a Restro360 account and set up your restaurant operations.';
+---
+
+<BaseLayout title={title} description={description} canonical="https://restro360.tech/signup" noindex>
+  <SignupWizard client:load />
+</BaseLayout>

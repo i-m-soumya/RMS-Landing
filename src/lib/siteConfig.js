@@ -1,25 +1,42 @@
+// Shared marketing and product config for the landing site. Keep pricing and feature
+// switches in this file so the landing page, signup flow, and payment page stay aligned.
+const trialMonths = 3;
+const standardPriceInr = 599;
+const gstText = 'GST as applicable';
+const cancelAnyTime = 'Cancel anytime';
+
 export const pricingConfig = {
-  INTRO_PRICE_INR: 2,
-  INTRO_MONTHS: 3,
-  STANDARD_PRICE_INR: 599,
-  GST_TEXT: 'GST as applicable',
-  CANCEL_ANYTIME: 'Cancel anytime',
-  MARKETING_COPY: 'First 3 months at just Rs 2/month, then Rs 599/month. Cancel anytime.',
-  SUPPORT_EMAIL: import.meta.env.PUBLIC_SUPPORT_EMAIL || 'support@restro360.tech',
-  SALES_PHONE: (import.meta.env.PUBLIC_SALES_PHONE || '').trim(),
-  SOCIAL_LINKS: {
-    x: (import.meta.env.PUBLIC_X_URL || '').trim(),
-    linkedin: (import.meta.env.PUBLIC_LINKEDIN_URL || '').trim(),
-    instagram: (import.meta.env.PUBLIC_INSTAGRAM_URL || '').trim(),
-    facebook: (import.meta.env.PUBLIC_FACEBOOK_URL || '').trim(),
+  trialMonths,
+  trialPriceInr: 0,
+  standardPriceInr,
+  otpResendSeconds: 30,
+  gstText,
+  cancelAnyTime,
+  primaryCta: `Start free for ${trialMonths} months`,
+  marketingCopy: `First ${trialMonths} months free, then Rs ${standardPriceInr}/month. ${cancelAnyTime}.`,
+  paymentCopy: 'Rs 0 today',
+  supportEmail: 'support@restro360.tech',
+  salesPhone: '',
+  socialLinks: {
+    x: '',
+    linkedin: '',
+    instagram: '',
+    facebook: '',
   },
+  apiBaseUrl: 'https://api.restro360.tech',
+  consoleUrl: 'https://console.restro360.tech',
+  policyVersion: '2026-10',
 };
 
 export const siteConfig = {
   domain: 'https://restro360.tech/',
   canonicalUrl: 'https://restro360.tech/',
   siteName: 'Restro360',
-  supportEmail: pricingConfig.SUPPORT_EMAIL,
-  phone: pricingConfig.SALES_PHONE,
-  socialLinks: pricingConfig.SOCIAL_LINKS,
+  supportEmail: pricingConfig.supportEmail,
+  phone: pricingConfig.salesPhone,
+  socialLinks: pricingConfig.socialLinks,
+  apiBaseUrl: pricingConfig.apiBaseUrl,
+  consoleUrl: pricingConfig.consoleUrl,
+  policyVersion: pricingConfig.policyVersion,
+  pricing: pricingConfig,
 };

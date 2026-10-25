@@ -1,4 +1,6 @@
-const apiBase = import.meta.env.PUBLIC_API_URL || 'http://localhost:5000';
+import { siteConfig } from './siteConfig';
+
+const apiBase = siteConfig.apiBaseUrl;
 
 export function postMarketing(path, payload) {
   return fetch(`${apiBase}/api/public/${path}`, {

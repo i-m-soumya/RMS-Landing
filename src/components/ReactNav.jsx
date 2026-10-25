@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function ReactNav({ links = [], logoUrl = '/favicon.svg' }) {
+export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupLabel = 'Start free for 3 months' }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -28,7 +28,7 @@ export default function ReactNav({ links = [], logoUrl = '/favicon.svg' }) {
             <img src={logoUrl} alt="Restro360" className="h-10 w-auto max-w-none" />
           </a>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-5">
             {links.map((link) => (
               <button
                 key={link.label}
@@ -39,14 +39,17 @@ export default function ReactNav({ links = [], logoUrl = '/favicon.svg' }) {
                 {link.label}
               </button>
             ))}
-            <a href="#contact" className="h-9 px-5 bg-brand-accent text-white text-sm font-semibold rounded-xl hover:brightness-110 transition-all inline-flex items-center justify-center">
-              Book Demo
+            <a href="/signup" className="h-9 whitespace-nowrap rounded-xl bg-brand-accent px-3 text-xs font-semibold text-white transition-all hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+              {signupLabel}
+            </a>
+            <a href="#contact" className="whitespace-nowrap text-xs font-semibold text-white underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+              Book a Free Demo
             </a>
           </div>
 
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="md:hidden p-2 rounded-lg hover:bg-brand-muted transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-brand-muted transition-colors"
             type="button"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
@@ -73,11 +76,11 @@ export default function ReactNav({ links = [], logoUrl = '/favicon.svg' }) {
               </button>
             ))}
             <div className="px-4 pt-2 pb-1">
-              <a
-                href="#contact"
-                className="w-full h-10 bg-brand-accent text-white text-sm font-semibold rounded-xl inline-flex items-center justify-center"
-              >
-                Book a Demo
+              <a href="/signup" className="w-full min-h-10 bg-brand-accent text-white text-sm font-semibold rounded-xl inline-flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">
+                {signupLabel}
+              </a>
+              <a href="#contact" className="mt-2 inline-flex min-h-10 w-full items-center justify-center text-sm font-semibold text-brand-accent underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent">
+                Book a Free Demo
               </a>
             </div>
           </div>
