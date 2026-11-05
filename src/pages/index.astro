@@ -11,9 +11,9 @@ import { pricingConfig, siteConfig } from '../lib/siteConfig';
 
 const siteContent = {
   seo: {
-    title: 'Restaurant management software for QR ordering, kitchen, billing and staff | Restro360',
+    title: 'Restro360 | Restaurant QR Ordering & Management Software',
     description:
-      'Restro360 helps Indian restaurants run from QR ordering to kitchen to bill with live tables, guest ordering, staff roles, reports, and GST-ready billing.',
+      'Simplify restaurant operations with Restro360. Manage QR table ordering, kitchen workflows, order tracking, staff access and GST-ready billing from one platform.',
     keywords:
       'restaurant management software India, restaurant POS software, QR ordering for restaurants, kitchen display, staff management restaurant, GST-ready billing India, dining QR order tracking',
     canonicalUrl: siteConfig.canonicalUrl,
@@ -29,25 +29,25 @@ const siteContent = {
   ],
   hero: {
     kicker: 'Run the restaurant from QR to kitchen to bill',
-    heading: 'Restaurant operations built for Indian restaurants',
+    heading: 'Restaurant operations, connected from QR to kitchen to bill.',
     description:
-      'Restro360 gives you QR table ordering, live kitchen updates, staff controls, guest order tracking, GST-ready billing, and reports in one streamlined workflow.',
+      'Manage QR table ordering, live kitchen workflows, guest order tracking, staff access, and GST-ready billing from one connected platform built for Indian restaurants.',
     primaryCta: pricingConfig.primaryCta,
     secondaryCta: 'Book a Free Demo',
-    benefits: ['QR ordering without app download', 'Staff roles with instant access revoke', 'Set up in minutes with a guided wizard'],
-    dashboardLabel: 'LIVE / FLOOR 01',
-    dashboardTitle: 'The Golden Fork',
-    tableStatus: '12 tables live',
-    ordersToday: 'Orders today',
-    avgTableTime: 'Avg. table time',
-    newOrder: 'New table order',
-    justNow: 'Just now · 3 items',
-    kitchenNotified: 'Kitchen notified',
-    onTrack: 'On track',
+    benefits: ['QR ordering in a phone browser', 'Kitchen and guest order status in one flow', 'Staff roles with access controls'],
+    dashboardLabel: 'ILLUSTRATIVE DASHBOARD PREVIEW',
+    dashboardTitle: 'Restaurant dashboard',
+    tableStatus: 'Operations overview',
+    ordersToday: 'Kitchen queue',
+    avgTableTime: 'Billing',
+    newOrder: 'Table order',
+    justNow: 'Order status overview',
+    kitchenNotified: 'Kitchen workflow',
+    onTrack: 'GST-ready',
     scanToOrder: 'Scan to order',
     noDownload: 'No download needed',
-    table12: 'Table 12',
-    guestOrdering: 'Guest is ordering',
+    table12: 'Guest ordering',
+    guestOrdering: 'QR session',
   },
   features: [
     {
@@ -105,8 +105,8 @@ const siteContent = {
       includedTitle: 'Included in the trial',
       ctaTitle: 'Ready to set up your restaurant?',
       ctaText:
-        'Start with the guided onboarding flow and keep the process simple for the first service.',
-      ctaBulletOne: 'Set up in minutes with a guided wizard',
+        `Start with guided onboarding. The first ${pricingConfig.trialMonths} months are free, then ₹${pricingConfig.standardPriceInr}/month. ${pricingConfig.gstText}. ${pricingConfig.cancelAnyTime}.`,
+      ctaBulletOne: 'Guided setup for tables, menu, and staff',
       ctaBulletTwo: 'Works on modern phones, tablets, and desktops',
       buttonPrimary: pricingConfig.primaryCta,
       buttonSecondary: 'Book a Free Demo',
@@ -116,8 +116,8 @@ const siteContent = {
       subheading: 'Straight answers for restaurants evaluating a simpler, connected workflow.',
     },
     contact: {
-      heading: 'Get in touch',
-      subheading: 'Tell us about your restaurant and we will help you get started with the right setup.',
+      heading: "Let's Talk About Your Restaurant",
+      subheading: "Questions about setup, pricing, or a demo? Our team is here to help.",
     },
   },
   ownerSteps: [
@@ -207,7 +207,6 @@ const siteContent = {
   contact: {
     email: siteConfig.supportEmail,
     phone: siteConfig.phone || '',
-    quickResponse: 'We typically respond within 24 hours on working days. For urgent support, please call directly when a number is available.',
     successTitle: 'Message received',
     successText: "Your enquiry has been received. Our team will follow up shortly.",
     successButton: 'Send Another Message',
@@ -218,7 +217,7 @@ const siteContent = {
     description:
       'Restro360 helps Indian restaurants run QR table ordering, kitchen workflows, guest order tracking, staff controls, and GST-ready billing from one connected system.',
     productLinks: ['Features', 'How it works', 'Pricing', 'FAQ'],
-    companyLinks: ['Features', 'How it works', 'Pricing', 'Contact'],
+    companyLinks: ['Restro360'],
     legalLinks: ['Privacy Policy', 'Terms & Conditions', 'Refund & Cancellation'],
     legalUrls: ['/privacy-policy', '/terms-and-conditions', '/refund-cancellation'],
     copyright: `© ${new Date().getFullYear()} Restro360. All rights reserved.`,
@@ -260,34 +259,17 @@ const structuredData = {
       applicationSuite: 'Restaurant SaaS',
       description,
       keywords: siteContent.seo.keywords,
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'INR',
-        priceSpecification: {
-          '@type': 'UnitPriceSpecification',
-          price: '0',
-          priceCurrency: 'INR',
-          billingDuration: 'P3M',
-        },
-        availability: 'https://schema.org/InStock',
-      },
       audience: { '@type': 'Audience', audienceType: 'Restaurant owners and operators in India' },
       areaServed: 'IN',
       url: siteContent.seo.canonicalUrl,
-      logo: siteContent.seo.ogImage,
+      logo: new URL(logoUrl.src, siteContent.seo.canonicalUrl).href,
       category: 'Restaurant software',
     },
     {
-      '@type': 'FAQPage',
-      mainEntity: siteContent.faq.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: item.answer,
-        },
-      })),
+      '@type': 'Organization',
+      name: siteContent.seo.siteName,
+      url: siteContent.seo.canonicalUrl,
+      logo: new URL(logoUrl.src, siteContent.seo.canonicalUrl).href,
     },
   ],
 };
@@ -296,19 +278,21 @@ const structuredData = {
 <BaseLayout title={title} description={description} canonical="https://restro360.tech/">
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <div class="landing-body">
-    <ReactNav links={siteContent.navigation} logoUrl={logoUrl.src} signupLabel={pricingConfig.primaryCta} client:idle />
+    <header>
+      <ReactNav links={siteContent.navigation} logoUrl={logoUrl.src} signupLabel={pricingConfig.primaryCta} client:idle />
+    </header>
 
     <main aria-label="Restro360 product overview">
-      <section id="top" class="landing-hero min-h-screen flex items-center pt-16 overflow-hidden" aria-labelledby="restro360-hero-heading">
+      <section id="top" class="landing-hero flex min-h-screen items-center overflow-hidden pt-16" aria-labelledby="restro360-hero-heading">
         <div class="landing-grid-glow"></div>
         <div class="max-w-6xl mx-auto px-5 sm:px-6 py-20 w-full relative z-10">
-          <div class="grid lg:grid-cols-[0.92fr_1.08fr] gap-12 lg:gap-10 items-center">
+          <div class="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] xl:gap-10">
             <div class="landing-fade-in max-w-xl">
               <div class="landing-kicker"><CircleDot size={13} /> {siteContent.hero.kicker}</div>
-              <h1 id="restro360-hero-heading" class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-white leading-[0.95] tracking-[-0.04em] mb-5">
+              <h1 id="restro360-hero-heading" class="font-display mb-5 text-4xl font-semibold leading-tight tracking-[-0.035em] text-brand-text sm:text-5xl lg:text-5xl xl:text-6xl">
                 {siteContent.hero.heading}
               </h1>
-              <p class="text-[#b8c5c4] text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+              <p class="mb-8 max-w-xl text-base leading-relaxed text-brand-sub sm:text-lg">
                 {siteContent.hero.description}
               </p>
               <div class="flex flex-col sm:flex-row gap-3">
@@ -319,39 +303,39 @@ const structuredData = {
                   {siteContent.hero.secondaryCta} <ChevronRight size={17} />
                 </a>
               </div>
-              <div class="flex flex-wrap gap-x-6 gap-y-3 mt-9 text-xs text-[#b8c5c4]">
+              <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-brand-sub">
                 {siteContent.hero.benefits.map((item) => (
-                  <span class="flex items-center gap-1.5"><Check size={14} class="text-[#f4b19e]" />{item}</span>
+                  <span class="flex items-center gap-1.5"><Check size={16} class="text-brand-success" />{item}</span>
                 ))}
               </div>
             </div>
 
-            <div class="landing-stage" aria-label="The Golden Fork live restaurant operations dashboard preview">
+            <div class="landing-stage" aria-label="Illustrative restaurant operations dashboard preview">
               <div class="landing-orbit orbit-one"></div>
               <div class="landing-orbit orbit-two"></div>
               <div class="landing-console float-animate">
                 <div class="console-topbar">
-                  <div class="flex items-center gap-2"><span class="console-dot bg-[#d95d52]"></span><span class="console-dot bg-[#f4b19e]"></span><span class="console-dot bg-[#f7f1e8]"></span></div>
-                  <span class="font-mono text-[10px] text-[#93a6a4]">{siteContent.hero.dashboardLabel}</span>
+                  <div class="flex items-center gap-2"><span class="console-dot bg-brand-blue"></span><span class="console-dot bg-brand-orange"></span><span class="console-dot bg-slate-300"></span></div>
+                  <span class="font-mono text-[10px] text-slate-300">{siteContent.hero.dashboardLabel}</span>
                 </div>
                 <div class="console-content">
                   <div class="flex items-start justify-between mb-6">
-                    <div><p class="text-[10px] uppercase tracking-[0.2em] text-[#93a6a4]">Tonight at</p><h2 class="font-display text-2xl text-white">{siteContent.hero.dashboardTitle}</h2></div>
+                    <div><p class="text-[10px] uppercase tracking-[0.2em] text-slate-300">Overview</p><h2 class="font-display text-2xl text-white">{siteContent.hero.dashboardTitle}</h2></div>
                     <div class="live-pill"><span></span> {siteContent.hero.tableStatus}</div>
                   </div>
                   <div class="console-stat-grid">
-                    <div><p class="console-label">{siteContent.hero.ordersToday}</p><p class="console-number">248</p><span class="console-up">+18.4%</span></div>
-                    <div><p class="console-label">{siteContent.hero.avgTableTime}</p><p class="console-number">42m</p><span class="console-muted">-6m this week</span></div>
+                    <div><p class="console-label">{siteContent.hero.ordersToday}</p><p class="console-number">Orders</p><span class="console-muted">Kitchen status</span></div>
+                    <div><p class="console-label">{siteContent.hero.avgTableTime}</p><p class="console-number">Billing</p><span class="console-muted">Invoice workflow</span></div>
                   </div>
                   <div class="console-order-card">
-                    <div class="flex items-center justify-between mb-4"><div class="flex items-center gap-2"><span class="table-badge">T12</span><div><p class="text-sm text-white font-semibold">{siteContent.hero.newOrder}</p><p class="text-[10px] text-[#93a6a4]">{siteContent.hero.justNow}</p></div></div><Sparkles size={16} class="text-[#f6c16b]" /></div>
-                    <div class="flex items-center gap-2 text-xs text-[#cbbab1]"><span class="order-line"></span><span>{siteContent.hero.kitchenNotified}</span><span class="ml-auto text-[#f4b19e]">{siteContent.hero.onTrack}</span></div>
+                    <div class="flex items-center justify-between mb-4"><div class="flex items-center gap-2"><span class="table-badge">QR</span><div><p class="text-sm text-white font-semibold">{siteContent.hero.newOrder}</p><p class="text-[10px] text-slate-300">{siteContent.hero.justNow}</p></div></div><Sparkles size={16} class="text-brand-orange" /></div>
+                    <div class="flex items-center gap-2 text-xs text-slate-200"><span class="order-line"></span><span>{siteContent.hero.kitchenNotified}</span><span class="ml-auto text-orange-200">{siteContent.hero.onTrack}</span></div>
                   </div>
-                  <div class="console-menu-row"><div class="menu-thumb thumb-green"></div><div><p class="text-xs text-white font-semibold">Paneer Tikka</p><p class="text-[10px] text-[#a6948b]">Bestseller · ₹320</p></div><span class="ml-auto text-xs text-[#f4b19e]">+ 84%</span></div>
+                  <div class="console-menu-row"><div class="menu-thumb thumb-green"></div><div><p class="text-xs text-white font-semibold">Order workflow</p><p class="text-[10px] text-slate-300">Table · Kitchen · Bill</p></div></div>
                 </div>
               </div>
-              <div class="landing-float-card landing-qr-card"><ScanLine size={22} class="text-[#f4b19e]" /><div><p class="text-xs text-white font-semibold">{siteContent.hero.scanToOrder}</p><p class="text-[10px] text-[#a6948b]">{siteContent.hero.noDownload}</p></div></div>
-              <div class="landing-float-card landing-seat-card"><div class="seat-ring">12</div><div><p class="text-xs text-white font-semibold">{siteContent.hero.table12}</p><p class="text-[10px] text-[#93a6a4]">{siteContent.hero.guestOrdering}</p></div></div>
+              <div class="landing-float-card landing-qr-card"><ScanLine size={22} class="text-brand-orange" /><div><p class="text-xs text-white font-semibold">{siteContent.hero.scanToOrder}</p><p class="text-[10px] text-slate-500">{siteContent.hero.noDownload}</p></div></div>
+              <div class="landing-float-card landing-seat-card"><div class="seat-ring"><QrCode size={16} aria-hidden="true" /></div><div><p class="text-xs text-white font-semibold">{siteContent.hero.table12}</p><p class="text-[10px] text-slate-500">{siteContent.hero.guestOrdering}</p></div></div>
               <div class="landing-qr-pattern"><QrCode size={70} /></div>
             </div>
           </div>
@@ -377,11 +361,11 @@ const structuredData = {
         </div>
       </section>
 
-      <section id="how-it-works" class="py-16 bg-brand-bg">
+      <section id="how-it-works" class="py-16 bg-brand-bg" aria-labelledby="owner-steps-heading">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-12">
             <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">{siteContent.sections.ownerSteps.eyebrow}</span>
-            <h2 class="font-display text-3xl font-bold text-brand-text mt-2 mb-3">
+            <h2 id="owner-steps-heading" class="font-display text-3xl font-bold text-brand-text mt-2 mb-3">
               {siteContent.sections.ownerSteps.heading}
             </h2>
             <p class="text-brand-sub max-w-md mx-auto">
@@ -389,7 +373,7 @@ const structuredData = {
             </p>
           </div>
 
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {ownerSteps.map((step, i) => (
               <div class="relative flex flex-col items-center text-center">
                 <div class="relative mb-4">
@@ -404,18 +388,18 @@ const structuredData = {
                   <div class="hidden md:block absolute top-7 left-[calc(50%+40px)] right-0 h-px border-t-2 border-dashed border-brand-border"></div>
                 )}
                 <h3 class="text-sm font-bold text-brand-text mb-1">{step.title}</h3>
-                <p class="text-xs text-brand-sub leading-relaxed max-w-[140px]">{step.description}</p>
+                <p class="step-description">{step.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section class="py-16 bg-white">
+      <section class="py-16 bg-white" aria-labelledby="guest-flow-heading">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-12">
             <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">{siteContent.sections.teamFlow.eyebrow}</span>
-            <h2 class="font-display text-3xl font-bold text-brand-text mt-2 mb-3">
+            <h2 id="guest-flow-heading" class="font-display text-3xl font-bold text-brand-text mt-2 mb-3">
               {siteContent.sections.teamFlow.heading}
             </h2>
             <p class="text-brand-sub max-w-md mx-auto">
@@ -441,7 +425,7 @@ const structuredData = {
                     </span>
                     <p class="text-sm font-bold text-brand-text">{step.title}</p>
                   </div>
-                  <p class="text-xs text-brand-sub leading-relaxed">{step.description}</p>
+                  <p class="step-description">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -521,24 +505,24 @@ const structuredData = {
         </div>
       </section>
 
-      <section id="contact" class="py-16 bg-white">
+      <section id="contact" class="bg-white py-12 sm:py-14" aria-labelledby="contact-heading">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-12">
-            <h2 class="font-display text-3xl font-bold text-brand-text mb-3">{siteContent.sections.contact.heading}</h2>
-            <p class="text-brand-sub max-w-md mx-auto">
+          <div class="mb-8 text-center">
+            <h2 id="contact-heading" class="font-display mb-2 text-3xl font-bold leading-tight text-brand-text sm:text-4xl">{siteContent.sections.contact.heading}</h2>
+            <p class="mx-auto max-w-xl text-base leading-relaxed text-brand-sub">
               {siteContent.sections.contact.subheading}
             </p>
           </div>
-          <ContactForm contactContent={siteContent.contact} client:idle />
+          <ContactForm contactContent={siteContent.contact} socialLinks={siteConfig.socialLinks} client:idle />
         </div>
       </section>
     </main>
 
-    <footer class="bg-brand-text text-white">
+    <footer class="bg-brand-navy text-white">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
           <div class="col-span-2 md:col-span-1">
-            <div class="flex items-center gap-2 mb-3">
+            <div class="footer-logo-wrap flex items-center gap-2 mb-3">
               <img src={logoUrl.src} alt="Restro360" class="h-10 w-auto max-w-none" />
             </div>
             <p class="text-white/50 text-xs leading-relaxed mb-4">{siteContent.footer.description}</p>
@@ -554,7 +538,7 @@ const structuredData = {
           </div>
 
           <div>
-            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Explore</p>
+            <p class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">Product</p>
             <div class="space-y-2">
               {['#features', '#how-it-works', '#pricing', '#faq'].map((href, index) => (
                 <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.productLinks[index]}</a>
@@ -563,19 +547,25 @@ const structuredData = {
           </div>
 
           <div>
-            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Company</p>
+            <p class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">Company</p>
             <div class="space-y-2">
-              {['#features', '#how-it-works', '#pricing', '#contact'].map((href, index) => (
-                <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.companyLinks[index]}</a>
-              ))}
+              <a href="#top" class="block text-sm text-white/80 hover:text-white transition-colors text-left">{siteContent.footer.companyLinks[0]}</a>
             </div>
           </div>
 
           <div>
-            <p class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Legal</p>
+            <p class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">Support</p>
+            <div class="space-y-2">
+              <a href="#contact" class="block text-sm text-white/80 hover:text-white transition-colors text-left">Contact support</a>
+              <a href={`mailto:${siteContent.contact.email}`} class="block break-all text-sm text-white/80 hover:text-white transition-colors">{siteContent.contact.email}</a>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">Legal</p>
             <div class="space-y-2">
               {siteContent.footer.legalLinks.map((link, index) => (
-                <a href={siteContent.footer.legalUrls[index]} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{link}</a>
+                <a href={siteContent.footer.legalUrls[index]} class="block text-sm text-white/80 hover:text-white transition-colors text-left">{link}</a>
               ))}
             </div>
           </div>

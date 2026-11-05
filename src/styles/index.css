@@ -6,44 +6,53 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1a1a1a;
+  --foreground: #0f172a;
   --card: #ffffff;
   --card-foreground: #1a1a1a;
   --popover: #ffffff;
   --popover-foreground: #1a1a1a;
-  --primary: #030213;
+  --primary: #1d4ed8;
   --primary-foreground: #ffffff;
   --secondary: #f3f4f6;
   --secondary-foreground: #030213;
   --muted: #f5f5f5;
-  --muted-foreground: #757575;
+  --muted-foreground: #64748b;
   --accent: #f9fafb;
   --accent-foreground: #030213;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+  --border: #e2e8f0;
   --input: transparent;
   --input-background: #f3f3f5;
   --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #6b7280;
+  --ring: #3b82f6;
   --radius: 0.625rem;
 
-  --brand-bg: #f7f1e8;
-  --brand-surface: #fffaf4;
-  --brand-accent: #a63d36;
-  --brand-accent-light: #c55a4d;
-  --brand-muted: #eee6da;
-  --brand-border: #d8cfc2;
-  --brand-text: #272120;
-  --brand-sub: #746b65;
-  --brand-success: #4caf50;
-  --brand-warn: #ff9800;
-  --brand-danger: #f44336;
-  --brand-veg: #a63d36;
-  --brand-non-veg: #9e3d38;
-  --brand-rating: #c97a54;
+  --brand-navy: #172554;
+  --brand-blue: #3b82f6;
+  --brand-blue-strong: #1d4ed8;
+  --brand-orange: #f97316;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --light-blue-surface: #eff6ff;
+  --light-orange-surface: #fff7ed;
+  --brand-bg: #f8fafc;
+  --brand-surface: #ffffff;
+  --brand-accent: var(--brand-blue-strong);
+  --brand-accent-light: var(--brand-blue);
+  --brand-muted: #f1f5f9;
+  --brand-border: #e2e8f0;
+  --brand-text: var(--text-primary);
+  --brand-sub: var(--text-secondary);
+  --brand-success: #15803d;
+  --brand-warn: var(--brand-orange);
+  --brand-danger: #b91c1c;
+  --brand-veg: #15803d;
+  --brand-non-veg: #b91c1c;
+  --brand-rating: var(--brand-orange);
 }
 
 @theme inline {
@@ -74,6 +83,10 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --color-brand-bg: var(--brand-bg);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-strong: var(--brand-blue-strong);
+  --color-brand-orange: var(--brand-orange);
   --color-brand-surface: var(--brand-surface);
   --color-brand-accent: var(--brand-accent);
   --color-brand-accent-light: var(--brand-accent-light);
@@ -103,8 +116,8 @@
   body {
     margin: 0;
     min-width: 320px;
-    background: var(--brand-bg);
-    color: var(--brand-text);
+    background: var(--background);
+    color: var(--text-primary);
     font-family: 'DM Sans', sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -127,11 +140,11 @@
   }
 
   .font-display {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   }
 
   .font-body {
-    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-family: Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   }
 
   .font-mono {

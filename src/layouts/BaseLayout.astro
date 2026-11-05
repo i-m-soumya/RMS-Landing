@@ -5,19 +5,21 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
-    <meta name="theme-color" content="#f7f1e8" />
+    <meta name="theme-color" content="#172554" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Restro360" />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content="https://restro360.tech/og-image.svg" />
+    <meta property="og:image:alt" content="Restro360 restaurant operations software" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -26,20 +28,6 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <style is:global>
-      :root {
-        --brand-bg: #f7f1e8;
-        --brand-surface: #fffaf4;
-        --brand-accent: #a63d36;
-        --brand-accent-light: #c55a4d;
-        --brand-muted: #eee6da;
-        --brand-border: #d8cfc2;
-        --brand-text: #272120;
-        --brand-sub: #746b65;
-        --brand-success: #a63d36;
-        --brand-warn: #c97a54;
-        --brand-danger: #b94f49;
-      }
-
       html {
         scroll-behavior: smooth;
       }
@@ -67,16 +55,16 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
       }
 
       .landing-body {
-        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-        background-color: #f7f1e8;
-        color: #272120;
+        font-family: Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        background-color: #fff;
+        color: #0f172a;
         overflow-x: hidden;
       }
 
       .landing-body main > section:not(.landing-hero) {
         position: relative;
-        background: #f7f1e8 !important;
-        color: #272120;
+        background: #fff !important;
+        color: #0f172a;
         overflow: hidden;
       }
 
@@ -87,7 +75,7 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         height: 360px;
         right: -180px;
         top: 12%;
-        border: 1px solid rgba(39, 33, 32, 0.08);
+        border: 1px solid rgba(15, 23, 42, 0.08);
         border-radius: 50%;
         pointer-events: none;
       }
@@ -95,8 +83,8 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
       .landing-hero {
         position: relative;
         isolation: isolate;
-        background: #272120;
-        background-image: radial-gradient(circle at 75% 25%, rgba(244, 177, 158, 0.16), transparent 28%), radial-gradient(circle at 20% 100%, rgba(217, 93, 82, 0.12), transparent 32%);
+        background: #fff;
+        background-image: linear-gradient(110deg, #fff 0%, #fff 52%, #eff6ff 100%);
       }
 
       .landing-grid-glow {
@@ -104,7 +92,7 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         inset: auto 0 0;
         height: 58%;
         opacity: 0.22;
-        background-image: linear-gradient(rgba(244, 177, 158, 0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(244, 177, 158, 0.18) 1px, transparent 1px);
+        background-image: linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
         background-size: 52px 52px;
         transform: perspective(500px) rotateX(62deg) scale(1.5) translateY(28%);
         transform-origin: bottom;
@@ -116,7 +104,7 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        color: #f4b19e;
+        color: #1d4ed8;
         font-size: 11px;
         font-weight: 700;
         letter-spacing: 0.16em;
@@ -140,15 +128,15 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
       }
 
       .landing-primary-cta {
-        color: #fffaf4;
-        background: linear-gradient(135deg, #b84f45 0%, #a63d36 100%);
-        box-shadow: 0 14px 28px rgba(166, 61, 54, 0.22);
+        color: #fff;
+        background: #1d4ed8;
+        box-shadow: none;
       }
 
       .desktop-nav-link {
         background: transparent;
         border: 0;
-        color: #f7f3e9;
+        color: #fff;
         opacity: 0.82;
       }
 
@@ -159,12 +147,11 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
       }
 
       .landing-secondary-cta {
-        color: #fffaf4;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 18px;
-        overflow: hidden;
-        background: linear-gradient(145deg, #493633, #2c2523 70%);
-        box-shadow: 22px 32px 0 rgba(18, 13, 12, 0.34), 0 34px 80px rgba(0, 0, 0, 0.32), inset 0 1px rgba(255, 255, 255, 0.12);
+        color: #172554;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.75rem;
+        background: #fff;
+        box-shadow: none;
       }
 
       .landing-stage {
@@ -182,8 +169,8 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         border: 1px solid rgba(255, 255, 255, 0.14);
         border-radius: 18px;
         overflow: hidden;
-        background: linear-gradient(145deg, #493633, #2c2523 70%);
-        box-shadow: 22px 32px 0 rgba(18, 13, 12, 0.34), 0 34px 80px rgba(0, 0, 0, 0.32), inset 0 1px rgba(255, 255, 255, 0.12);
+        background: #172554;
+        box-shadow: 0 24px 56px rgba(23, 37, 84, 0.16);
       }
 
       .console-topbar {
@@ -211,9 +198,9 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        color: #f4b19e;
-        background: rgba(244, 177, 158, 0.09);
-        border: 1px solid rgba(244, 177, 158, 0.22);
+        color: #bfdbfe;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(147, 197, 253, 0.3);
         border-radius: 999px;
         padding: 6px 9px;
         font: 500 9px 'DM Mono', monospace;
@@ -223,8 +210,8 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         width: 5px;
         height: 5px;
         border-radius: 50%;
-        background: #f4b19e;
-        box-shadow: 0 0 0 4px rgba(244, 177, 158, 0.1);
+        background: #f97316;
+        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.16);
       }
 
       .console-stat-grid {
@@ -242,7 +229,7 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
       }
 
       .console-label {
-        color: #93a6a4;
+        color: #cbd5e1;
         font-size: 10px;
         margin-bottom: 5px;
       }
@@ -258,25 +245,25 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
       }
 
       .console-up {
-        color: #f4b19e;
+        color: #fdba74;
       }
 
       .console-muted {
-        color: #93a6a4;
+        color: #cbd5e1;
       }
 
       .console-order-card {
         padding: 15px;
         margin-bottom: 12px;
         border-radius: 11px;
-        background: #3b2b29;
-        border: 1px solid rgba(244, 177, 158, 0.28);
+        background: #1e3a8a;
+        border: 1px solid rgba(147, 197, 253, 0.3);
       }
 
       .console-order-card .text-white,
       .console-order-card p,
       .console-order-card span {
-        color: #f8f5f2;
+        color: #f8fafc;
       }
 
       .table-badge {
@@ -285,8 +272,8 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         width: 32px;
         height: 32px;
         border-radius: 8px;
-        color: #272120;
-        background: #f4b19e;
+        color: #fff;
+        background: #3b82f6;
         font: 700 10px 'DM Mono', monospace;
       }
 
@@ -294,8 +281,8 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         width: 7px;
         height: 7px;
         border-radius: 50%;
-        background: #a63d36;
-        box-shadow: 0 0 0 4px rgba(166, 61, 54, 0.1);
+        background: #f97316;
+        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.16);
       }
 
       .console-menu-row {
@@ -310,11 +297,11 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         width: 34px;
         height: 34px;
         border-radius: 8px;
-        background: linear-gradient(135deg, #e6a968, #7a4b34);
+        background: #3b82f6;
       }
 
       .thumb-green {
-        background: linear-gradient(135deg, #f4b19e, #98504a);
+        background: #f97316;
       }
 
       .landing-float-card {
@@ -324,10 +311,10 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         align-items: center;
         gap: 10px;
         padding: 12px 14px;
-        border: 1px solid rgba(255, 255, 255, 0.17);
+        border: 1px solid #e2e8f0;
         border-radius: 12px;
-        background: rgba(58, 42, 39, 0.92);
-        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
+        background: #fff;
+        box-shadow: 0 10px 24px rgba(23, 37, 84, 0.12);
         backdrop-filter: blur(12px);
       }
 
@@ -348,9 +335,9 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         place-items: center;
         width: 32px;
         height: 32px;
-        border: 2px solid #f4b19e;
+        border: 2px solid #f97316;
         border-radius: 50%;
-        color: #f4b19e;
+        color: #fdba74;
         font: 700 10px 'DM Mono', monospace;
       }
 
@@ -362,11 +349,11 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
         place-items: center;
         width: 100px;
         height: 100px;
-        color: #272120;
-        background: #f4b19e;
+        color: #172554;
+        background: #fff7ed;
         border-radius: 14px;
         transform: rotate(13deg);
-        box-shadow: 12px 15px 0 rgba(18, 13, 12, 0.22);
+        box-shadow: 0 10px 20px rgba(23, 37, 84, 0.12);
       }
 
       .landing-qr-pattern svg {
@@ -375,7 +362,7 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
 
       .landing-orbit {
         position: absolute;
-        border: 1px solid rgba(244, 177, 158, 0.3);
+        border: 1px solid rgba(59, 130, 246, 0.24);
         border-radius: 50%;
         transform: rotate(-22deg);
       }
@@ -388,19 +375,19 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
       .orbit-two {
         width: 500px;
         height: 160px;
-        border-color: rgba(217, 93, 82, 0.2);
+        border-color: rgba(249, 115, 22, 0.15);
         transform: rotate(35deg);
       }
 
       .nav-shell {
-        background: rgba(39, 33, 32, 0.92);
-        box-shadow: 0 1px 18px rgba(0, 0, 0, 0.18);
+        background: rgba(23, 37, 84, 0.97);
+        box-shadow: 0 1px 14px rgba(15, 23, 42, 0.12);
         backdrop-filter: blur(12px);
       }
 
       .landing-nav-scrolled {
-        background: rgba(39, 33, 32, 0.95);
-        box-shadow: 0 1px 18px rgba(0, 0, 0, 0.18);
+        background: rgba(23, 37, 84, 0.97);
+        box-shadow: 0 1px 14px rgba(15, 23, 42, 0.12);
         backdrop-filter: blur(12px);
       }
 
@@ -438,6 +425,336 @@ const { title, description, canonical = 'https://restro360.tech/', noindex = fal
 
         .landing-seat-card {
           left: 0;
+        }
+      }
+
+      html {
+        scroll-padding-top: 5rem;
+        scroll-behavior: smooth;
+      }
+
+      body,
+      .landing-body {
+        background: #fff;
+        color: #0f172a;
+        font-family: Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      body {
+        min-width: 0;
+      }
+
+      .landing-body main > section:not(.landing-hero) {
+        background: #fff !important;
+        color: #0f172a;
+      }
+
+      .landing-body main > section:not(.landing-hero)::after {
+        display: none;
+      }
+
+      #how-it-works,
+      #setup,
+      #faq {
+        background: #f8fafc !important;
+      }
+
+      #features,
+      #how-it-works,
+      #setup,
+      #pricing,
+      #faq,
+      #contact {
+        scroll-margin-top: 0;
+        overflow: visible;
+      }
+
+      .landing-hero {
+        background: linear-gradient(110deg, #fff 0%, #fff 52%, #eff6ff 100%);
+      }
+
+      .landing-grid-glow {
+        opacity: 0.22;
+        background-image: linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
+      }
+
+      .landing-kicker {
+        color: #1d4ed8;
+        letter-spacing: 0.08em;
+      }
+
+      .landing-primary-cta {
+        color: #fff;
+        background: #1d4ed8;
+        border-radius: 0.75rem;
+        box-shadow: none;
+      }
+
+      .landing-primary-cta:hover {
+        background: #172554;
+        transform: translateY(-1px);
+      }
+
+      .landing-secondary-cta {
+        color: #172554;
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.75rem;
+        box-shadow: none;
+      }
+
+      .landing-secondary-cta:hover {
+        color: #1d4ed8;
+        background: #eff6ff;
+        border-color: #3b82f6;
+        transform: translateY(-1px);
+      }
+
+      .landing-stage {
+        min-height: 520px;
+      }
+
+      .landing-console {
+        width: min(100%, 520px);
+        border: 1px solid #cbd5e1;
+        border-radius: 1rem;
+        background: #172554;
+        box-shadow: 0 24px 56px rgba(23, 37, 84, 0.16);
+      }
+
+      .console-topbar {
+        background: #1e3a8a;
+      }
+
+      .console-content {
+        background: #172554;
+      }
+
+      .console-order-card {
+        background: #1e3a8a;
+        border-color: rgba(147, 197, 253, 0.3);
+      }
+
+      .live-pill {
+        color: #bfdbfe;
+        background: rgba(59, 130, 246, 0.15);
+        border-color: rgba(147, 197, 253, 0.3);
+      }
+
+      .live-pill span,
+      .order-line {
+        background: #f97316;
+        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.16);
+      }
+
+      .console-up,
+      .table-badge,
+      .seat-ring {
+        color: #fff;
+      }
+
+      .console-up,
+      .seat-ring {
+        border-color: #f97316;
+        color: #fdba74;
+      }
+
+      .table-badge {
+        background: #3b82f6;
+      }
+
+      .landing-float-card {
+        background: #fff;
+        border-color: #e2e8f0;
+        box-shadow: 0 10px 24px rgba(23, 37, 84, 0.12);
+      }
+
+      .landing-float-card p.text-white {
+        color: #0f172a;
+      }
+
+      .landing-qr-pattern {
+        color: #172554;
+        background: #fff7ed;
+        box-shadow: 0 10px 20px rgba(23, 37, 84, 0.12);
+      }
+
+      .landing-orbit {
+        border-color: rgba(59, 130, 246, 0.24);
+      }
+
+      .orbit-two {
+        border-color: rgba(249, 115, 22, 0.15);
+      }
+
+      .nav-shell,
+      .landing-nav-scrolled {
+        background: rgba(23, 37, 84, 0.97);
+        box-shadow: 0 1px 14px rgba(15, 23, 42, 0.12);
+        backdrop-filter: blur(12px);
+      }
+
+      .desktop-nav-link {
+        color: #fff;
+      }
+
+      .desktop-nav-link:hover {
+        color: #bfdbfe;
+      }
+
+      .nav-trial-cta,
+      .nav-mobile-trial {
+        display: inline-flex;
+        min-height: 2.5rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.625rem;
+        background: #1d4ed8;
+        padding: 0.5rem 1rem;
+        color: #fff;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        transition: background 0.2s ease;
+      }
+
+      .nav-trial-cta:hover,
+      .nav-mobile-trial:hover {
+        background: #3b82f6;
+      }
+
+      .nav-demo-link,
+      .nav-mobile-demo {
+        display: inline-flex;
+        min-height: 2.5rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 0.625rem;
+        padding: 0.5rem 0.75rem;
+        color: #fff;
+        font-size: 0.8125rem;
+        font-weight: 600;
+      }
+
+      .nav-demo-link:hover {
+        border-color: #fdba74;
+        color: #fdba74;
+      }
+
+      .nav-logo-wrap {
+        border-radius: 0.5rem;
+        background: #fff;
+        padding: 0.125rem 0.5rem;
+      }
+
+      .nav-mobile-trial,
+      .nav-mobile-demo {
+        width: 100%;
+      }
+
+      .nav-mobile-demo {
+        margin-top: 0.5rem;
+        border-color: #cbd5e1;
+        color: #172554;
+      }
+
+      .nav-mobile-demo:hover {
+        background: #eff6ff;
+      }
+
+      .mobile-nav-closed {
+        display: none;
+      }
+
+      .mobile-nav-open {
+        display: block;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .feature-card {
+        min-height: 0;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
+
+      .feature-card:hover {
+        border-color: #bfdbfe;
+        box-shadow: 0 8px 20px rgba(23, 37, 84, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .feature-card p {
+        font-size: 0.9375rem;
+      }
+
+      .step-description {
+        max-width: 15rem;
+        color: #475569;
+        font-size: 0.875rem;
+        line-height: 1.55;
+      }
+
+      .from-brand-accent.to-brand-accent-light {
+        background: #172554 !important;
+      }
+
+      .landing-body footer .text-white\/50,
+      .landing-body footer .text-white\/60,
+      .landing-body footer .text-white\/40 {
+        color: #cbd5e1;
+      }
+
+      .footer-logo-wrap {
+        width: fit-content;
+        border-radius: 0.625rem;
+        background: #fff;
+        padding: 0.25rem 0.625rem;
+      }
+
+      :where(a, button, input, textarea, select):focus-visible {
+        outline: 3px solid #3b82f6;
+        outline-offset: 3px;
+      }
+
+      @media (max-width: 640px) {
+        .landing-stage {
+          min-height: 390px;
+          margin-top: 0;
+          transform: none;
+        }
+
+        .landing-console {
+          width: calc(100% - 1rem);
+        }
+
+        .console-content {
+          padding: 1rem;
+        }
+
+        .landing-qr-card {
+          right: 0;
+        }
+
+        .landing-seat-card {
+          left: 0;
+        }
+
+        .landing-primary-cta,
+        .landing-secondary-cta {
+          width: 100%;
+          min-height: 3rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
         }
       }
     </style>

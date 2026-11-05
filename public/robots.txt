@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /signup
-
 Content-Signal: ai-train=no, search=yes, ai-input=no
 
 Sitemap: https://restro360.tech/sitemap.xml
