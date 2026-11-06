@@ -1,0 +1,13 @@
+# Changelog
+
+- Landing page structure and copy: `src/pages/index.astro`; new section components in `src/components/ContactSection.astro`, `src/components/FeaturesSection.astro`, `src/components/FinalCTASection.astro`, `src/components/FAQSection.astro`, `src/components/Header.astro`, `src/components/HeroMockup.astro`, `src/components/HeroSection.astro`, `src/components/HowItWorksSection.astro`, `src/components/PricingSection.astro`, `src/components/ProofStrip.astro`, and `src/components/RolesSection.astro`.
+- Visual refresh: warm editorial hospitality theme, animated service-flow illustration and ticker, interactive product story, feature illustrations, workflow timeline, role permissions, pricing, FAQ, and conversion sections in `src/components/ProductStorySection.astro`, `src/styles/tokens.css`, and `src/styles/global.css`.
+- Design-reference pass: adopted the reference's fine-grid dark hero, soft amber/coral lighting, rounded glass navigation, and side-by-side copy/service-map composition at desktop widths while keeping Restro360 content, local fonts, and Astro components.
+- Product-design audit follow-through: improved shared content/section tokens, hero benefit and feature-preview readability, responsive navigation breakpoint, pricing presentation, FAQ coverage, contact section styling, and semantic/responsive workflow timeline.
+- Refresh follow-through: responsive navigation and contact messaging in `src/components/Header.astro` and `src/components/ContactForm.jsx`; consent banner colors in `src/components/CookieConsent.astro`.
+- Vite development stability: aligned the direct Vite dependency with Astro's Vite 7 runtime and removed the unused standalone React Vite plugin in `package.json` and `package-lock.json`.
+- Shared layout, footer, consent, and forms: `src/layouts/BaseLayout.astro`, `src/components/Footer.astro`, `src/components/CookieConsent.astro`, `src/components/ContactForm.jsx`, `src/components/ReactNav.jsx`, and `src/components/SignupWizard.jsx`.
+- Privacy Policy: `src/pages/privacy-policy.astro`.
+- Theme and local fonts: `src/styles/tokens.css`, `src/styles/global.css`, `src/styles/index.css`, `styles/landing.css`, `package.json`, `package-lock.json`, `public/fonts/inter-latin-400-normal.woff2`, `public/fonts/inter-latin-500-normal.woff2`, `public/fonts/inter-latin-600-normal.woff2`, `public/fonts/inter-tight-latin-700-normal.woff2`, `public/fonts/jetbrains-mono-latin-500-normal.woff2`, `public/fonts/LICENSE-Inter.txt`, and `public/fonts/LICENSE-JetBrains-Mono.txt`.
+- Shared product configuration and brand assets: `src/config.ts`, `src/lib/siteConfig.js`, `public/og-image.svg`, `sections/HeroSection.tsx`, and `NotFoundPage.tsx`.
+- This changelog: `CHANGELOG.md`.

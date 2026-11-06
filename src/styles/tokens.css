@@ -1,0 +1,81 @@
+:root {
+  color-scheme: light;
+  --espresso: #17120F;
+  --espresso-soft: #211713;
+  --espresso-card: #2A1E19;
+  --ivory: #F5F0E7;
+  --ivory-deep: #EDE5D9;
+  --tomato: #C53D20;
+  --tomato-dark: #A9311A;
+  --saffron: #F0AD3D;
+  --mint: #95D8AE;
+  --mint-dark: #28744D;
+  --technical-blue: #83A9D6;
+  --stone: #9B9389;
+  --stone-light: #D5CCBF;
+  --white: #FFFFFF;
+  --page-bg: var(--ivory);
+  --surface: var(--ivory);
+  --surface-alt: var(--ivory-deep);
+  --text: var(--espresso);
+  --text-muted: #645D55;
+  --border: rgba(36, 29, 22, .16);
+  --card-shadow: 0 16px 38px rgba(34, 26, 19, .09);
+  --hover-shadow: 0 20px 46px rgba(34, 26, 19, .16);
+  --radius-input: 8px;
+  --radius-button: 8px;
+  --radius-card: 12px;
+  --radius-mockup: 16px;
+  --space-section: clamp(72px, 8vw, 104px);
+  --content-width: 1280px;
+  --font-heading: Inter, "Segoe UI", sans-serif;
+  --font-body: Inter, "Segoe UI", Arial, sans-serif;
+  --font-editorial: Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", Consolas, monospace;
+
+  --background: var(--page-bg);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --primary: var(--tomato);
+  --primary-foreground: var(--white);
+  --secondary: var(--surface-alt);
+  --secondary-foreground: var(--text);
+  --muted: var(--surface-alt);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--saffron);
+  --accent-foreground: var(--text);
+  --border-color: var(--border);
+  --ring: var(--tomato);
+  --radius: 8px;
+  --brand-bg: var(--page-bg);
+  --brand-navy: var(--espresso);
+  --brand-blue: var(--technical-blue);
+  --brand-blue-strong: var(--tomato-dark);
+  --brand-surface: var(--surface);
+  --brand-accent: var(--tomato);
+  --brand-accent-light: var(--saffron);
+  --brand-muted: var(--surface-alt);
+  --brand-border: var(--border);
+  --brand-text: var(--text);
+  --brand-sub: var(--text-muted);
+  --brand-success: var(--mint-dark);
+  --brand-danger: var(--tomato-dark);
+  --brand-veg: var(--mint-dark);
+  --brand-non-veg: var(--tomato-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page-bg: #17120F;
+    --surface: #211713;
+    --surface-alt: #2A1E19;
+    --text: #F5F0E7;
+    --text-muted: #C0B5A7;
+    --border: rgba(239, 231, 218, .18);
+    --card-shadow: 0 16px 38px rgba(0, 0, 0, .22);
+    --hover-shadow: 0 20px 46px rgba(0, 0, 0, .34);
+    --brand-veg: var(--mint);
+  }
+}

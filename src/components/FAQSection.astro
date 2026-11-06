@@ -1,0 +1,219 @@
+---
+const questions = [
+  {
+    question: 'Do guests need to install an app?',
+    answer: 'No. Guests scan the table QR and order from a phone browser without downloading an app.',
+  },
+  {
+    question: 'What happens after 3 months?',
+    answer: 'After the free first three months, Restro360 continues at ₹599 per month.',
+  },
+  {
+    question: 'Is billing GST-ready?',
+    answer: 'Yes. Restro360 helps restaurant teams prepare GST-ready bills and show a payment QR to guests.',
+  },
+  {
+    question: 'Which devices work?',
+    answer: 'Guests can order in a modern phone browser. Restaurant staff can access the platform from compatible phones, tablets, or computers with an internet connection.',
+  },
+  {
+    question: 'How do staff roles work?',
+    answer: 'Owners and managers can assign role-based access so waiters, kitchen staff, managers, and owners only see the tools relevant to their work.',
+  },
+  {
+    question: 'How do I get help?',
+    answer: 'Contact the Restro360 team at support@restro360.tech for product questions, onboarding help, or to book a demo.',
+  },
+  {
+    question: 'Can I manage access for multiple staff members?',
+    answer: 'Owners and managers can use role-based access to give waiters, kitchen staff, managers, and owners the tools relevant to their work.',
+  },
+  {
+    question: 'How can I get started?',
+    answer: 'Start with the free three-month offer, or contact the Restro360 team to book a product demo.',
+  },
+];
+---
+
+<section id="faq" class="faq-section" aria-labelledby="faq-title">
+  <div class="container">
+    <header class="faq-header">
+      <p class="eyebrow">QUESTIONS, ANSWERED</p>
+      <h2 id="faq-title">Everything you need to know before <em>getting started.</em></h2>
+      <p class="faq-intro-copy">From getting started to managing your restaurant's daily operations, here are answers to common questions about Restro360.</p>
+    </header>
+    <div class="faq-list reveal" data-faq-list>
+      {questions.map((item, index) => (
+        <article class="faq-item">
+          <h3>
+            <button
+              class="faq-trigger"
+              type="button"
+              id={`faq-trigger-${index}`}
+              aria-expanded={index === 0 ? 'true' : 'false'}
+              aria-controls={`faq-panel-${index}`}
+            >
+              <span>{item.question}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+          </h3>
+          <div
+            class={`faq-panel${index === 0 ? ' is-open' : ''}`}
+            id={`faq-panel-${index}`}
+            role="region"
+            aria-labelledby={`faq-trigger-${index}`}
+            aria-hidden={index === 0 ? 'false' : 'true'}
+            inert={index === 0 ? undefined : true}
+            style={index === 0 ? 'height:auto' : 'height:0'}
+          >
+            <div class="faq-panel-inner"><p>{item.answer}</p></div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-faq-list]').forEach((list) => {
+    const buttons = Array.from(list.querySelectorAll<HTMLButtonElement>('.faq-trigger'));
+    const panels = buttons.map((button) => document.getElementById(button.getAttribute('aria-controls') || ''));
+
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        const wasOpen = button.getAttribute('aria-expanded') === 'true';
+        buttons.forEach((item, itemIndex) => {
+          const panel = panels[itemIndex];
+          if (!panel) return;
+          item.setAttribute('aria-expanded', 'false');
+          panel.setAttribute('aria-hidden', 'true');
+          panel.inert = true;
+          panel.style.height = `${panel.scrollHeight}px`;
+          panel.classList.remove('is-open');
+          requestAnimationFrame(() => { panel.style.height = '0px'; });
+        });
+
+        if (!wasOpen) {
+          const panel = panels[index];
+          if (!panel) return;
+          panel.inert = false;
+          panel.setAttribute('aria-hidden', 'false');
+          panel.classList.add('is-open');
+          button.setAttribute('aria-expanded', 'true');
+          panel.style.height = `${panel.scrollHeight}px`;
+          panel.addEventListener('transitionend', function onTransitionEnd(event) {
+            if (event.propertyName === 'height' && button.getAttribute('aria-expanded') === 'true') {
+              panel.style.height = 'auto';
+              panel.removeEventListener('transitionend', onTransitionEnd);
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding-block: clamp(72px, calc(7vw + 16px), 104px);
+  }
+
+  .faq-section > .container {
+    display: grid;
+    gap: 32px;
+    max-width: 1200px;
+  }
+
+  .faq-header {
+    max-width: 460px;
+    margin: 0;
+  }
+
+  .faq-header .eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .faq-header h2 {
+    color: #211914;
+    font-size: clamp(2rem, 3.2vw, 2.875rem);
+    line-height: 1.08;
+    letter-spacing: -.045em;
+  }
+
+  .faq-header h2 em {
+    color: var(--tomato);
+    font-family: var(--font-editorial);
+    font-weight: 400;
+  }
+
+  .faq-intro-copy {
+    margin: 16px 0 0;
+    color: #655A50;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .faq-list {
+    width: 100%;
+    max-width: none;
+    border-top-color: #DED4C7;
+  }
+
+  .faq-item {
+    border-bottom-color: #DED4C7;
+  }
+
+  .faq-trigger {
+    min-height: 72px;
+    gap: 20px;
+    padding-block: 16px;
+    color: #211914;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  .faq-trigger svg {
+    width: 22px;
+    height: 22px;
+    color: var(--tomato-dark);
+  }
+
+  .faq-panel-inner {
+    padding: 0 44px 20px 0;
+    color: #514A42;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  @media (min-width: 768px) {
+    .faq-section > .container {
+      grid-template-columns: minmax(0, .38fr) minmax(0, .62fr);
+      align-items: start;
+      gap: clamp(48px, 6vw, 88px);
+    }
+
+    .faq-header {
+      position: sticky;
+      top: 112px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .faq-section {
+      padding-block: 64px;
+    }
+
+    .faq-section > .container {
+      gap: 28px;
+    }
+
+    .faq-header h2 {
+      font-size: clamp(2rem, 8vw, 2.25rem);
+    }
+
+    .faq-trigger {
+      min-height: 68px;
+      font-size: 1rem;
+    }
+  }
+</style>

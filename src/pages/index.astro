@@ -1,607 +1,82 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ReactNav from '../components/ReactNav.jsx';
-import FAQAccordion from '../components/FAQAccordion.jsx';
-import ContactForm from '../components/ContactForm.jsx';
-import FeatureCard from '../components/FeatureCard.astro';
+import Header from '../components/Header.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import ProductStorySection from '../components/ProductStorySection.astro';
+import FeaturesSection from '../components/FeaturesSection.astro';
+import HowItWorksSection from '../components/HowItWorksSection.astro';
+import RolesSection from '../components/RolesSection.astro';
+import PricingSection from '../components/PricingSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
 import logoUrl from '../assets/restro360_logo.svg';
-import { QrCode, Smartphone, Users, RefreshCw, Palette, Share2, Zap, ClipboardList, ArrowRight, Check, ChevronRight, CircleDot, ScanLine, Sparkles, UserPlus, UtensilsCrossed, ClipboardCheck, BookOpen, ShoppingCart } from 'lucide-react';
+import { CONTACT_EMAIL } from '../config';
 
-import { pricingConfig, siteConfig } from '../lib/siteConfig';
-
-const siteContent = {
-  seo: {
-    title: 'Restro360 | Restaurant QR Ordering & Management Software',
-    description:
-      'Simplify restaurant operations with Restro360. Manage QR table ordering, kitchen workflows, order tracking, staff access and GST-ready billing from one platform.',
-    keywords:
-      'restaurant management software India, restaurant POS software, QR ordering for restaurants, kitchen display, staff management restaurant, GST-ready billing India, dining QR order tracking',
-    canonicalUrl: siteConfig.canonicalUrl,
-    ogImage: 'https://restro360.tech/og-image.svg',
-    siteName: 'Restro360',
-  },
-  navigation: [
-    { label: 'Features', href: '#features' },
-    { label: 'How it works', href: '#how-it-works' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Contact', href: '#contact' },
-  ],
-  hero: {
-    kicker: 'Run the restaurant from QR to kitchen to bill',
-    heading: 'Restaurant operations, connected from QR to kitchen to bill.',
-    description:
-      'Manage QR table ordering, live kitchen workflows, guest order tracking, staff access, and GST-ready billing from one connected platform built for Indian restaurants.',
-    primaryCta: pricingConfig.primaryCta,
-    secondaryCta: 'Book a Free Demo',
-    benefits: ['QR ordering in a phone browser', 'Kitchen and guest order status in one flow', 'Staff roles with access controls'],
-    dashboardLabel: 'ILLUSTRATIVE DASHBOARD PREVIEW',
-    dashboardTitle: 'Restaurant dashboard',
-    tableStatus: 'Operations overview',
-    ordersToday: 'Kitchen queue',
-    avgTableTime: 'Billing',
-    newOrder: 'Table order',
-    justNow: 'Order status overview',
-    kitchenNotified: 'Kitchen workflow',
-    onTrack: 'GST-ready',
-    scanToOrder: 'Scan to order',
-    noDownload: 'No download needed',
-    table12: 'Guest ordering',
-    guestOrdering: 'QR session',
-  },
-  features: [
-    {
-      title: 'QR table ordering',
-      description: 'Guests scan a table QR, browse the menu, add notes and addons, and submit orders without downloading an app.',
-    },
-    {
-      title: 'Session gate & order flow',
-      description: 'The waiter opens the table session first, then the kitchen sees confirmed orders in a queue with live status updates.',
-    },
-    {
-      title: 'Kitchen display & partial rejection',
-      description: 'Confirmed, preparing, and ready items appear in the kitchen workflow, with partial item rejection supported.',
-    },
-    {
-      title: 'Live order tracking',
-      description: 'Diners can track order progress, request a bill, and stay informed while the team serves the table.',
-    },
-    {
-      title: 'GST-ready billing',
-      description: 'Create sequential invoice numbers, record Cash, UPI, or Card payments, and keep billing ready for GST compliance.',
-    },
-    {
-      title: 'Menu management',
-      description: 'Update categories, photos, MRP and discount, veg/non-veg, spice levels, addons, item availability, and scheduled items.',
-    },
-    {
-      title: 'Staff accounts',
-      description: 'Restaurant Admin, Waiter, and Chef roles are supported with single-device sessions and instant access revoke.',
-    },
-    {
-      title: 'Reports & feedback',
-      description: 'Track revenue, top items, order history, table turnover, customer visits, staff activity, and ratings and feedback.',
-    },
-  ],
-  sections: {
-    features: {
-      heading: 'Built for the real pace of a restaurant floor',
-      subheading:
-        'From the first scan to the final bill, Restro360 keeps the service flow clear for guests, waiters, and kitchen staff.',
-    },
-    ownerSteps: {
-      eyebrow: 'How it works for owners',
-      heading: 'Four simple steps to go live',
-      subheading: 'Set up your outlet, train the team, and open service with a guided start.',
-    },
-    teamFlow: {
-      eyebrow: 'How diners order',
-      heading: 'A guest flow that feels fast and familiar',
-      subheading: 'No app, no friction — just scan, browse, order, track, and pay when ready.',
-    },
-    setup: {
-      heading: 'Simple setup, clear controls',
-      subheading: 'Create the menu, add staff, and launch from the same dashboard without extra complexity.',
-      includedTitle: 'Included in the trial',
-      ctaTitle: 'Ready to set up your restaurant?',
-      ctaText:
-        `Start with guided onboarding. The first ${pricingConfig.trialMonths} months are free, then ₹${pricingConfig.standardPriceInr}/month. ${pricingConfig.gstText}. ${pricingConfig.cancelAnyTime}.`,
-      ctaBulletOne: 'Guided setup for tables, menu, and staff',
-      ctaBulletTwo: 'Works on modern phones, tablets, and desktops',
-      buttonPrimary: pricingConfig.primaryCta,
-      buttonSecondary: 'Book a Free Demo',
-    },
-    faq: {
-      heading: 'Frequently asked questions',
-      subheading: 'Straight answers for restaurants evaluating a simpler, connected workflow.',
-    },
-    contact: {
-      heading: "Let's Talk About Your Restaurant",
-      subheading: "Questions about setup, pricing, or a demo? Our team is here to help.",
-    },
-  },
-  ownerSteps: [
-    {
-      title: 'Sign up',
-      description: 'Create your trial account and confirm your details to start the onboarding flow.',
-    },
-    {
-      title: 'Set up tables and menu',
-      description: 'Add tables, menu categories, items, addons, and stock availability for your service hours.',
-    },
-    {
-      title: 'Train staff',
-      description: 'Invite Restaurant Admin, Waiter, and Chef roles and train the team on live service flow.',
-    },
-    {
-      title: 'Go live',
-      description: 'Open tables, receive orders, monitor the kitchen, and close the bill when service ends.',
-    },
-  ],
-  customerSteps: [
-    {
-      title: 'Scan the QR',
-      description: 'Guests open the table QR on their phone and join the session without any app installation.',
-    },
-    {
-      title: 'Browse the menu',
-      description: 'Explore dishes with pricing, photos, addons, and notes to customise each order.',
-    },
-    {
-      title: 'Add and order',
-      description: 'Select items, add notes and extras, and send the order to the kitchen for confirmation.',
-    },
-    {
-      title: 'Track the order',
-      description: 'View the live status of each item from confirmed to preparing to ready.',
-    },
-    {
-      title: 'Request the bill',
-      description: 'When the table is ready, request the bill and the team can complete payment quickly.',
-    },
-  ],
-  setupIncluded: [
-    'QR table ordering with no app download',
-    'Live kitchen queue and queue-based order confirmation',
-    'Guest order tracking and bill request flow',
-    'GST-ready billing and invoice numbering',
-    'Menu management with item availability and scheduled items',
-    'Staff roles with instant access revoke',
-    'Reports for revenue, top items, and customer activity',
-    'Ratings and feedback for tables and service',
-    'Real-time notifications across staff',
-    'Platform onboarding with a guided setup flow',
-  ],
-  faq: [
-    {
-      question: 'Do guests need an app to order?',
-      answer:
-        'No. Guests use the QR on each table and order directly from their phone browser with no app download required.',
-    },
-    {
-      question: 'Does Restro360 support GST-ready billing?',
-      answer:
-        'Yes. Billing is built for GST-ready operations with sequential invoice numbers and payment recording for Cash, UPI, and Card.',
-    },
-    {
-      question: 'How does the pricing work?',
-      answer:
-        `The intro offer is free for the first ${pricingConfig.trialMonths} months, then ${pricingConfig.standardPriceInr} per month. ${pricingConfig.gstText}. ${pricingConfig.cancelAnyTime}.`,
-    },
-    {
-      question: 'Can I cancel anytime?',
-      answer:
-        'Yes. The plan is flexible and can be cancelled at any time. The pricing and billing terms remain visible in the signup and payment flow.',
-    },
-    {
-      question: 'Who owns the data?',
-      answer:
-        'Your restaurant data remains under your account and is managed through the Restro360 platform. We provide the tools to run your operations and you control your business data in the account.',
-    },
-    {
-      question: 'Which devices are supported?',
-      answer:
-        'The system is designed for modern desktop, tablet, and mobile browsers used by restaurant staff and diners.',
-    },
-  ],
-  contact: {
-    email: siteConfig.supportEmail,
-    phone: siteConfig.phone || '',
-    successTitle: 'Message received',
-    successText: "Your enquiry has been received. Our team will follow up shortly.",
-    successButton: 'Send Another Message',
-    submitButton: 'Send Message',
-    sending: 'Sending…',
-  },
-  footer: {
-    description:
-      'Restro360 helps Indian restaurants run QR table ordering, kitchen workflows, guest order tracking, staff controls, and GST-ready billing from one connected system.',
-    productLinks: ['Features', 'How it works', 'Pricing', 'FAQ'],
-    companyLinks: ['Restro360'],
-    legalLinks: ['Privacy Policy', 'Terms & Conditions', 'Refund & Cancellation'],
-    legalUrls: ['/privacy-policy', '/terms-and-conditions', '/refund-cancellation'],
-    copyright: `© ${new Date().getFullYear()} Restro360. All rights reserved.`,
-    subcopy: 'Ready to simplify your restaurant operations?',
-  },
-};
-
-const features = siteContent.features.map((feature, index) => ({
-  icon: [QrCode, Smartphone, Users, RefreshCw, Palette, Share2, Zap, ClipboardList][index],
-  title: feature.title,
-  description: feature.description,
-  color: 'text-brand-accent',
-  bgColor: 'bg-brand-accent/10',
-}));
-
-const ownerSteps = siteContent.ownerSteps.map((step, index) => ({
-  icon: [UserPlus, QrCode, UtensilsCrossed, ClipboardCheck][index],
-  title: step.title,
-  description: step.description,
-}));
-
-const customerSteps = siteContent.customerSteps.map((step, index) => ({
-  icon: [QrCode, BookOpen, Users, ShoppingCart, ClipboardList][index],
-  title: step.title,
-  description: step.description,
-}));
-
-const title = siteContent.seo.title;
-const description = siteContent.seo.description;
+const title = 'Restro360 | Restaurant QR Ordering, Kitchen and GST Billing Software in India';
+const description = 'Restro360 connects QR ordering, kitchen workflow, staff roles and GST-ready billing for restaurants in India. Launching first in Kolkata.';
+const canonical = 'https://restro360.tech/';
 
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'Organization',
+      name: 'Restro360',
+      url: canonical,
+      logo: new URL(logoUrl.src, canonical).href,
+      email: CONTACT_EMAIL,
+      areaServed: { '@type': 'City', name: 'Kolkata' },
+    },
+    {
       '@type': 'SoftwareApplication',
       name: 'Restro360',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
-      applicationSuite: 'Restaurant SaaS',
       description,
-      keywords: siteContent.seo.keywords,
-      audience: { '@type': 'Audience', audienceType: 'Restaurant owners and operators in India' },
-      areaServed: 'IN',
-      url: siteContent.seo.canonicalUrl,
-      logo: new URL(logoUrl.src, siteContent.seo.canonicalUrl).href,
-      category: 'Restaurant software',
-    },
-    {
-      '@type': 'Organization',
-      name: siteContent.seo.siteName,
-      url: siteContent.seo.canonicalUrl,
-      logo: new URL(logoUrl.src, siteContent.seo.canonicalUrl).href,
+      url: canonical,
+      areaServed: 'India',
+      audience: { '@type': 'Audience', audienceType: 'Restaurants' },
     },
   ],
 };
 ---
 
-<BaseLayout title={title} description={description} canonical="https://restro360.tech/">
+<BaseLayout title={title} description={description} canonical={canonical}>
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-  <div class="landing-body">
-    <header>
-      <ReactNav links={siteContent.navigation} logoUrl={logoUrl.src} signupLabel={pricingConfig.primaryCta} client:idle />
-    </header>
-
-    <main aria-label="Restro360 product overview">
-      <section id="top" class="landing-hero flex min-h-screen items-center overflow-hidden pt-16" aria-labelledby="restro360-hero-heading">
-        <div class="landing-grid-glow"></div>
-        <div class="max-w-6xl mx-auto px-5 sm:px-6 py-20 w-full relative z-10">
-          <div class="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] xl:gap-10">
-            <div class="landing-fade-in max-w-xl">
-              <div class="landing-kicker"><CircleDot size={13} /> {siteContent.hero.kicker}</div>
-              <h1 id="restro360-hero-heading" class="font-display mb-5 text-4xl font-semibold leading-tight tracking-[-0.035em] text-brand-text sm:text-5xl lg:text-5xl xl:text-6xl">
-                {siteContent.hero.heading}
-              </h1>
-              <p class="mb-8 max-w-xl text-base leading-relaxed text-brand-sub sm:text-lg">
-                {siteContent.hero.description}
-              </p>
-              <div class="flex flex-col sm:flex-row gap-3">
-                <a href="/signup" class="landing-primary-cta" aria-label={pricingConfig.primaryCta}>
-                  {siteContent.hero.primaryCta} <ArrowRight size={17} />
-                </a>
-                <a href="#contact" class="landing-secondary-cta" aria-label="Book a Free Demo">
-                  {siteContent.hero.secondaryCta} <ChevronRight size={17} />
-                </a>
-              </div>
-              <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-brand-sub">
-                {siteContent.hero.benefits.map((item) => (
-                  <span class="flex items-center gap-1.5"><Check size={16} class="text-brand-success" />{item}</span>
-                ))}
-              </div>
-            </div>
-
-            <div class="landing-stage" aria-label="Illustrative restaurant operations dashboard preview">
-              <div class="landing-orbit orbit-one"></div>
-              <div class="landing-orbit orbit-two"></div>
-              <div class="landing-console float-animate">
-                <div class="console-topbar">
-                  <div class="flex items-center gap-2"><span class="console-dot bg-brand-blue"></span><span class="console-dot bg-brand-orange"></span><span class="console-dot bg-slate-300"></span></div>
-                  <span class="font-mono text-[10px] text-slate-300">{siteContent.hero.dashboardLabel}</span>
-                </div>
-                <div class="console-content">
-                  <div class="flex items-start justify-between mb-6">
-                    <div><p class="text-[10px] uppercase tracking-[0.2em] text-slate-300">Overview</p><h2 class="font-display text-2xl text-white">{siteContent.hero.dashboardTitle}</h2></div>
-                    <div class="live-pill"><span></span> {siteContent.hero.tableStatus}</div>
-                  </div>
-                  <div class="console-stat-grid">
-                    <div><p class="console-label">{siteContent.hero.ordersToday}</p><p class="console-number">Orders</p><span class="console-muted">Kitchen status</span></div>
-                    <div><p class="console-label">{siteContent.hero.avgTableTime}</p><p class="console-number">Billing</p><span class="console-muted">Invoice workflow</span></div>
-                  </div>
-                  <div class="console-order-card">
-                    <div class="flex items-center justify-between mb-4"><div class="flex items-center gap-2"><span class="table-badge">QR</span><div><p class="text-sm text-white font-semibold">{siteContent.hero.newOrder}</p><p class="text-[10px] text-slate-300">{siteContent.hero.justNow}</p></div></div><Sparkles size={16} class="text-brand-orange" /></div>
-                    <div class="flex items-center gap-2 text-xs text-slate-200"><span class="order-line"></span><span>{siteContent.hero.kitchenNotified}</span><span class="ml-auto text-orange-200">{siteContent.hero.onTrack}</span></div>
-                  </div>
-                  <div class="console-menu-row"><div class="menu-thumb thumb-green"></div><div><p class="text-xs text-white font-semibold">Order workflow</p><p class="text-[10px] text-slate-300">Table · Kitchen · Bill</p></div></div>
-                </div>
-              </div>
-              <div class="landing-float-card landing-qr-card"><ScanLine size={22} class="text-brand-orange" /><div><p class="text-xs text-white font-semibold">{siteContent.hero.scanToOrder}</p><p class="text-[10px] text-slate-500">{siteContent.hero.noDownload}</p></div></div>
-              <div class="landing-float-card landing-seat-card"><div class="seat-ring"><QrCode size={16} aria-hidden="true" /></div><div><p class="text-xs text-white font-semibold">{siteContent.hero.table12}</p><p class="text-[10px] text-slate-500">{siteContent.hero.guestOrdering}</p></div></div>
-              <div class="landing-qr-pattern"><QrCode size={70} /></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="features" class="py-16 bg-white" aria-labelledby="features-heading">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-12">
-            <h2 id="features-heading" class="font-display text-3xl font-bold text-brand-text mb-3">
-              {siteContent.sections.features.heading}
-            </h2>
-            <p class="text-brand-sub max-w-xl mx-auto">
-              {siteContent.sections.features.subheading}
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {features.map((f) => (
-              <FeatureCard icon={f.icon} title={f.title} description={f.description} color={f.color} bgColor={f.bgColor} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="how-it-works" class="py-16 bg-brand-bg" aria-labelledby="owner-steps-heading">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-12">
-            <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">{siteContent.sections.ownerSteps.eyebrow}</span>
-            <h2 id="owner-steps-heading" class="font-display text-3xl font-bold text-brand-text mt-2 mb-3">
-              {siteContent.sections.ownerSteps.heading}
-            </h2>
-            <p class="text-brand-sub max-w-md mx-auto">
-              {siteContent.sections.ownerSteps.subheading}
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-            {ownerSteps.map((step, i) => (
-              <div class="relative flex flex-col items-center text-center">
-                <div class="relative mb-4">
-                  <div class="w-14 h-14 bg-brand-accent/10 rounded-2xl flex items-center justify-center">
-                    <step.icon size={26} class="text-brand-accent" />
-                  </div>
-                  <div class="absolute -top-2 -right-2 w-5 h-5 bg-brand-accent rounded-full flex items-center justify-center">
-                    <span class="text-white text-[10px] font-bold">{i + 1}</span>
-                  </div>
-                </div>
-                {!((i === ownerSteps.length - 1)) && (
-                  <div class="hidden md:block absolute top-7 left-[calc(50%+40px)] right-0 h-px border-t-2 border-dashed border-brand-border"></div>
-                )}
-                <h3 class="text-sm font-bold text-brand-text mb-1">{step.title}</h3>
-                <p class="step-description">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="py-16 bg-white" aria-labelledby="guest-flow-heading">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-12">
-            <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">{siteContent.sections.teamFlow.eyebrow}</span>
-            <h2 id="guest-flow-heading" class="font-display text-3xl font-bold text-brand-text mt-2 mb-3">
-              {siteContent.sections.teamFlow.heading}
-            </h2>
-            <p class="text-brand-sub max-w-md mx-auto">
-              {siteContent.sections.teamFlow.subheading}
-            </p>
-          </div>
-
-          <div class="flex flex-col sm:flex-row gap-4 sm:gap-2 items-start">
-            {customerSteps.map((step, i) => (
-              <div class="flex sm:flex-col items-start sm:items-center sm:text-center flex-1 gap-4 sm:gap-0">
-                <div class="flex sm:flex-col items-center sm:mb-4">
-                  <div class="w-12 h-12 bg-brand-accent/10 rounded-2xl flex items-center justify-center shrink-0">
-                    <step.icon size={22} class="text-brand-accent" />
-                  </div>
-                  {i < customerSteps.length - 1 && (
-                    <div class="w-8 h-px sm:w-px sm:h-6 bg-brand-border border-dashed sm:mx-auto hidden sm:block"></div>
-                  )}
-                </div>
-                <div class="sm:px-1">
-                  <div class="flex items-center gap-2 sm:justify-center mb-1">
-                    <span class="w-5 h-5 bg-brand-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center shrink-0">
-                      {i + 1}
-                    </span>
-                    <p class="text-sm font-bold text-brand-text">{step.title}</p>
-                  </div>
-                  <p class="step-description">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="setup" class="py-16 bg-brand-bg" aria-labelledby="setup-heading">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-12">
-            <h2 id="setup-heading" class="font-display text-3xl font-bold text-brand-text mb-3">{siteContent.sections.setup.heading}</h2>
-            <p class="text-brand-sub max-w-md mx-auto">
-              {siteContent.sections.setup.subheading}
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-white rounded-2xl p-6 border border-brand-border/30 shadow-card">
-              <h3 class="text-lg font-bold text-brand-text mb-5">{siteContent.sections.setup.includedTitle}</h3>
-              <div class="grid grid-cols-1 gap-3">
-                {siteContent.setupIncluded.map((item) => (
-                  <div class="flex items-start gap-3">
-                    <div class="w-5 h-5 bg-brand-success/10 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                      <Check size={12} class="text-brand-success" strokeWidth={3} />
-                    </div>
-                    <p class="text-sm text-brand-text">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div class="bg-gradient-to-br from-brand-accent to-brand-accent-light rounded-2xl p-6 text-white flex flex-col justify-between">
-              <div>
-                <h3 class="text-2xl font-bold mb-3">{siteContent.sections.setup.ctaTitle}</h3>
-                <p class="text-white/80 text-sm leading-relaxed mb-6">
-                  {siteContent.sections.setup.ctaText}
-                </p>
-                <div class="flex items-center gap-3 mb-3"><div class="w-2 h-2 bg-white/50 rounded-full"></div><p class="text-sm text-white/80">{siteContent.sections.setup.ctaBulletOne}</p></div>
-                <div class="flex items-center gap-3 mb-6"><div class="w-2 h-2 bg-white/50 rounded-full"></div><p class="text-sm text-white/80">{siteContent.sections.setup.ctaBulletTwo}</p></div>
-              </div>
-              <div class="flex flex-col gap-3">
-                <a href="/signup" class="w-full h-12 bg-white text-brand-accent font-bold rounded-xl hover:bg-white/90 transition-all inline-flex items-center justify-center">{siteContent.sections.setup.buttonPrimary}</a>
-                <a href="#contact" class="w-full h-12 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all inline-flex items-center justify-center">{siteContent.sections.setup.buttonSecondary}</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="pricing" class="py-16 bg-white" aria-labelledby="pricing-heading">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-10">
-            <h2 id="pricing-heading" class="font-display text-3xl font-bold text-brand-text mb-3">Simple pricing</h2>
-            <p class="text-brand-sub max-w-xl mx-auto">{pricingConfig.marketingCopy}</p>
-          </div>
-          <div class="max-w-xl mx-auto rounded-3xl border border-brand-border/60 bg-brand-bg p-6 shadow-card">
-            <h3 class="font-display text-2xl font-bold text-brand-text mb-2">Free for the first {pricingConfig.trialMonths} months</h3>
-            <p class="text-sm text-brand-sub mb-4">Then ₹{pricingConfig.standardPriceInr}/month. {pricingConfig.gstText}. {pricingConfig.cancelAnyTime}.</p>
-            <ul class="space-y-3 text-sm text-brand-text">
-              <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>QR order flow with no app download for guests</span></li>
-              <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>Live kitchen queue, guest tracking, and bill request flow</span></li>
-              <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>GST-ready billing and payment recording for Cash, UPI, and Card</span></li>
-              <li class="flex items-start gap-3"><span class="mt-1 text-brand-accent">✓</span><span>Menu, staff, reports, and item availability controls from one dashboard</span></li>
-            </ul>
-            <a href="/signup" class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-brand-accent px-5 py-3 font-semibold text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">{pricingConfig.primaryCta}</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" class="py-16 bg-brand-bg" aria-labelledby="faq-heading">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-10">
-            <h2 id="faq-heading" class="font-display text-3xl font-bold text-brand-text mb-3">{siteContent.sections.faq.heading}</h2>
-            <p class="text-brand-sub">{siteContent.sections.faq.subheading}</p>
-          </div>
-          <FAQAccordion faqs={siteContent.faq} client:visible />
-        </div>
-      </section>
-
-      <section id="contact" class="bg-white py-12 sm:py-14" aria-labelledby="contact-heading">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-          <div class="mb-8 text-center">
-            <h2 id="contact-heading" class="font-display mb-2 text-3xl font-bold leading-tight text-brand-text sm:text-4xl">{siteContent.sections.contact.heading}</h2>
-            <p class="mx-auto max-w-xl text-base leading-relaxed text-brand-sub">
-              {siteContent.sections.contact.subheading}
-            </p>
-          </div>
-          <ContactForm contactContent={siteContent.contact} socialLinks={siteConfig.socialLinks} client:idle />
-        </div>
-      </section>
-    </main>
-
-    <footer class="bg-brand-navy text-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
-          <div class="col-span-2 md:col-span-1">
-            <div class="footer-logo-wrap flex items-center gap-2 mb-3">
-              <img src={logoUrl.src} alt="Restro360" class="h-10 w-auto max-w-none" />
-            </div>
-            <p class="text-white/50 text-xs leading-relaxed mb-4">{siteContent.footer.description}</p>
-            <div class="flex gap-2">
-              {Object.entries(siteConfig.socialLinks)
-                .filter(([, href]) => !!href)
-                .map(([key, href]) => (
-                  <a key={key} href={href} target="_blank" rel="noreferrer" class="w-7 h-7 bg-white/10 rounded-lg flex items-center justify-center text-[10px] font-bold text-white/80 hover:bg-white/20 transition-colors" aria-label={`Restro360 on ${key}`}>
-                    {key === 'x' ? 'X' : key.slice(0, 2).toUpperCase()}
-                  </a>
-                ))}
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">Product</p>
-            <div class="space-y-2">
-              {['#features', '#how-it-works', '#pricing', '#faq'].map((href, index) => (
-                <a key={href} href={href} class="block text-sm text-white/60 hover:text-white transition-colors text-left">{siteContent.footer.productLinks[index]}</a>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">Company</p>
-            <div class="space-y-2">
-              <a href="#top" class="block text-sm text-white/80 hover:text-white transition-colors text-left">{siteContent.footer.companyLinks[0]}</a>
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">Support</p>
-            <div class="space-y-2">
-              <a href="#contact" class="block text-sm text-white/80 hover:text-white transition-colors text-left">Contact support</a>
-              <a href={`mailto:${siteContent.contact.email}`} class="block break-all text-sm text-white/80 hover:text-white transition-colors">{siteContent.contact.email}</a>
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">Legal</p>
-            <div class="space-y-2">
-              {siteContent.footer.legalLinks.map((link, index) => (
-                <a href={siteContent.footer.legalUrls[index]} class="block text-sm text-white/80 hover:text-white transition-colors text-left">{link}</a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p class="text-xs text-white/40">{siteContent.footer.copyright}</p>
-          <div class="flex items-center gap-4">
-            <p class="text-xs text-white/50">{siteContent.footer.subcopy}</p>
-            <a href="/signup" class="text-xs font-semibold text-white underline underline-offset-4">{pricingConfig.primaryCta}</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-
+  <Header />
+  <main id="main-content">
+    <HeroSection />
+    <ProofStrip />
+    <ProductStorySection />
+    <FeaturesSection />
+    <HowItWorksSection />
+    <RolesSection />
+    <PricingSection />
+    <FAQSection />
+    <FinalCTASection />
+    <ContactSection />
+  </main>
+  <Footer />
   <script>
-    import { siteConfig } from '../lib/siteConfig';
-    const apiBase = siteConfig.apiBaseUrl;
-    const attributionKey = 'restro360-signup-attribution';
-    if (!sessionStorage.getItem(attributionKey)) {
-      const params = new URLSearchParams(window.location.search);
-      const utm = {};
-      for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']) {
-        const value = params.get(key);
-        if (value) utm[key] = value;
-      }
-      sessionStorage.setItem(attributionKey, JSON.stringify({ utm, referrer: document.referrer || '' }));
-    }
-    if (apiBase) {
-      fetch(`${apiBase}/api/public/website-views`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ page_slug: window.location.pathname, referrer: document.referrer || undefined }),
-        keepalive: true,
-      }).catch(() => {});
+    const revealItems = document.querySelectorAll('.reveal');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    revealItems.forEach((element) => element.classList.add('reveal-pending'));
+
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      revealItems.forEach((element) => element.classList.add('is-visible'));
+    } else {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.15 });
+
+      revealItems.forEach((element) => revealObserver.observe(element));
     }
   </script>
 </BaseLayout>

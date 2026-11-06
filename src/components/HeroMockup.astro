@@ -1,0 +1,116 @@
+---
+const orders = [
+  { table: 'T04', items: 'Paneer tikka · 2 items', status: 'New', kind: 'new' },
+  { table: 'T06', items: 'Dal makhani · 3 items', status: 'Preparing', kind: 'preparing' },
+  { table: 'T08', items: 'Masala dosa · 1 item', status: 'Ready', kind: 'ready' },
+  { table: 'T12', items: 'Veg thali · 4 items', status: 'Billed', kind: 'billed' },
+];
+---
+
+<div class="dashboard-stage" aria-label="Illustrative dashboard preview">
+  <div class="dashboard">
+    <div class="dashboard-window">
+      <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="window-caption">RESTAURANT CONSOLE · LIVE WORKFLOW</span>
+    </div>
+    <div class="dashboard-body">
+      <div class="dashboard-heading">
+        <div>
+          <span class="mock-label">OPERATIONS OVERVIEW</span>
+          <h2>Service dashboard</h2>
+        </div>
+        <span class="live-status"><i aria-hidden="true"></i> Live</span>
+      </div>
+      <div class="dashboard-kpis" aria-label="Dashboard overview">
+        <div class="dashboard-kpi"><span class="mock-label">ORDER CHANNEL</span><strong>QR</strong><span>Phone browser</span></div>
+        <div class="dashboard-kpi"><span class="mock-label">KITCHEN</span><strong>KOT</strong><span>Live queue</span></div>
+        <div class="dashboard-kpi"><span class="mock-label">BILLING</span><strong>GST</strong><span>Ready invoices</span></div>
+        <div class="dashboard-kpi"><span class="mock-label">STOCK</span><strong>Alerts</strong><span>Item availability</span></div>
+      </div>
+      <div class="order-panel">
+        <div class="order-panel-head"><strong>Kitchen order flow</strong><span>TABLE · ITEMS · STATUS</span></div>
+        <div data-order-list>
+          {orders.map((order) => (
+          <div class="order-row">
+            <span class="order-table">{order.table}</span>
+            <span class="order-items">{order.items}</span>
+            <span class={`status-chip status-${order.kind}`}>{order.status}</span>
+          </div>
+          ))}
+        </div>
+      </div>
+      <div class="dashboard-footer">
+        <span><i aria-hidden="true"></i> Guest order tracking</span>
+        <span>Waiter app · Staff roles · Reports</span>
+      </div>
+      <div class="dashboard-chips" aria-hidden="true">
+        <span class="floating-chip chip-b">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 5h16v14H4zM8 9h8M8 13h5" /></svg>
+          Guest ordering
+        </span>
+        <span class="floating-chip chip-c">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h4" /></svg>
+          Payment QR
+        </span>
+      </div>
+    </div>
+  </div>
+  <span class="floating-chip chip-a" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="m5 12 4 4L19 6" /></svg>
+    Access controls
+  </span>
+  <p class="dashboard-label">ILLUSTRATIVE DASHBOARD PREVIEW</p>
+</div>
+
+<script>
+  const orderLists = document.querySelectorAll<HTMLElement>('[data-order-list]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const samples = [
+    { table: 'T02', items: 'Chole bhature · 2 items' },
+    { table: 'T09', items: 'Paneer roll · 1 item' },
+    { table: 'T03', items: 'Veg pulao · 3 items' },
+    { table: 'T11', items: 'Mushroom curry · 2 items' },
+  ];
+
+  if (!reduceMotion) {
+    orderLists.forEach((list) => {
+      let sampleIndex = 0;
+      window.setInterval(() => {
+        const rows = Array.from(list.querySelectorAll<HTMLElement>('.order-row'));
+        const nextStatuses = ['Preparing', 'Ready', 'Billed'];
+        const nextKinds = ['preparing', 'ready', 'billed'];
+        rows.slice(0, 3).forEach((row, index) => {
+          const chip = row.querySelector<HTMLElement>('.status-chip');
+          if (!chip || index >= nextStatuses.length) return;
+          chip.classList.add('status-fade');
+          window.setTimeout(() => {
+            chip.classList.remove('status-new', 'status-preparing', 'status-ready', 'status-billed');
+            chip.classList.add(`status-${nextKinds[index]}`);
+            chip.textContent = nextStatuses[index];
+            chip.classList.remove('status-fade');
+          }, 150);
+        });
+
+        const sample = samples[sampleIndex % samples.length];
+        sampleIndex += 1;
+        const row = document.createElement('div');
+        row.className = 'order-row order-row-enter';
+        const table = document.createElement('span');
+        table.className = 'order-table';
+        table.textContent = sample.table;
+        const items = document.createElement('span');
+        items.className = 'order-items';
+        items.textContent = sample.items;
+        const status = document.createElement('span');
+        status.className = 'status-chip status-new';
+        status.textContent = 'New';
+        row.append(table, items, status);
+        list.prepend(row);
+        window.requestAnimationFrame(() => row.classList.add('order-row-visible'));
+        while (list.children.length > 4) {
+          list.lastElementChild?.remove();
+        }
+      }, 3500);
+    });
+  }
+</script>

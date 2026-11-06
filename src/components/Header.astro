@@ -1,0 +1,99 @@
+---
+import logoUrl from '../assets/restro360_logo.svg';
+import { SIGNUP_URL } from '../config';
+
+const links = [
+  { label: 'Features', href: '#features' },
+  { label: 'How it works', href: '#how-it-works' },
+  { label: 'Roles', href: '#roles' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="site-header" data-site-header>
+  <div class="container header-inner">
+    <a class="header-logo" href="/" aria-label="Restro360 home">
+      <img src={logoUrl.src} alt="Restro360" width="120" height="40" />
+    </a>
+    <a class="mobile-start-cta" href={SIGNUP_URL}>Start free</a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {links.map(({ label, href }) => <a href={href}>{label}</a>)}
+      <a class="button button-primary" href={SIGNUP_URL}>Start free for 3 months</a>
+      <a class="button button-hero-ghost" href="#contact">Book a Free Demo</a>
+    </nav>
+    <button
+      class="header-menu-button"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-navigation"
+      data-menu-button
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" data-open="false" inert>
+    <div class="mobile-nav-inner">
+      {links.map(({ label, href }) => <a href={href} data-menu-link>{label}</a>)}
+      <div class="mobile-nav-actions">
+        <a class="button button-primary" href={SIGNUP_URL}>Start free for 3 months</a>
+        <a class="button button-hero-ghost" href="#contact">Book a Free Demo</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector('[data-site-header]');
+  const menuButton = document.querySelector('[data-menu-button]');
+  const menu = document.querySelector('#mobile-navigation');
+
+  if (header instanceof HTMLElement && menuButton instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+    const setMenuOpen = (open: boolean) => {
+      menu.dataset.open = String(open);
+      menu.inert = !open;
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      menuButton.innerHTML = open
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>';
+    };
+
+    menuButton.addEventListener('click', () => setMenuOpen(menuButton.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', (event) => {
+      if (event.target instanceof HTMLAnchorElement) setMenuOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+        setMenuOpen(false);
+        menuButton.focus();
+      }
+    });
+
+    const syncHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+    syncHeader();
+    window.addEventListener('scroll', syncHeader, { passive: true });
+
+    const navLinks = Array.from(header.querySelectorAll<HTMLAnchorElement>('.desktop-nav a[href^="#"]'));
+    const observedSections = navLinks
+      .map((link) => document.querySelector<HTMLElement>(link.hash))
+      .filter((section): section is HTMLElement => section instanceof HTMLElement);
+    if ('IntersectionObserver' in window) {
+      const activeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((link) => {
+            const active = link.hash === `#${entry.target.id}`;
+            if (active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+          });
+        });
+      }, { rootMargin: '-20% 0px -65% 0px' });
+      observedSections.forEach((section) => activeObserver.observe(section));
+    }
+  }
+</script>

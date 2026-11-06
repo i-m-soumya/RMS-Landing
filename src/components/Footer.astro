@@ -1,0 +1,59 @@
+---
+import logoUrl from '../assets/restro360_logo.svg';
+import { CONTACT_EMAIL, RESTAURANT_CONSOLE_URL, SIGNUP_URL, WAITER_APP_URL } from '../config';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" aria-label="Restro360 home">
+          <img src={logoUrl.src} alt="Restro360" width="120" height="40" loading="lazy" />
+        </a>
+        <p>Restaurant management for QR ordering, kitchen workflow, staff roles, billing, stock, and business summaries.</p>
+      </div>
+      <nav class="footer-column" aria-label="Product links">
+        <h2>Product</h2>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#how-it-works">How it works</a></li>
+          <li><a href="/#roles">Roles</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href={WAITER_APP_URL}>Waiter app</a></li>
+          <li><a href={RESTAURANT_CONSOLE_URL}>Restaurant console</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-label="Company links">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions">Terms</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-column">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+          <li><button class="footer-cookie" type="button" data-cookie-settings>Cookie settings</button></li>
+          <li><a href={SIGNUP_URL}>Start free for 3 months</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {currentYear} Restro360</span>
+      <span>Serving restaurants in Kolkata first</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-cookie-settings]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const openConsent = (window as Window & { __openCookieConsent?: () => void }).__openCookieConsent;
+      if (openConsent) openConsent();
+    });
+  });
+</script>

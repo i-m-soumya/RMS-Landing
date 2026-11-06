@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
-export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupLabel = 'Start free for 3 months' }) {
+export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupLabel = 'Start free for 3 months', signupUrl = '/signup' }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef(null);
 
@@ -38,14 +38,15 @@ export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupL
                 {link.label}
               </a>
             ))}
-            <a href="/signup" className="nav-trial-cta">{signupLabel}</a>
+            <a href={signupUrl} className="nav-trial-cta">{signupLabel}</a>
             <a href="#contact" className="nav-demo-link">Book a Free Demo</a>
           </div>
 
           <button
             ref={menuButtonRef}
             onClick={() => setMenuOpen((open) => !open)}
-            className="rounded-lg p-2 text-white hover:bg-white/10 lg:hidden"
+            className="rounded-lg p-3 text-white hover:bg-white/10 lg:hidden"
+            style={{ minWidth: '44px', minHeight: '44px' }}
             type="button"
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={menuOpen}
@@ -68,7 +69,7 @@ export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupL
               </a>
             ))}
             <div className="px-4 pb-1 pt-2">
-              <a href="/signup" onClick={closeMenu} className="nav-mobile-trial">{signupLabel}</a>
+              <a href={signupUrl} onClick={closeMenu} className="nav-mobile-trial">{signupLabel}</a>
               <a href="#contact" onClick={closeMenu} className="nav-mobile-demo">Book a Free Demo</a>
             </div>
           </div>

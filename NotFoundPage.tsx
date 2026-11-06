@@ -5,7 +5,7 @@ const appName = import.meta.env.VITE_APP_NAME || 'Restro360';
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-bg via-white to-orange-50 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-brand-bg via-white to-blue-50 flex flex-col">
       <Helmet>
         <title>404 — Page Not Found · {appName}</title>
       </Helmet>

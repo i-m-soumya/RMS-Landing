@@ -1,0 +1,271 @@
+---
+const stages = [
+  { key: 'guest', label: 'Guest', title: 'The first scan feels effortless.', copy: 'Guests open the digital menu and place an order in their phone browser. No app download is needed.' },
+  { key: 'table', label: 'Table', title: 'Every order stays with its table.', copy: 'The QR connects a guest order to the table, so its status stays visible as service moves along.' },
+  { key: 'kitchen', label: 'Kitchen', title: 'The kitchen sees the next move.', copy: 'Orders enter a live KOT workflow, with clear states from new to preparing and ready.' },
+  { key: 'waiter', label: 'Waiter', title: 'The floor stays in sync.', copy: 'Waiters follow guest orders and service status in the waiter app.' },
+  { key: 'billing', label: 'Billing', title: 'The last step is part of the same flow.', copy: 'Prepare a GST-ready bill, show the payment QR, and track payment status.' },
+  { key: 'reports', label: 'Reports', title: 'Service becomes a clearer summary.', copy: 'Owners can review weekly and monthly business summary reports.' },
+];
+---
+
+<section class="story-section" aria-labelledby="story-title">
+  <div class="container story-layout">
+    <div class="story-heading">
+      <p class="eyebrow">THE RHYTHM OF SERVICE</p>
+      <h2 id="story-title">Every part of service works better, <em>together.</em></h2>
+      <p>An order should never disappear between the guest, waiter, kitchen and billing counter. Restro360 keeps every step connected.</p>
+      <div class="story-visual" data-story-visual data-active="guest" role="img" aria-label="Illustration of a connected restaurant workflow">
+        <div class="story-visual-top"><span class="mono">SERVICE FLOW / <b data-stage-count>01</b></span><span class="story-live"><i></i> CONNECTED</span></div>
+        <div class="story-network" aria-hidden="true">
+          <div class="network-line"></div>
+          <div class="network-line network-line-vertical"></div>
+          <span class="network-point point-guest">01</span>
+          <span class="network-point point-table">02</span>
+          <span class="network-point point-kitchen">03</span>
+          <span class="network-point point-waiter">04</span>
+          <span class="network-point point-billing">05</span>
+          <span class="network-point point-reports">06</span>
+          <div class="story-ticket"><b>T03</b><span>VEG PULAO</span><i>PREPARING</i></div>
+        </div>
+        <div class="story-visual-bottom"><span data-stage-summary>Guest scans · order begins</span><span class="mono">QR → KOT → BILL</span></div>
+      </div>
+    </div>
+    <div class="story-steps" data-story-steps role="group" aria-label="Service flow stages">
+      {stages.map((stage, index) => (
+        <article class="story-step" data-story-step={stage.key} data-step-index={index} data-in-view={index === 0 ? 'true' : 'false'}>
+          <button
+            class="story-stage-button"
+            type="button"
+            id={`story-stage-${stage.key}`}
+            aria-pressed={index === 0 ? 'true' : 'false'}
+          >
+            <span class="story-step-no mono">{String(index + 1).padStart(2, '0')}</span>
+            <span>{stage.label}</span>
+            <span class="story-step-marker" aria-hidden="true"></span>
+          </button>
+          <div class="story-step-content" id={`story-copy-${stage.key}`}>
+            <h3>{stage.title}</h3>
+            <p>{stage.copy}</p>
+          </div>
+        </article>
+      ))}
+      <div id="story-active-panel" class="sr-only" aria-live="polite" aria-atomic="true">
+        <span data-story-panel-title>{stages[0].title}</span>
+        <span data-story-panel-copy>{stages[0].copy}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const story = document.querySelector<HTMLElement>('[data-story-steps]');
+  const visual = document.querySelector<HTMLElement>('[data-story-visual]');
+
+  if (story && visual) {
+    const steps = Array.from(story.querySelectorAll<HTMLElement>('[data-story-step]'));
+    const tabs = Array.from(story.querySelectorAll<HTMLButtonElement>('.story-stage-button'));
+    const title = story.querySelector<HTMLElement>('[data-story-panel-title]');
+    const copy = story.querySelector<HTMLElement>('[data-story-panel-copy]');
+    const summary = visual.querySelector<HTMLElement>('[data-stage-summary]');
+    const count = visual.querySelector<HTMLElement>('[data-stage-count]');
+    const summaries = ['Guest scans · order begins', 'Table session · order linked', 'Live KOT · kitchen in sync', 'Waiter update · floor in sync', 'GST bill · payment tracked', 'Summary report · owner view'];
+
+    const activate = (index: number) => {
+      const step = steps[index];
+      const tab = tabs[index];
+      if (!step || !tab) return;
+      steps.forEach((item, stepIndex) => {
+        item.dataset.inView = String(stepIndex === index);
+        tabs[stepIndex]?.setAttribute('aria-pressed', String(stepIndex === index));
+      });
+      visual.dataset.active = step.dataset.storyStep || 'guest';
+      if (title) title.textContent = step.querySelector('h3')?.textContent || '';
+      if (copy) copy.textContent = step.querySelector('p')?.textContent || '';
+      if (summary) summary.textContent = summaries[index] || '';
+      if (count) count.textContent = String(index + 1).padStart(2, '0');
+      story.querySelector('[aria-live="polite"]')?.setAttribute('aria-label', `Selected service stage: ${tab.textContent?.trim() || ''}`);
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        activate(index);
+        if (window.matchMedia('(max-width: 767px)').matches) {
+          steps[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0
+          : event.key === 'End' ? tabs.length - 1
+            : (index + (event.key === 'ArrowDown' || event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        tabs[next]?.focus();
+        activate(next);
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        const index = visible ? Number((visible.target as HTMLElement).dataset.stepIndex) : -1;
+        if (index >= 0) activate(index);
+      }, { threshold: [0.35, 0.6], rootMargin: '-20% 0px -25% 0px' });
+      steps.forEach((step) => observer.observe(step));
+    }
+  }
+</script>
+
+<style>
+  .story-section {
+    padding-block: clamp(72px, calc(7vw + 16px), 104px);
+  }
+
+  .story-section > .container {
+    max-width: 1200px;
+  }
+
+  .story-layout {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    gap: clamp(36px, 5vw, 72px);
+    align-items: start;
+  }
+
+  .story-heading h2 {
+    max-width: 650px;
+    color: #211914;
+    font-size: clamp(2.5rem, 3.8vw, 3.125rem);
+    line-height: 1.06;
+    letter-spacing: -.045em;
+  }
+
+  .story-heading h2 em {
+    color: var(--tomato);
+  }
+
+  .story-heading > p:not(.eyebrow) {
+    max-width: 56ch;
+    margin: 16px 0 24px;
+    color: #514A42;
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .story-visual {
+    min-height: 360px;
+    border: 1px solid rgba(239,231,218,.14);
+    border-radius: 10px;
+    padding: 18px;
+  }
+
+  .story-network {
+    min-height: 270px;
+    margin-block: 16px;
+  }
+
+  .network-point {
+    width: 31px;
+    height: 31px;
+    font-size: .62rem;
+  }
+
+  .story-ticket {
+    font-size: .58rem;
+  }
+
+  .story-steps {
+    align-self: stretch;
+    padding-top: 0;
+  }
+
+  .story-step {
+    min-height: 0;
+    border-top: 1px solid #DED4C7;
+    padding: 12px 0 15px;
+  }
+
+  .story-step:last-of-type {
+    border-bottom: 1px solid #DED4C7;
+  }
+
+  .story-stage-button {
+    min-height: 34px;
+    padding: 0 0 5px;
+    color: #655A50;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .story-stage-button[aria-pressed="true"] {
+    color: var(--tomato-dark);
+  }
+
+  .story-step-no {
+    color: #655A50;
+    font-size: .7rem;
+  }
+
+  .story-stage-button[aria-pressed="true"] .story-step-no {
+    color: var(--tomato-dark);
+  }
+
+  .story-step-marker {
+    width: 8px;
+    height: 8px;
+    border: 1px solid #A99B8B;
+    border-radius: 50%;
+  }
+
+  .story-stage-button[aria-pressed="true"] .story-step-marker {
+    border-color: var(--tomato);
+    background: var(--tomato);
+    box-shadow: 0 0 0 3px rgba(197,61,32,.12);
+  }
+
+  .story-step-content {
+    padding-left: 0;
+  }
+
+  .story-step-content h3 {
+    color: #211914;
+    font-size: 1.08rem;
+    line-height: 1.35;
+  }
+
+  .story-step-content p {
+    max-width: 50ch;
+    margin-top: 6px;
+    color: #514A42;
+    font-size: .94rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 767px) {
+    .story-section {
+      padding-block: 64px;
+    }
+
+    .story-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .story-heading {
+      position: static;
+    }
+
+    .story-heading h2 {
+      font-size: clamp(2.25rem, 8vw, 2.75rem);
+    }
+
+    .story-visual {
+      min-height: 320px;
+    }
+
+    .story-network {
+      min-height: 230px;
+    }
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+const proof = [
+  '3 months free to start',
+  '₹599/month after the free period',
+  '0 guest downloads',
+  'GST-ready invoices',
+  'Live kitchen and guest status',
+  'Role-based access',
+];
+---
+
+<section class="service-ticker" id="proof-strip" aria-label="Restro360 product highlights">
+  <div class="ticker-track" aria-hidden="true">
+    {[...proof, ...proof].map((item, index) => (
+      <span class="ticker-item"><i>{String(index % proof.length + 1).padStart(2, '0')}</i>{item}<b></b></span>
+    ))}
+  </div>
+  <ul class="sr-only">
+    {proof.map((item) => <li>{item}</li>)}
+  </ul>
+</section>

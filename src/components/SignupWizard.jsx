@@ -387,7 +387,7 @@ export default function SignupWizard() {
         <div className="mt-8 rounded-3xl border border-brand-border bg-white p-5 shadow-lg sm:p-9">
           <h1 className="font-display text-3xl font-bold sm:text-4xl">{pricingConfig.primaryCta}</h1>
           <p className="mt-2 text-sm leading-6 text-brand-sub">
-            Then ₹{pricingConfig.standardPriceInr}/month, {pricingConfig.gstText}. {pricingConfig.cancelAnyTime}.
+            Free for the first {pricingConfig.trialMonths} months, then ₹{pricingConfig.standardPriceInr}/month.
           </p>
 
           {step !== 'details' && step !== 'done' && (
@@ -496,7 +496,7 @@ export default function SignupWizard() {
                       />
                     ))}
                   </div>
-                  {mobileChannel && plan?.testMode?.sms && <p className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900">Test mode: use 0000</p>}
+                  {mobileChannel && plan?.testMode?.sms && <p className="rounded-lg bg-cyan-100 p-3 text-sm text-cyan-700">Test mode: use 0000</p>}
                   <PrimaryButton type="submit" disabled={loading || code.length !== expectedCodeLength}>{loading ? 'Verifying…' : 'Verify code'}</PrimaryButton>
                 </>
               )}
@@ -534,15 +534,14 @@ export default function SignupWizard() {
                 <p className="text-sm font-semibold uppercase tracking-wide text-brand-accent">Free trial</p>
                 <p className="mt-2 font-display text-3xl font-bold">{pricingConfig.paymentCopy}</p>
                 <p className="mt-2 text-sm leading-6 text-brand-sub">
-                  Free for {plan?.trialMonths ?? pricingConfig.trialMonths} months, then Rs {plan?.standardPriceInr ?? pricingConfig.standardPriceInr}/month, {plan?.gst ?? pricingConfig.gstText}. {pricingConfig.cancelAnyTime}.
+                  Free for the first {plan?.trialMonths ?? pricingConfig.trialMonths} months, then ₹{plan?.standardPriceInr ?? pricingConfig.standardPriceInr}/month.
                 </p>
                 <p className="mt-3 text-sm font-medium">Your free period ends on {trialEndEstimate}.</p>
               </div>
               <label className="flex items-start gap-3 text-sm leading-6">
                 <input type="checkbox" checked={autopayConsent} onChange={(event) => setAutopayConsent(event.target.checked)} className="mt-1 h-4 w-4 accent-brand-accent" />
-                <span>I authorize the recurring plan charge after my free {plan?.trialMonths ?? pricingConfig.trialMonths}-month trial. I understand the plan will cost Rs {plan?.standardPriceInr ?? pricingConfig.standardPriceInr}/month, {plan?.gst ?? pricingConfig.gstText}, and I can cancel anytime.</span>
+                <span>I authorize the recurring plan charge after my free {plan?.trialMonths ?? pricingConfig.trialMonths}-month trial. I understand the plan will cost ₹{plan?.standardPriceInr ?? pricingConfig.standardPriceInr}/month.</span>
               </label>
-              <p className="text-sm text-brand-sub">We’ll email you a reminder before the first charge.</p>
               {plan?.testMode?.payment ? (
                 <div className="grid gap-3 sm:grid-cols-2">
                   <button type="button" disabled={loading || !autopayConsent} onClick={() => void confirmTrial('success')} className="min-h-12 rounded-xl bg-brand-accent px-4 py-3 font-semibold text-white hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent disabled:opacity-60">{loading ? 'Setting up…' : 'Simulate success'}</button>

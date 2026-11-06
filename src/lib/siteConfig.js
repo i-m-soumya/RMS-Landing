@@ -1,22 +1,24 @@
-// Shared marketing and product config for the landing site. Keep pricing and feature
-// switches in this file so the landing page, signup flow, and payment page stay aligned.
+import {
+  CONTACT_EMAIL,
+  RESTAURANT_CONSOLE_URL,
+  SIGNUP_URL,
+  WAITER_APP_URL,
+} from '../config';
+
 const trialMonths = 3;
 const standardPriceInr = 599;
-const gstText = 'GST as applicable';
-const cancelAnyTime = 'Cancel anytime';
 
 export const pricingConfig = {
   trialMonths,
   trialPriceInr: 0,
   standardPriceInr,
   otpResendSeconds: 30,
-  gstText,
-  cancelAnyTime,
   primaryCta: `Start free for ${trialMonths} months`,
-  marketingCopy: `First ${trialMonths} months free, then Rs ${standardPriceInr}/month. ${cancelAnyTime}.`,
-  paymentCopy: 'Rs 0 today',
-  supportEmail: 'support@restro360.tech',
+  marketingCopy: `Free for the first ${trialMonths} months, then ₹${standardPriceInr}/month.`,
+  paymentCopy: '₹0 today',
+  supportEmail: CONTACT_EMAIL,
   salesPhone: '8900264577',
+  signupUrl: SIGNUP_URL,
   socialLinks: {
     x: '',
     linkedin: '',
@@ -25,7 +27,8 @@ export const pricingConfig = {
     youtube: '',
   },
   apiBaseUrl: 'https://api.restro360.tech',
-  consoleUrl: 'https://console.restro360.tech',
+  consoleUrl: RESTAURANT_CONSOLE_URL,
+  appUrl: WAITER_APP_URL,
   policyVersion: '2026-10',
 };
 
@@ -33,11 +36,13 @@ export const siteConfig = {
   domain: 'https://restro360.tech/',
   canonicalUrl: 'https://restro360.tech/',
   siteName: 'Restro360',
-  supportEmail: pricingConfig.supportEmail,
+  supportEmail: CONTACT_EMAIL,
   phone: pricingConfig.salesPhone,
+  signupUrl: SIGNUP_URL,
   socialLinks: pricingConfig.socialLinks,
   apiBaseUrl: pricingConfig.apiBaseUrl,
   consoleUrl: pricingConfig.consoleUrl,
+  appUrl: pricingConfig.appUrl,
   policyVersion: pricingConfig.policyVersion,
   pricing: pricingConfig,
 };

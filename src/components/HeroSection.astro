@@ -1,0 +1,96 @@
+---
+import { SIGNUP_URL } from '../config';
+---
+
+<section class="hero-scene" aria-labelledby="hero-title">
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="container hero-scene-inner">
+    <div class="hero-intro">
+      <p class="eyebrow hero-reveal hero-delay-1">ONE SYSTEM. EVERY PART OF SERVICE.</p>
+      <h1 id="hero-title" class="hero-reveal hero-delay-2">Run your restaurant from the <em>first scan</em> to the final bill.</h1>
+      <p class="hero-description hero-reveal hero-delay-3">Manage QR table ordering, live kitchen workflows, guest order tracking, staff access, stock, and GST-ready billing from one connected platform built for Indian restaurants.</p>
+      <div class="hero-actions hero-reveal hero-delay-4">
+        <a class="button button-primary" href={SIGNUP_URL}>Start free for 3 months
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+        </a>
+        <a class="button button-hero-ghost" href="#contact">Book a Free Demo</a>
+      </div>
+      <ul class="hero-benefits hero-reveal hero-delay-5">
+        <li><span>01</span>No guest app download</li>
+        <li><span>02</span>Live kitchen and guest status</li>
+        <li><span>03</span>Role-based staff access</li>
+        <li><span>04</span>GST-ready billing</li>
+      </ul>
+    </div>
+
+    <div class="service-map hero-reveal-map" aria-label="Live service simulation showing an order moving from a guest table through the kitchen, waiter, billing, and reports">
+      <div class="map-topline">
+        <span class="mono">SERVICE / 01—06</span>
+        <span class="map-live"><i aria-hidden="true"></i> LIVE SERVICE SIMULATION</span>
+      </div>
+      <div class="map-circuit" aria-hidden="true">
+        <svg class="circuit-lines" viewBox="0 0 900 440" preserveAspectRatio="none">
+          <path class="circuit-base" d="M118 140H370V95H540V218H716M118 140V320H370V250H540V340H716" />
+          <path class="circuit-flow" d="M118 140H370V95H540V218H716M118 140V320H370V250H540V340H716" />
+        </svg>
+        <div class="floor-plan">
+          <span class="floor-caption mono">DINING ROOM · TABLES</span>
+          <span class="floor-table table-t02"><b>T02</b><i>OPEN</i></span>
+          <span class="floor-table table-t03 is-active"><b>T03</b><i>ORDER</i></span>
+          <span class="floor-table table-t09"><b>T09</b><i>OPEN</i></span>
+          <span class="floor-table table-t11"><b>T11</b><i>READY</i></span>
+          <span class="scan-wave"></span>
+        </div>
+
+        <div class="service-node node-guest">
+          <span class="node-index mono">01 / GUEST</span>
+          <div class="mini-phone">
+            <div class="phone-speaker"></div>
+            <span class="phone-kicker">TABLE 03</span>
+            <span class="phone-dish dish-one"></span><span class="phone-dish dish-two"></span>
+            <span class="phone-label">Order confirmed</span>
+            <span class="phone-status"><i></i> In the kitchen</span>
+          </div>
+        </div>
+
+        <div class="service-node node-kitchen">
+          <span class="node-index mono">02 / LIVE KOT</span>
+          <div class="kot-ticket">
+            <div class="ticket-head"><b>T03</b><span>JUST NOW</span></div>
+            <p>Veg pulao</p>
+            <small>3 ITEMS · TABLE ORDER</small>
+            <span class="ticket-state">PREPARING</span>
+          </div>
+          <div class="kot-ticket ticket-secondary">
+            <div class="ticket-head"><b>T11</b><span>04 MIN</span></div>
+            <p>Mushroom curry</p>
+            <span class="ticket-state state-ready">READY</span>
+          </div>
+        </div>
+
+        <div class="service-node node-waiter">
+          <span class="node-index mono">03 / WAITER</span>
+          <div class="waiter-notice"><span class="notice-mark">↗</span><span><b>Table 03</b><small>Order is ready to serve</small></span><i></i></div>
+        </div>
+
+        <div class="service-node node-bill">
+          <span class="node-index mono">04 / BILLING</span>
+          <div class="mini-receipt">
+            <b>RESTRO360 <small>GST BILL</small></b>
+            <span>Table 03 · 3 items</span>
+            <hr />
+            <strong>Payment QR <i>✓ PAID</i></strong>
+          </div>
+        </div>
+
+        <div class="report-pip">
+          <span class="report-bars"><i></i><i></i><i></i><i></i><i></i></span>
+          <span><b>REPORT UPDATED</b><small>Business summary</small></span>
+        </div>
+        <div class="map-legend mono"><span><i class="legend-mint"></i> COMPLETE</span><span><i class="legend-saffron"></i> IN PROGRESS</span></div>
+      </div>
+      <div class="map-footer"><span>GUEST → KITCHEN → FLOOR → BILL</span><span>TABLE 03 · ORDER 0841</span></div>
+    </div>
+  </div>
+  <a class="hero-scroll" href="#proof-strip" aria-label="Scroll to product highlights"><span></span>SCROLL TO EXPLORE</a>
+</section>

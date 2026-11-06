@@ -1,0 +1,43 @@
+---
+import { SIGNUP_URL } from '../config';
+const included = [
+  'QR ordering',
+  'Kitchen workflow',
+  'Waiter app',
+  'Staff roles',
+  'GST-ready billing',
+  'Stock alerts',
+  'Business summary reports',
+  'Email support',
+];
+---
+
+<section id="pricing" class="pricing-section" aria-labelledby="pricing-title">
+  <div class="container">
+    <header class="pricing-heading">
+      <p class="eyebrow">SIMPLE PRICING</p>
+      <h2 id="pricing-title">Start with a full restaurant workflow—not a limited trial.</h2>
+    </header>
+    <div class="pricing-composition">
+      <div class="pricing-main">
+        <p class="mono pricing-overline">ONE PLAN · EVERYTHING CONNECTED</p>
+        <p class="pricing-free">Start free<br />for 3 months</p>
+        <p class="pricing-amount">₹599<span>/month</span></p>
+        <p class="pricing-after">After the free first 3 months</p>
+        <a class="button button-warm" href={SIGNUP_URL}>Start free for 3 months
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+        </a>
+      </div>
+      <div class="pricing-includes">
+        <div class="pricing-ticket-head mono"><span>INCLUDED IN YOUR WORKFLOW</span><span>08 ITEMS</span></div>
+        <ul class="pricing-list">
+          {included.map((item, index) => (
+            <li><span class="mono">{String(index + 1).padStart(2, '0')}</span><b>{item}</b><i>✓</i></li>
+          ))}
+        </ul>
+        <div class="receipt-rule" aria-hidden="true"></div>
+        <p class="pricing-receipt mono">QR · KOT · WAITER · BILL · REPORT</p>
+      </div>
+    </div>
+  </div>
+</section>

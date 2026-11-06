@@ -1,0 +1,214 @@
+<div
+  id="cookie-consent-banner"
+  class="cookie-consent"
+  role="dialog"
+  aria-label="Cookie consent"
+  aria-describedby="cookie-consent-description"
+  hidden
+>
+  <div class="cookie-consent-card">
+    <div>
+      <h2>Cookie settings</h2>
+      <p id="cookie-consent-description">
+        Essential storage keeps the site working. Optional analytics and marketing are used only with your consent.
+        Read our <a href="/privacy-policy">Privacy Policy</a>.
+      </p>
+      <p class="cookie-consent-status" role="status" aria-live="polite" data-consent-status></p>
+    </div>
+    <div class="cookie-consent-actions">
+      <button class="cookie-button cookie-button-secondary" type="button" data-consent="necessary">Accept necessary</button>
+      <button class="cookie-button cookie-button-primary" type="button" data-consent="all">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    z-index: 9999;
+    inset: auto 0 0;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 calc(12px + env(safe-area-inset-bottom, 0px));
+    pointer-events: none;
+    animation: cookie-rise 300ms cubic-bezier(.22, 1, .36, 1) both;
+  }
+  .cookie-consent[hidden] { display: none; }
+  .cookie-consent-card {
+    display: grid;
+    width: 100%;
+    gap: 16px;
+    border: 1px solid var(--border);
+    border-radius: 16px 16px 0 0;
+    background: var(--surface);
+    padding: 16px 20px;
+    box-shadow: 0 -8px 24px rgba(15, 23, 42, .12);
+    color: var(--text);
+    pointer-events: auto;
+  }
+  .cookie-consent-card h2 { margin: 0 0 4px; font-size: .95rem; font-weight: 600; }
+  .cookie-consent-card p { margin: 0; color: var(--text-muted); font-size: .8rem; line-height: 1.5; }
+  .cookie-consent-card a { color: var(--tomato-dark); text-decoration: underline; text-underline-offset: 2px; }
+  .cookie-consent-status { padding-top: 6px; color: var(--mint-dark) !important; }
+  .cookie-consent-actions { display: grid; gap: 8px; }
+  .cookie-button {
+    width: 100%;
+    min-height: 48px;
+    border: 1.5px solid var(--tomato);
+    border-radius: var(--radius-button);
+    padding: 8px 14px;
+    font-size: .875rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .cookie-button-primary { background: var(--tomato); color: #FFFFFF; }
+  .cookie-button-primary:hover { background: var(--tomato-dark); }
+  .cookie-button-secondary { background: var(--surface); color: var(--tomato-dark); }
+  .cookie-button-secondary:hover { background: var(--surface-alt); }
+  .cookie-button:focus-visible { outline: 2px solid var(--tomato); outline-offset: 2px; }
+  @keyframes cookie-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (min-width: 640px) {
+    .cookie-consent { justify-content: flex-end; padding: 0 24px calc(24px + env(safe-area-inset-bottom, 0px)); }
+    .cookie-consent-card { width: min(100%, 480px); border-radius: 16px; padding: 20px; box-shadow: var(--hover-shadow); }
+    .cookie-consent-actions { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media (prefers-color-scheme: dark) {
+    .cookie-consent-card a,.cookie-button-secondary { color: var(--saffron); }
+    .cookie-consent-status { color: var(--mint) !important; }
+    .cookie-button { border-color: var(--saffron); }
+    .cookie-button:focus-visible { outline-color: var(--saffron); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cookie-consent { animation: none; }
+  }
+</style>
+
+<script>
+  type FbqFunction = ((...args: unknown[]) => void) & {
+    callMethod?: (...args: unknown[]) => void;
+    queue: unknown[][];
+    push: FbqFunction;
+    loaded: boolean;
+    version: string;
+  };
+
+  declare global {
+    interface Window {
+      dataLayer?: unknown[][];
+      gtag?: (...args: unknown[]) => void;
+      fbq?: FbqFunction;
+      _fbq?: FbqFunction;
+      __openCookieConsent?: () => void;
+    }
+  }
+
+  const consentKey = 'cookie_consent';
+  const banner = document.getElementById('cookie-consent-banner');
+  const status = banner?.querySelector<HTMLElement>('[data-consent-status]');
+  let analyticsLoaded = false;
+  let focusReturnTarget: HTMLElement | null = null;
+
+  const gaId = import.meta.env.PUBLIC_GA4_ID || '';
+  const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '';
+
+  function loadAnalytics() {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
+
+    if (gaId) {
+      const gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`;
+      document.head.append(gaScript);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag(...args) { window.dataLayer?.push(args); };
+      window.gtag('js', new Date());
+      window.gtag('config', gaId);
+    }
+
+    if (metaPixelId) {
+      const fbq = ((...args: unknown[]) => {
+        if (fbq.callMethod) fbq.callMethod(...args);
+        else fbq.queue.push(args);
+      }) as FbqFunction;
+      fbq.queue = [];
+      fbq.loaded = true;
+      fbq.version = '2.0';
+      fbq.push = fbq;
+      window.fbq = fbq;
+      window._fbq = fbq;
+      window.fbq('init', metaPixelId);
+      window.fbq('track', 'PageView');
+      const pixelScript = document.createElement('script');
+      pixelScript.async = true;
+      pixelScript.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      document.head.append(pixelScript);
+    }
+  }
+
+  function getChoice(): 'all' | 'necessary' | null {
+    try {
+      const stored = localStorage.getItem(consentKey);
+      if (!stored) return null;
+      const parsed = JSON.parse(stored);
+      return parsed?.choice === 'all' || parsed?.choice === 'necessary' ? parsed.choice : null;
+    } catch (error) {
+      console.error('Unable to read cookie consent from localStorage.', error);
+      if (status) status.textContent = 'Your browser could not read saved cookie settings. You can still choose an option below.';
+      return null;
+    }
+  }
+
+  function saveChoice(choice: 'all' | 'necessary'): boolean {
+    try {
+      localStorage.setItem(consentKey, JSON.stringify({ choice, timestamp: Date.now() }));
+      if (status) status.textContent = '';
+      return true;
+    } catch (error) {
+      console.error('Unable to save cookie consent to localStorage.', error);
+      if (status) status.textContent = 'Your choice could not be saved. Enable site storage in your browser and choose again.';
+      return false;
+    }
+  }
+
+  function hideBanner() {
+    if (banner) banner.hidden = true;
+    focusReturnTarget?.focus();
+    focusReturnTarget = null;
+  }
+
+  function showBanner(shouldFocus = false) {
+    if (!banner) return;
+    banner.hidden = false;
+    if (shouldFocus) banner.querySelector<HTMLButtonElement>('button')?.focus();
+  }
+
+  const savedChoice = getChoice();
+  if (savedChoice === 'all') loadAnalytics();
+  if (!savedChoice) showBanner();
+
+  banner?.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const choice = button.dataset.consent;
+      if (choice !== 'all' && choice !== 'necessary') return;
+
+      const previouslyAllowedAnalytics = analyticsLoaded;
+      if (!saveChoice(choice)) return;
+      if (choice === 'all') loadAnalytics();
+      hideBanner();
+
+      if (choice === 'necessary' && previouslyAllowedAnalytics) window.location.reload();
+    });
+  });
+
+  window.__openCookieConsent = () => {
+    focusReturnTarget = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    try {
+      localStorage.removeItem(consentKey);
+    } catch (error) {
+      console.error('Unable to clear cookie consent from localStorage.', error);
+      if (status) status.textContent = 'Your browser could not clear saved settings. Choose an option below to update this session.';
+    }
+    showBanner(true);
+  };
+</script>

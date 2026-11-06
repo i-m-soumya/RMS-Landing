@@ -1,0 +1,100 @@
+---
+import { WAITER_APP_URL } from '../config';
+---
+
+<section id="features" class="feature-editorial" aria-labelledby="features-title">
+  <div class="container">
+    <header class="feature-editorial-heading">
+      <p class="eyebrow">CONNECTED OPERATIONS</p>
+      <h2 id="features-title">One platform, built around a <em>real restaurant shift.</em></h2>
+      <p>Useful details for every handoff, from the first guest scan to the end-of-day summary.</p>
+    </header>
+
+    <article class="feature-story feature-qr" id="feature-qr">
+      <div class="feature-story-copy">
+        <span class="feature-index mono">01 — GUEST ORDERING</span>
+        <h3>A menu that starts with one scan.</h3>
+        <p>Guests scan a table QR and order from a phone browser, with no app download.</p>
+        <ul class="feature-points">
+          <li>Digital menu on the guest phone</li><li>Table-linked orders</li><li>Guests can track order status</li>
+        </ul>
+        <div class="feature-sequence mono"><span>SCAN TABLE QR</span><i>→</i><span>BROWSE MENU</span><i>→</i><span>ORDER IN BROWSER</span></div>
+      </div>
+      <div class="guest-phone-scene" aria-label="Guest phone preview with a menu, cart, and live order status">
+        <span class="scene-note mono">GUEST VIEW / TABLE 03</span>
+        <div class="guest-phone">
+          <div class="phone-top"><span>9:41</span><i></i><span>•••</span></div>
+          <div class="guest-menu-head"><small>TABLE 03 · MENU</small><b>Lunch, made easy.</b><span>Fresh from the kitchen, right to your table.</span></div>
+          <div class="dish-entry"><i class="dish-thumb thumb-pulao"></i><span><b>Vegetable pulao</b><small>Rice · seasonal vegetables</small></span><strong>+</strong></div>
+          <div class="dish-entry"><i class="dish-thumb thumb-curry"></i><span><b>Mushroom curry</b><small>House masala · 2 items</small></span><strong>+</strong></div>
+          <div class="guest-cart"><span>2 items in your order</span><b>View order <i>02</i></b></div>
+          <div class="guest-order-state"><i></i><span><b>Order confirmed</b><small>Kitchen is preparing your food</small></span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature-story feature-kitchen" id="feature-kitchen">
+      <div class="feature-story-copy">
+        <span class="feature-index mono">02 — KITCHEN WORKFLOW</span>
+        <h3>Every ticket has a place to go.</h3>
+        <p>Orders move through a live kitchen workflow so the team can follow their status.</p>
+        <ul class="feature-points">
+          <li>Kitchen order tickets</li><li>Live order status</li><li>Guest status in one flow</li>
+        </ul>
+      </div>
+      <div class="kot-scene" aria-label="Illustrative kitchen order ticket workflow">
+        <div class="kot-scene-head"><span class="mono">KITCHEN RAIL / LIVE</span><span class="kot-dot"></span></div>
+        <div class="kot-lanes">
+          <div class="kot-lane"><h4>NEW <span>01</span></h4><div class="kot-card kot-enter"><small>T09 · 2 MIN</small><b>Paneer roll</b><span>1 item · no onion</span><i>NEW</i></div></div>
+          <div class="kot-lane"><h4>PREPARING <span>02</span></h4><div class="kot-card"><small>T03 · JUST NOW</small><b>Veg pulao</b><span>3 items · table order</span><i>PREPARING</i></div><div class="kot-card"><small>T11 · 04 MIN</small><b>Mushroom curry</b><span>2 items</span><i>PREPARING</i></div></div>
+          <div class="kot-lane"><h4>READY <span>01</span></h4><div class="kot-card"><small>T02 · 06 MIN</small><b>Chole bhature</b><span>2 items</span><i class="ready-state">READY</i></div></div>
+          <div class="kot-lane"><h4>BILLED <span>01</span></h4><div class="kot-card kot-done"><small>T07 · CLOSED</small><b>Service complete</b><span>Payment recorded</span><i class="paid-state">PAID</i></div></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="feature-split">
+      <article class="feature-story feature-waiter" id="feature-waiter">
+        <div class="feature-story-copy">
+          <span class="feature-index mono">03 — FLOOR SERVICE</span>
+          <h3>A clearer view for the waiter.</h3>
+          <p>A dedicated app helps waiters follow the table and service workflow.</p>
+          <ul class="feature-points"><li>View guest order status</li><li>Coordinate table service</li></ul>
+          <a class="text-link" href={WAITER_APP_URL}>app.restro360.tech <span>↗</span></a>
+        </div>
+        <div class="waiter-scene" aria-label="Illustrative waiter app status list">
+          <div class="waiter-app-head"><span class="mono">MY SERVICE</span><b>Good afternoon</b></div>
+          <div class="waiter-row"><b>T03</b><span>Order ready<small>Veg pulao · 3 items</small></span><i class="waiter-ready">READY</i></div>
+          <div class="waiter-row"><b>T09</b><span>Guest order<small>Paneer roll · 1 item</small></span><i>NEW</i></div>
+          <div class="waiter-row"><b>T11</b><span>Bill requested<small>Payment QR</small></span><i class="waiter-bill">BILL</i></div>
+          <div class="waiter-app-bottom"><span>TABLES <b>04</b></span><span>SERVICE REQUESTS <b>02</b></span></div>
+        </div>
+      </article>
+
+      <article class="feature-story feature-billing" id="feature-billing">
+        <div class="feature-story-copy">
+          <span class="feature-index mono">04 — BILL & PAYMENT</span>
+          <h3>Close the table without losing the thread.</h3>
+          <p>Prepare a GST-ready bill and show a payment QR for the guest.</p>
+          <ul class="feature-points"><li>GST-ready billing</li><li>Payment QR on the bill</li><li>Payment status tracking</li></ul>
+        </div>
+        <div class="bill-scene" aria-label="Illustrative GST-ready bill with payment QR">
+          <div class="bill-top"><span class="mono">RESTRO360 / BILL 0841</span><b>PAID <i>✓</i></b></div>
+          <div class="bill-lines"><span>Veg pulao <i>03</i></span><span>Table 03 · GST-ready bill</span></div>
+          <div class="bill-total"><small>PAYMENT QR</small><strong>Payment confirmed</strong><span>Payment status · recorded</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="feature-bottom">
+      <article class="stock-story" id="feature-stock">
+        <div><span class="feature-index mono">05 — STOCK & ALERTS</span><h3>Stock changes reach the menu.</h3><p>Manage stock and use alerts to keep track of availability.</p></div>
+        <div class="stock-indicator"><span class="stock-gauge"><i></i></span><span><b>Mushrooms</b><small>Stock alert · item availability</small></span><strong>LOW</strong></div>
+      </article>
+      <article class="reports-story" id="feature-reports">
+        <div><span class="feature-index mono">06 — REPORTS</span><h3>A useful summary after service.</h3><p>Review weekly and monthly business summary reports.</p><span class="report-file mono">WEEKLY SUMMARY · PDF</span></div>
+        <div class="report-chart" aria-label="Illustrative business summary chart"><span class="mono">WEEKLY SUMMARY</span><div class="report-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="report-days mono"><i>M</i><i>T</i><i>W</i><i>T</i><i>F</i><i>S</i><i>S</i></div></div>
+      </article>
+    </div>
+  </div>
+</section>

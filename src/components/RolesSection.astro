@@ -1,0 +1,107 @@
+---
+const roles = [
+  { key: 'owner', name: 'Owner', initials: 'OW', tools: ['reports', 'stock', 'billing', 'access'], capability: 'Review business summary reports · Manage stock and availability · Oversee billing · Control team access' },
+  { key: 'manager', name: 'Manager', initials: 'MG', tools: ['team', 'kitchen', 'orders', 'stock'], capability: 'Manage staff roles · Coordinate waiter and kitchen work · Follow order status · Review stock alerts' },
+  { key: 'waiter', name: 'Waiter', initials: 'WT', tools: ['waiter', 'orders', 'tables', 'billing'], capability: 'Use the waiter app · Follow guest orders · Coordinate table service · Confirm bills and payment status' },
+  { key: 'kitchen', name: 'Kitchen', initials: 'KT', tools: ['kot', 'preparation', 'ready'], capability: 'Receive live kitchen orders · Follow KOT workflow · Update preparation status · Mark orders ready' },
+];
+const modules = [
+  { key: 'reports', name: 'Business summaries', icon: '↗' },
+  { key: 'stock', name: 'Stock & availability', icon: '◌' },
+  { key: 'billing', name: 'GST billing', icon: '▤' },
+  { key: 'access', name: 'Team access', icon: '⌘' },
+  { key: 'team', name: 'Staff workspace', icon: '◍' },
+  { key: 'kitchen', name: 'Kitchen workflow', icon: '▦' },
+  { key: 'orders', name: 'Guest orders', icon: '↗' },
+  { key: 'waiter', name: 'Waiter app', icon: '▯' },
+  { key: 'tables', name: 'Table service', icon: '⊞' },
+  { key: 'kot', name: 'Live KOT', icon: '▤' },
+  { key: 'preparation', name: 'Preparation status', icon: '◷' },
+  { key: 'ready', name: 'Ready orders', icon: '✓' },
+];
+---
+
+<section class="roles-section" id="roles" aria-labelledby="roles-title">
+  <div class="container">
+    <div class="roles-intro">
+      <p class="eyebrow">ROLE-BASED WORKSPACE</p>
+      <h2 id="roles-title">Everyone sees what they need.<br /><em>Nothing they don’t.</em></h2>
+      <p>Access controls limit what each role can see and do.</p>
+    </div>
+    <div class="permission-workspace" data-role-workspace>
+      <div class="role-selector" role="tablist" aria-label="Select a staff role">
+        {roles.map((role, index) => (
+          <button
+            type="button"
+            class="role-select"
+            id={`role-tab-${role.key}`}
+            role="tab"
+            aria-selected={index === 0 ? 'true' : 'false'}
+            aria-controls="role-access-panel"
+            tabindex={index === 0 ? 0 : -1}
+            data-role={role.key}
+            data-tools={role.tools.join(',')}
+            data-capability={role.capability}
+          >
+            <span class="role-initials mono">{role.initials}</span><span>{role.name}</span><span class="role-arrow">↗</span>
+          </button>
+        ))}
+      </div>
+      <div class="role-access-panel" id="role-access-panel" role="tabpanel" aria-labelledby="role-tab-owner" tabindex="0">
+        <div class="access-panel-heading">
+          <div><span class="mono">ACCESS PROFILE / <b data-selected-role>OWNER</b></span><h3>Workspace access</h3></div>
+          <span class="access-key"><i></i> AVAILABLE</span>
+        </div>
+        <p class="role-capability" data-role-capability>{roles[0].capability}</p>
+        <div class="module-grid">
+          {modules.map((module) => (
+            <div class="module-item" data-module={module.key} data-access={roles[0].tools.includes(module.key)}>
+              <span class="module-icon" aria-hidden="true">{module.icon}</span><span>{module.name}</span><i class="module-check" aria-hidden="true">✓</i>
+            </div>
+          ))}
+        </div>
+        <p class="access-footnote">Role-based access keeps relevant tools in view for each person on the floor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const workspace = document.querySelector<HTMLElement>('[data-role-workspace]');
+  if (workspace) {
+    const buttons = Array.from(workspace.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const modules = Array.from(workspace.querySelectorAll<HTMLElement>('[data-module]'));
+    const selectedRole = workspace.querySelector<HTMLElement>('[data-selected-role]');
+    const capability = workspace.querySelector<HTMLElement>('[data-role-capability]');
+    const panel = workspace.querySelector<HTMLElement>('[role="tabpanel"]');
+
+    const activate = (button: HTMLButtonElement, focus = false) => {
+      const tools = (button.dataset.tools || '').split(',');
+      buttons.forEach((item) => {
+        const selected = item === button;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+      });
+      modules.forEach((module) => {
+        module.dataset.access = String(tools.includes(module.dataset.module || ''));
+      });
+      if (selectedRole) selectedRole.textContent = button.dataset.role?.toUpperCase() || '';
+      if (capability) capability.textContent = button.dataset.capability || '';
+      if (panel) panel.setAttribute('aria-labelledby', button.id);
+      if (focus) button.focus();
+    };
+
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => activate(button));
+      button.addEventListener('keydown', (event) => {
+        if (!['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0
+          : event.key === 'End' ? buttons.length - 1
+            : (index + (event.key === 'ArrowDown' || event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+        const target = buttons[next];
+        if (target) activate(target, true);
+      });
+    });
+  }
+</script>

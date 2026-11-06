@@ -1,0 +1,145 @@
+---
+import ContactForm from './ContactForm.jsx';
+import { CONTACT_EMAIL } from '../config';
+---
+
+<section id="contact" class="contact-section" aria-labelledby="contact-title">
+  <div class="container contact-grid">
+    <div class="contact-copy reveal">
+      <p class="eyebrow">CONTACT</p>
+      <h2 id="contact-title">Tell us how your restaurant works.</h2>
+      <p>Reach our team with a question or book a free product demo.</p>
+      <p><a class="contact-email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+      <p>Serving restaurants in Kolkata first</p>
+    </div>
+    <div class="reveal">
+      <ContactForm client:idle />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    background: var(--ivory-deep);
+    padding-block: clamp(72px, calc(7vw + 16px), 104px);
+  }
+
+  .contact-section > .container {
+    max-width: 1120px;
+    align-items: center;
+    grid-template-columns: minmax(0, .42fr) minmax(0, .58fr);
+    gap: clamp(32px, 5vw, 64px);
+  }
+
+  .contact-copy {
+    align-self: center;
+  }
+
+  .contact-copy h2 {
+    max-width: 460px;
+    color: #211914;
+    font-size: clamp(2.4rem, 3.8vw, 3.125rem);
+    font-weight: 650;
+    line-height: 1.1;
+    letter-spacing: -.045em;
+  }
+
+  .contact-copy > p:not(.eyebrow) {
+    color: #514A42;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .contact-copy .contact-email {
+    color: var(--tomato-dark);
+    font-size: 1.02rem;
+    text-decoration: underline;
+    text-decoration-color: rgba(169,49,26,.35);
+    text-underline-offset: 4px;
+  }
+
+  .contact-section :global(.contact-form) {
+    gap: 18px;
+    border-color: #DED4C7;
+    border-radius: 10px;
+    background: #FBF8F2;
+    padding: clamp(20px, 3vw, 32px);
+    box-shadow: 0 12px 32px rgba(34,26,19,.07);
+  }
+
+  .contact-section :global(.contact-form h3) {
+    color: #211914;
+    font-size: 1.3rem;
+  }
+
+  .contact-section :global(.contact-form label) {
+    gap: 7px;
+    color: #514A42;
+    font-size: .88rem;
+  }
+
+  .contact-section :global(.contact-form input),
+  .contact-section :global(.contact-form textarea) {
+    min-height: 48px;
+    border-color: #CFC3B4;
+    border-radius: 6px;
+    background: #FFFDFA;
+    color: #211914;
+    font-size: .96rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  }
+
+  .contact-section :global(.contact-form input:hover),
+  .contact-section :global(.contact-form textarea:hover) {
+    border-color: #A99B8B;
+  }
+
+  .contact-section :global(.contact-form input:focus),
+  .contact-section :global(.contact-form textarea:focus) {
+    border-color: var(--tomato);
+    outline: 2px solid rgba(197,61,32,.18);
+    outline-offset: 1px;
+    box-shadow: 0 0 0 3px rgba(197,61,32,.08);
+  }
+
+  .contact-section :global(.contact-form textarea) {
+    min-height: 120px;
+  }
+
+  .contact-section :global(.contact-form [aria-invalid="true"]) {
+    border-color: #C83D32;
+  }
+
+  .contact-section :global(.field-error) {
+    color: #A12E25;
+    font-size: .82rem;
+  }
+
+  .contact-section :global(.contact-form .button) {
+    min-height: 50px;
+  }
+
+  .contact-section :global(.contact-form .button:disabled) {
+    cursor: wait;
+    opacity: .76;
+  }
+
+  @media (max-width: 767px) {
+    .contact-section {
+      padding-block: 64px;
+    }
+
+    .contact-section > .container {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .contact-copy h2 {
+      font-size: clamp(2.1rem, 8vw, 2.75rem);
+    }
+
+    .contact-section :global(.contact-form .form-grid) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

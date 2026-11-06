@@ -1,13 +1,225 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const title = 'Privacy Policy';
-const description = 'Privacy Policy placeholder for Restro360';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { CONTACT_EMAIL } from '../config';
+
+const title = 'Privacy Policy | Restro360';
+const description = 'Learn what data Restro360 processes, why it is used, how cookie choices work, and how to exercise your privacy rights in India.';
+const effectiveDate = '[DATE]';
+const lastUpdated = '[DATE]';
+const sections = [
+  { id: 'summary', label: 'Summary' },
+  { id: 'who-we-are', label: 'Who we are' },
+  { id: 'data-collected', label: 'Data we collect' },
+  { id: 'how-we-use', label: 'How we use it' },
+  { id: 'cookies', label: 'Cookies and consent' },
+  { id: 'sharing', label: 'Sharing and providers' },
+  { id: 'retention', label: 'Retention' },
+  { id: 'security', label: 'Security' },
+  { id: 'your-rights', label: 'Your rights' },
+  { id: 'children', label: "Children's data" },
+  { id: 'changes', label: 'Policy changes' },
+  { id: 'contact', label: 'Contact and grievance' },
+];
 ---
 
 <BaseLayout title={title} description={description} canonical="https://restro360.tech/privacy-policy">
-  <main class="max-w-3xl mx-auto px-4 py-20 text-brand-text">
-    <h1 class="font-display text-4xl font-bold mb-6">Privacy Policy</h1>
-    <p class="text-brand-sub mb-4">TODO: Legal review required before final publication.</p>
-    <p class="text-brand-sub leading-relaxed">This page is a placeholder. Please add the final privacy policy language, data retention rules, cookie usage, and consent details before publishing.</p>
-  </main>
+  <Header />
+  <div class="privacy-page">
+    <p class="privacy-draft">Draft: pending legal review before publication.</p>
+    <div class="container privacy-layout">
+      <aside class="privacy-toc" aria-label="Privacy policy contents">
+        <h2>Contents</h2>
+        <nav>
+          <ol>
+            {sections.map((section, index) => (
+              <li><a href={`#${section.id}`}>{index + 1}. {section.label}</a></li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
+      <main class="privacy-main" id="main-content">
+        <header class="privacy-header">
+          <p class="eyebrow">Legal</p>
+          <h1>Privacy Policy</h1>
+          <p class="privacy-meta">
+            Effective date: <time datetime={effectiveDate}>{effectiveDate}</time>
+            <span aria-hidden="true"> · </span>
+            Last updated: <time datetime={lastUpdated}>{lastUpdated}</time>
+          </p>
+        </header>
+
+        <details class="privacy-mobile-toc">
+          <summary>Jump to a section</summary>
+          <nav aria-label="Privacy policy contents">
+            <ol>
+              {sections.map((section, index) => (
+                <li><a href={`#${section.id}`}>{index + 1}. {section.label}</a></li>
+              ))}
+            </ol>
+          </nav>
+        </details>
+
+        <section class="privacy-section" id="summary" aria-labelledby="summary-heading">
+          <h2 id="summary-heading">1. Summary</h2>
+          <ul>
+            <li>Restro360 provides restaurant management tools for restaurants in India, including POS, KOT, waiter app, digital menu and QR ordering, stock, billing, and reports.</li>
+            <li>For restaurant customer and diner data, the restaurant is the data fiduciary/controller and Restro360 acts as its processor.</li>
+            <li>For account, billing, and website data, Restro360 is the data fiduciary/controller.</li>
+            <li>We use account and service data to provide and secure Restro360, communicate about the service, process subscriptions, prevent abuse, comply with law, and improve the product.</li>
+            <li>Google Analytics and Meta Pixel load only after you choose “Accept all”; nothing loads before that choice.</li>
+            <li>You can ask about your data or exercise your rights by emailing <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</li>
+          </ul>
+        </section>
+
+        <section class="privacy-section" id="who-we-are" aria-labelledby="who-heading">
+          <h2 id="who-heading">2. Who we are</h2>
+          <p>Restro360 is a restaurant management SaaS for restaurants in India. It provides POS, KOT, waiter app, digital menu and QR ordering, stock management, billing, and reports.</p>
+          <p>The service is operated by <strong>[LEGAL ENTITY / PROPRIETOR NAME]</strong>, at <strong>[REGISTERED ADDRESS], India</strong> (“Restro360”, “we”, “us”, or “our”). The website is <a href="https://restro360.tech">restro360.tech</a>.</p>
+          <p>For website or account privacy questions, contact <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+          <h3>Our role for different data</h3>
+          <ul>
+            <li>For data about a restaurant’s own customers and diners, that restaurant decides how the data is used. The restaurant is the data fiduciary/controller, and Restro360 processes the data to provide the service.</li>
+            <li>For account, billing, and website data, Restro360 decides how the data is used and acts as the data fiduciary/controller.</li>
+          </ul>
+        </section>
+
+        <section class="privacy-section" id="data-collected" aria-labelledby="data-heading">
+          <h2 id="data-heading">3. Data we collect</h2>
+          <h3>Account and signup data</h3>
+          <p>We collect restaurant name, owner name, email address, mobile number, and password when an account is created. Passwords are stored as hashes and never in plain text.</p>
+          <h3>Verification</h3>
+          <p>We use email one-time passwords (OTPs) for account verification.</p>
+          <h3>Restaurant operations data</h3>
+          <p>The restaurant enters its menu, staff and waiter accounts, orders, KOTs, bills, stock, ratings, and payment status. The restaurant is the data fiduciary/controller for its customers’ and diners’ data, and Restro360 processes it to provide the service.</p>
+          <h3>Billing data</h3>
+          <p>We process subscription status and payment records. Card and UPI details are handled by <strong>[PAYMENT GATEWAY NAME]</strong> and are never stored by Restro360.</p>
+          <h3>Technical data</h3>
+          <p>We may collect IP address, device and browser type, logs, and session data to operate and secure the website and service.</p>
+          <h3>Cookie and analytics data</h3>
+          <p>Website analytics and marketing data is collected only if you choose “Accept all”. See <a href="#cookies">Cookies and consent</a> below.</p>
+        </section>
+
+        <section class="privacy-section" id="how-we-use" aria-labelledby="use-heading">
+          <h2 id="use-heading">4. How and why we use data</h2>
+          <p>We use data for the following purposes:</p>
+          <ul>
+            <li>Provide, operate, and secure Restro360.</li>
+            <li>Authenticate users and manage account access.</li>
+            <li>Send transactional emails, including OTPs, welcome messages, payment receipts and reminders, password resets, weekly and monthly business summary reports, and support replies.</li>
+            <li>Process subscription payments and keep subscription payment records.</li>
+            <li>Prevent fraud, abuse, and unauthorised access.</li>
+            <li>Comply with applicable law.</li>
+            <li>Improve the product.</li>
+            <li>Measure website use and marketing only after you choose “Accept all”.</li>
+          </ul>
+        </section>
+
+        <section class="privacy-section" id="cookies" aria-labelledby="cookies-heading">
+          <h2 id="cookies-heading">5. Cookies and consent</h2>
+          <p>The cookie banner offers two choices:</p>
+          <ul>
+            <li><strong>Accept necessary:</strong> only essential storage is used. Analytics and marketing scripts do not load.</li>
+            <li><strong>Accept all:</strong> essential storage plus analytics and marketing are allowed. Google Analytics (GA4) and Meta Pixel load only after this choice. Nothing loads before consent.</li>
+          </ul>
+          <p>Your choice is saved in your browser’s localStorage under <code>cookie_consent</code>, together with a timestamp. The banner does not appear again while a choice is stored.</p>
+          <p>To change your choice, use the <strong>Cookie settings</strong> link in the footer. You can also clear the site’s localStorage in your browser’s privacy or site settings; the banner will then appear again.</p>
+          <div class="privacy-table-wrap" role="region" aria-label="Cookie and local storage details" tabindex="0">
+            <table class="privacy-table">
+              <thead><tr><th scope="col">Name</th><th scope="col">Purpose</th><th scope="col">Type</th><th scope="col">Duration</th></tr></thead>
+              <tbody>
+                <tr><td><code>cookie_consent</code></td><td>Stores the selected consent choice and timestamp in the browser.</td><td>Necessary</td><td>Until cleared in browser settings or via Cookie settings.</td></tr>
+                <tr><td>Google Analytics (GA4)</td><td>Website analytics, if enabled.</td><td>Optional; only after “Accept all”.</td><td>As set by Google.</td></tr>
+                <tr><td>Meta Pixel</td><td>Marketing measurement, if enabled.</td><td>Optional; only after “Accept all”.</td><td>As set by Meta.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="privacy-section" id="sharing" aria-labelledby="sharing-heading">
+          <h2 id="sharing-heading">6. Sharing and service providers</h2>
+          <p>We use service providers to help operate Restro360. They process data for the services they provide to us.</p>
+          <div class="privacy-table-wrap" role="region" aria-label="Restro360 service providers" tabindex="0">
+            <table class="privacy-table">
+              <thead><tr><th scope="col">Category</th><th scope="col">Provider</th><th scope="col">Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>Hosting</td><td>Hostinger VPS</td><td>Hosting the website and service.</td></tr>
+                <tr><td>DNS, edge services, and email routing</td><td>Cloudflare</td><td>Domain and traffic services, including email routing.</td></tr>
+                <tr><td>Transactional email delivery</td><td>Mailtrap</td><td>Delivery of service-related emails.</td></tr>
+                <tr><td>Payments</td><td>[PAYMENT GATEWAY NAME]</td><td>Processing subscription payments and payment details.</td></tr>
+                <tr><td>Analytics</td><td>Google</td><td>Google Analytics (GA4), only after “Accept all”.</td></tr>
+                <tr><td>Marketing measurement</td><td>Meta</td><td>Meta Pixel, only after “Accept all”.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Some providers may process data outside India. Where this happens, we use safeguards as required by applicable law.</p>
+          <p>We may also disclose data where required by law or a valid legal request.</p>
+        </section>
+
+        <section class="privacy-section" id="retention" aria-labelledby="retention-heading">
+          <h2 id="retention-heading">7. Retention</h2>
+          <div class="privacy-table-wrap" role="region" aria-label="Data retention periods" tabindex="0">
+            <table class="privacy-table">
+              <thead><tr><th scope="col">Data</th><th scope="col">How long it is kept</th></tr></thead>
+              <tbody>
+                <tr><td>Account data</td><td>While the account is active and for [X] months after closure.</td></tr>
+                <tr><td>Billing records</td><td>[X] years, as required by law.</td></tr>
+                <tr><td>Logs</td><td>[X] days.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>We delete data on a verified request unless we must retain it to meet a legal obligation. Restaurant operations data is handled according to the restaurant’s instructions and applicable law.</p>
+        </section>
+
+        <section class="privacy-section" id="security" aria-labelledby="security-heading">
+          <h2 id="security-heading">8. Security</h2>
+          <p>We use measures intended to protect personal data, including hashed passwords, HTTPS, access controls, and backups.</p>
+          <p>No method of storage or transmission is completely secure. We cannot guarantee absolute security.</p>
+        </section>
+
+        <section class="privacy-section" id="your-rights" aria-labelledby="rights-heading">
+          <h2 id="rights-heading">9. Your rights under India’s Digital Personal Data Protection Act, 2023</h2>
+          <p>Subject to applicable law, your rights include:</p>
+          <ul>
+            <li>Access information about personal data being processed and how it is processed.</li>
+            <li>Request correction of inaccurate or incomplete personal data.</li>
+            <li>Request erasure of personal data, subject to legal retention requirements.</li>
+            <li>Seek grievance redressal.</li>
+            <li>Nominate another person to exercise your rights in the circumstances allowed by law.</li>
+          </ul>
+          <p>To exercise a right or raise a privacy concern, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. We may ask for information needed to verify your request. If your data relates to a restaurant’s customers or diners, please contact that restaurant; it is the data fiduciary/controller for that data.</p>
+        </section>
+
+        <section class="privacy-section" id="children" aria-labelledby="children-heading">
+          <h2 id="children-heading">10. Children’s data</h2>
+          <p>Restro360 is a business service for restaurants and is not intended for people under 18. If you believe a person under 18 has provided personal data to us, contact <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+        </section>
+
+        <section class="privacy-section" id="changes" aria-labelledby="changes-heading">
+          <h2 id="changes-heading">11. Changes to this policy</h2>
+          <p>We may update this Privacy Policy. The latest version will appear on this page with an updated “Last updated” date.</p>
+        </section>
+
+        <section class="privacy-section" id="contact" aria-labelledby="contact-heading">
+          <h2 id="contact-heading">12. Contact and Grievance Officer</h2>
+          <h3>Restro360</h3>
+          <address class="privacy-address">
+            <strong>[LEGAL ENTITY / PROPRIETOR NAME]</strong><br />
+            [REGISTERED ADDRESS], India<br />
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          </address>
+          <h3>Grievance Officer</h3>
+          <address class="privacy-address">
+            <strong>[NAME]</strong><br />
+            <a href="mailto:[EMAIL]">[EMAIL]</a><br />
+            We will respond within [X] days.
+          </address>
+        </section>
+
+        <a class="privacy-back-top" href="#main-content">Back to top ↑</a>
+      </main>
+    </div>
+  </div>
+  <Footer />
 </BaseLayout>
