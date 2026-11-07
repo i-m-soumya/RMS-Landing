@@ -1,11 +1,8 @@
 import { Check, Calendar } from 'lucide-react';
 import { siteContent } from '../src/content/siteContent';
+import { SIGNUP_URL } from '../src/config';
 
 const included = siteContent.setupIncluded;
-
-const scrollTo = (id: string) => {
-  document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-};
 
 export default function SetupSection() {
   return (
@@ -56,18 +53,18 @@ export default function SetupSection() {
             </div>
 
             <div className="flex flex-col gap-3">
-              <button
-                onClick={() => scrollTo('#contact')}
-                className="w-full h-12 bg-white text-brand-accent font-bold rounded-xl hover:bg-white/90 transition-all"
+              <a
+                href={SIGNUP_URL}
+                className="flex h-12 w-full items-center justify-center rounded-xl bg-white font-bold text-brand-accent transition-all hover:bg-white/90"
               >
                 {siteContent.sections.setup.buttonPrimary}
-              </button>
-              <button
-                onClick={() => scrollTo('#contact')}
-                className="w-full h-12 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all"
+              </a>
+              <a
+                href={SIGNUP_URL}
+                className="flex h-12 w-full items-center justify-center rounded-xl border-2 border-white/30 font-semibold text-white transition-all hover:bg-white/10"
               >
                 {siteContent.sections.setup.buttonSecondary}
-              </button>
+              </a>
             </div>
           </div>
         </div>

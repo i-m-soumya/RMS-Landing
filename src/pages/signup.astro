@@ -1,11 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SignupWizard from '../components/SignupWizard.jsx';
-
-const title = 'Start your Restro360 free trial';
-const description = 'Create a Restro360 account and set up your restaurant operations.';
+import { SIGNUP_URL } from '../config';
 ---
 
-<BaseLayout title={title} description={description} canonical="https://restro360.tech/signup" noindex>
-  <SignupWizard client:load />
+<BaseLayout title="Continue to Restro360 signup" description="Continue signup in the Restro360 console." canonical={SIGNUP_URL} noindex>
+  <main class="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-center px-6 text-center">
+    <h1 class="text-2xl font-semibold text-slate-950">Continue to Restro360</h1>
+    <p class="mt-3 text-slate-600">Your account is created securely in the Restro360 console.</p>
+    <a class="mt-6 rounded-xl bg-blue-600 px-5 py-3 text-sm font-medium text-white" href={SIGNUP_URL}>Continue to signup</a>
+  </main>
+  <script define:vars={{ signupUrl: SIGNUP_URL }}>
+    const target = new URL(signupUrl);
+    new URLSearchParams(window.location.search).forEach((value, key) => {
+      if (key.startsWith('utm_') || key === 'ref') target.searchParams.set(key, value);
+    });
+    document.querySelector<HTMLAnchorElement>('main a')?.setAttribute('href', target.toString());
+    window.location.replace(target.toString());
+  </script>
 </BaseLayout>

@@ -39,6 +39,18 @@ const {
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <slot />
+    <script>
+      const attribution = new URLSearchParams(window.location.search);
+      if (attribution.size > 0) {
+        document.querySelectorAll<HTMLAnchorElement>('a[href^="https://console.restro360.tech/signup"]').forEach((link) => {
+          const target = new URL(link.href);
+          attribution.forEach((value, key) => {
+            if (key.startsWith('utm_') || key === 'ref') target.searchParams.set(key, value);
+          });
+          link.href = target.toString();
+        });
+      }
+    </script>
     <CookieConsent />
   </body>
 </html>

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { LOGIN_URL, SIGNUP_URL } from '../config';
 
-export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupLabel = 'Start free for 3 months', signupUrl = '/signup' }) {
+export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupLabel = 'Start free for 3 months' }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef(null);
 
@@ -38,8 +39,9 @@ export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupL
                 {link.label}
               </a>
             ))}
-            <a href={signupUrl} className="nav-trial-cta">{signupLabel}</a>
-            <a href="#contact" className="nav-demo-link">Book a Free Demo</a>
+            <a href={SIGNUP_URL} className="nav-trial-cta">{signupLabel}</a>
+            <a href={SIGNUP_URL} className="nav-demo-link">Book a Free Demo</a>
+            <a href={LOGIN_URL} className="nav-demo-link">Log in</a>
           </div>
 
           <button
@@ -69,8 +71,9 @@ export default function ReactNav({ links = [], logoUrl = '/favicon.svg', signupL
               </a>
             ))}
             <div className="px-4 pb-1 pt-2">
-              <a href={signupUrl} onClick={closeMenu} className="nav-mobile-trial">{signupLabel}</a>
-              <a href="#contact" onClick={closeMenu} className="nav-mobile-demo">Book a Free Demo</a>
+              <a href={SIGNUP_URL} onClick={closeMenu} className="nav-mobile-trial">{signupLabel}</a>
+              <a href={SIGNUP_URL} onClick={closeMenu} className="nav-mobile-demo">Book a Free Demo</a>
+              <a href={LOGIN_URL} onClick={closeMenu} className="nav-mobile-demo">Log in</a>
             </div>
           </div>
         </div>

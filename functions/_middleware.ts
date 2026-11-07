@@ -12,7 +12,7 @@ Restro360 is an all-in-one restaurant management platform for India, combining P
 
 ## Contact
 
-Book a free demo at https://www.restro360.com/#contact.
+Start your free 3-month trial at https://console.restro360.tech/signup.
 `;
 
 const discoveryLinks = [

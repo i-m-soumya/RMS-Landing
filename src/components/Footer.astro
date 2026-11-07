@@ -1,6 +1,6 @@
 ---
 import logoUrl from '../assets/restro360_logo.svg';
-import { CONTACT_EMAIL, RESTAURANT_CONSOLE_URL, SIGNUP_URL, WAITER_APP_URL } from '../config';
+import { CONTACT_EMAIL, LOGIN_URL, RESTAURANT_CONSOLE_URL, SIGNUP_URL, WAITER_APP_URL } from '../config';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -23,6 +23,7 @@ const currentYear = new Date().getFullYear();
           <li><a href="/#pricing">Pricing</a></li>
           <li><a href={WAITER_APP_URL}>Waiter app</a></li>
           <li><a href={RESTAURANT_CONSOLE_URL}>Restaurant console</a></li>
+          <li><a href={LOGIN_URL}>Log in</a></li>
         </ul>
       </nav>
       <nav class="footer-column" aria-label="Company links">
@@ -39,6 +40,7 @@ const currentYear = new Date().getFullYear();
           <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
           <li><button class="footer-cookie" type="button" data-cookie-settings>Cookie settings</button></li>
           <li><a href={SIGNUP_URL}>Start free for 3 months</a></li>
+          <li><a href={LOGIN_URL}>Log in</a></li>
         </ul>
       </div>
     </div>

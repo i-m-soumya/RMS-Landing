@@ -1,6 +1,6 @@
 ---
 import logoUrl from '../assets/restro360_logo.svg';
-import { SIGNUP_URL } from '../config';
+import { LOGIN_URL, SIGNUP_URL } from '../config';
 
 const links = [
   { label: 'Features', href: '#features' },
@@ -21,7 +21,8 @@ const links = [
     <nav class="desktop-nav" aria-label="Main navigation">
       {links.map(({ label, href }) => <a href={href}>{label}</a>)}
       <a class="button button-primary" href={SIGNUP_URL}>Start free for 3 months</a>
-      <a class="button button-hero-ghost" href="#contact">Book a Free Demo</a>
+      <a class="button button-hero-ghost" href={SIGNUP_URL}>Book a Free Demo</a>
+      <a class="button button-hero-ghost" href={LOGIN_URL}>Log in</a>
     </nav>
     <button
       class="header-menu-button"
@@ -41,7 +42,8 @@ const links = [
       {links.map(({ label, href }) => <a href={href} data-menu-link>{label}</a>)}
       <div class="mobile-nav-actions">
         <a class="button button-primary" href={SIGNUP_URL}>Start free for 3 months</a>
-        <a class="button button-hero-ghost" href="#contact">Book a Free Demo</a>
+        <a class="button button-hero-ghost" href={SIGNUP_URL}>Book a Free Demo</a>
+        <a class="button button-hero-ghost" href={LOGIN_URL}>Log in</a>
       </div>
     </div>
   </nav>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { LOGIN_URL, SIGNUP_URL } from '../src/config';
 
 const appName = 'Restro360';
 
@@ -51,12 +52,8 @@ export default function LandingNav() {
                 {link.label}
               </button>
             ))}
-            <button
-              onClick={() => scrollTo('#contact')}
-              className="h-9 px-5 bg-brand-accent text-white text-sm font-semibold rounded-xl hover:brightness-110 transition-all"
-            >
-              Book Demo
-            </button>
+            <a href={SIGNUP_URL} className="h-9 px-5 bg-brand-accent text-white text-sm font-semibold rounded-xl hover:brightness-110 transition-all">Start free for 3 months</a>
+            <a href={LOGIN_URL} className="text-sm text-brand-sub hover:text-brand-text">Log in</a>
           </div>
 
           {/* Mobile Hamburger */}
@@ -85,12 +82,8 @@ export default function LandingNav() {
               </button>
             ))}
             <div className="px-4 pt-2 pb-1">
-              <button
-                onClick={() => scrollTo('#contact')}
-                className="w-full h-10 bg-brand-accent text-white text-sm font-semibold rounded-xl"
-              >
-                Book a Demo
-              </button>
+              <a href={SIGNUP_URL} className="flex h-10 items-center justify-center rounded-xl bg-brand-accent text-sm font-semibold text-white">Start free for 3 months</a>
+              <a href={LOGIN_URL} className="mt-2 flex h-10 items-center justify-center rounded-xl text-sm font-semibold text-brand-text">Log in</a>
             </div>
           </div>
         </div>

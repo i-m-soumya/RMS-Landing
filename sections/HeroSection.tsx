@@ -20,7 +20,7 @@ export default function HeroSection() {
               <a href={SIGNUP_URL} className="landing-primary-cta" aria-label="Start free for 3 months">
                 {siteContent.hero.primaryCta} <ArrowRight size={17} />
               </a>
-              <a href="#contact" className="landing-secondary-cta" aria-label="Book a Free Demo">
+              <a href={SIGNUP_URL} className="landing-secondary-cta" aria-label="Book a Free Demo">
                 {siteContent.hero.secondaryCta} <ChevronRight size={17} />
               </a>
             </div>
